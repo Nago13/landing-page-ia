@@ -228,6 +228,17 @@ const aiRecommendations = {
 };
 
 // ========================================
+// Utility Functions
+// ========================================
+// Função para gerar slug do email
+function generateSlugFromEmail(email) {
+    const [name, domain] = email.toLowerCase().split('@');
+    const companyName = domain.split('.')[0]; // pega apenas o nome da empresa (antes do .com)
+    const nameSlug = name.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); // remove caracteres especiais
+    return `${nameSlug}-${companyName}`;
+}
+
+// ========================================
 // Form State Management
 // ========================================
 let currentStep = 1;
@@ -440,23 +451,58 @@ function submitUnlock() {
         return;
     }
     
-    // Store form data (in real app, would send to server)
+    // Prepare form data
+    const stack = stackRecommendations[formData.area] || stackRecommendations.outros;
+    const areaName = areaNames[formData.area] || "Outros";
+    const usageLabel = usageLabels[formData.usaIA] || "Não especificado";
+    
     const fullData = {
         ...formData,
         email: email,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
+        areaName: areaName,
+        usageLabel: usageLabel,
+        slug: generateSlugFromEmail(email),
+        stack: stack.slice(0, 4) // Envia apenas os 4 primeiros apps recomendados
     };
     
-    console.log('Unlock submitted:', fullData);
+    // Show loading state
+    const unlockBtn = document.querySelector('.unlock-btn');
+    const originalText = unlockBtn.innerHTML;
+    unlockBtn.innerHTML = 'Gerando relatório...';
+    unlockBtn.disabled = true;
     
-    // Hide modal
-    document.getElementById('unlockModal').style.display = 'none';
+    // URL do webhook do n8n (substitua pela sua URL real)
+    const N8N_WEBHOOK_URL = 'https://seu-n8n.com/webhook/generate-report'; // TODO: Atualizar com sua URL do n8n
     
-    // Show success modal
-    document.getElementById('successModal').classList.add('active');
-    
-    // Clear email input
-    emailInput.value = '';
+    // Send to n8n webhook
+    fetch(N8N_WEBHOOK_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(fullData)
+    })
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+    })
+    .then(data => {
+        if (data.success && data.slug) {
+            // Redirect to report page
+            window.location.href = `/relatorio/${data.slug}.html`;
+        } else {
+            throw new Error(data.error || 'Erro ao gerar relatório');
+        }
+    })
+    .catch(error => {
+        console.error('Erro ao gerar relatório:', error);
+        alert('Erro ao gerar relatório. Por favor, tente novamente.');
+        unlockBtn.innerHTML = originalText;
+        unlockBtn.disabled = false;
+    });
 }
 
 // Legacy function - mantida para compatibilidade
