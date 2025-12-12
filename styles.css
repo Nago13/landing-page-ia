@@ -984,7 +984,7 @@ img {
 }
 
 .diagnostic-container {
-    max-width: 700px;
+    max-width: 1200px;
     margin: 0 auto;
 }
 
@@ -1170,11 +1170,26 @@ img {
     margin-bottom: var(--spacing-xl);
 }
 
+.area-section-title {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-top: var(--spacing-2xl);
+    margin-bottom: var(--spacing-lg);
+}
+
 /* Options Grid */
 .options-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    display: flex;
+    flex-direction: row;
     gap: var(--spacing-md);
+    justify-content: flex-start;
+    flex-wrap: nowrap;
+}
+
+.options-grid .option-card {
+    flex: 1;
+    min-width: 0;
 }
 
 .option-card {
@@ -1192,6 +1207,10 @@ img {
     border-radius: var(--radius-md);
     text-align: center;
     transition: all var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-sm);
 }
 
 .option-card:hover .option-content {
@@ -1201,6 +1220,21 @@ img {
 .option-card input:checked + .option-content {
     border-color: var(--color-accent-primary);
     background: rgba(139, 92, 246, 0.1);
+}
+
+.option-icon {
+    width: 32px;
+    height: 32px;
+    stroke: var(--color-text-secondary);
+    transition: stroke var(--transition-fast);
+}
+
+.option-card:hover .option-icon {
+    stroke: var(--color-text-primary);
+}
+
+.option-card input:checked + .option-content .option-icon {
+    stroke: var(--color-accent-primary);
 }
 
 .option-content span {
@@ -1320,15 +1354,107 @@ img {
     color: var(--color-text-muted);
 }
 
-/* Profile Filters - Cargo e Sliders */
-.profile-filters {
+/* Tasks Section */
+.tasks-section {
     margin-top: var(--spacing-2xl);
     padding-top: var(--spacing-2xl);
     border-top: 1px solid var(--color-border);
 }
 
-.filter-group {
+.tasks-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     margin-bottom: var(--spacing-xl);
+}
+
+.tasks-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin: 0;
+}
+
+.btn-add-task {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: transparent;
+    border: 1px solid var(--color-accent-primary);
+    border-radius: var(--radius-md);
+    color: var(--color-accent-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.btn-add-task:hover {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: var(--color-accent-secondary);
+    color: var(--color-accent-secondary);
+}
+
+.btn-add-task svg {
+    stroke: currentColor;
+}
+
+.tasks-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xl);
+}
+
+.task-template {
+    display: none;
+}
+
+.btn-delete-task {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    padding: 0;
+    background: transparent;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    position: absolute;
+    top: var(--spacing-lg);
+    right: var(--spacing-lg);
+    z-index: 10;
+}
+
+.btn-delete-task:hover {
+    background: rgba(239, 68, 68, 0.1);
+    border-color: #EF4444;
+    color: #EF4444;
+}
+
+.btn-delete-task svg {
+    stroke: currentColor;
+}
+
+/* Profile Filters - Cargo e Sliders */
+.profile-filters {
+    margin-top: var(--spacing-2xl);
+    padding: var(--spacing-2xl);
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    display: flex;
+    gap: var(--spacing-2xl);
+    align-items: center;
+    position: relative;
+}
+
+.filter-group {
+    flex: 0 0 280px;
+    min-width: 0;
 }
 
 .filter-label {
@@ -1373,10 +1499,22 @@ img {
     color: var(--color-text-primary);
 }
 
+.level-sliders-group {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+    margin-bottom: var(--spacing-2xl);
+    padding-bottom: var(--spacing-xl);
+    border-bottom: 1px solid var(--color-border);
+}
+
 .sliders-group {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-xl);
+    flex: 1;
+    min-width: 0;
+    position: relative;
 }
 
 .slider-container {
@@ -1626,16 +1764,17 @@ img {
 .stack-card-logo-wrapper {
     position: relative;
     margin-bottom: var(--spacing-md);
-    padding-top: var(--spacing-md);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }
 
 .stack-card-compatible {
     position: absolute;
-    top: 0;
-    right: -8px;
+    right: 0;
     padding: var(--spacing-xs) var(--spacing-md);
     background: rgba(16, 185, 129, 0.15);
-    color: #ffffff;
+    color: #10b981;
     font-size: 0.7rem;
     font-weight: 700;
     border: 1px solid rgba(16, 185, 129, 0.4);
@@ -1643,19 +1782,21 @@ img {
     text-transform: uppercase;
     letter-spacing: 0.05em;
     z-index: 2;
+    transform: translateY(-50%);
+    top: 50%;
 }
 
 .stack-card-logo {
-    width: 48px;
-    height: 48px;
+    width: 80px;
+    height: 80px;
     background: var(--color-bg-card);
     border-radius: var(--radius-md);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: var(--spacing-sm);
+    padding: var(--spacing-md);
     position: relative;
-    margin-top: calc(var(--spacing-sm) + 7px);
+    flex-shrink: 0;
 }
 
 .stack-card-category {
@@ -2440,7 +2581,12 @@ img {
     }
     
     .options-grid {
-        grid-template-columns: repeat(2, 1fr);
+        flex-wrap: wrap;
+    }
+    
+    .options-grid .option-card {
+        flex: 1 1 calc(50% - var(--spacing-md));
+        min-width: 150px;
     }
     
     .question-card {
@@ -2449,7 +2595,26 @@ img {
     
     .profile-filters {
         margin-top: var(--spacing-xl);
-        padding-top: var(--spacing-xl);
+        padding: var(--spacing-xl);
+        flex-direction: column;
+        gap: var(--spacing-xl);
+    }
+    
+    .filter-group {
+        flex: 1 1 100%;
+        width: 100%;
+        margin-top: 0;
+    }
+    
+    .level-sliders-group {
+        grid-template-columns: 1fr;
+        gap: var(--spacing-md);
+        margin-bottom: var(--spacing-xl);
+        padding-bottom: var(--spacing-lg);
+    }
+    
+    .sliders-group {
+        width: 100%;
     }
     
     .slider-wrapper {

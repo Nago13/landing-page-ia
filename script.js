@@ -4,7 +4,7 @@
 const stackRecommendations = {
     tecnologia: [
         { name: "Zapier", category: "AUTOMAÇÃO", logo: "images/zapier-logo.png", compatible: true },
-        { name: "Perplexity", category: "PESQUISA", logo: "https://www.perplexity.ai/favicon.ico", compatible: true },
+        { name: "Perplexity", category: "PESQUISA", logo: "images/perplexity-logo.png", compatible: true },
         { name: "Claude 3.5 Sonnet", category: "LLM CORE", logo: "https://www.anthropic.com/favicon.ico", compatible: true },
         { name: "GitHub Copilot", category: "CÓDIGO", logo: "https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png", compatible: true },
         { name: "ChatGPT Plus", category: "LLM CORE", logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", compatible: true },
@@ -18,7 +18,7 @@ const stackRecommendations = {
         { name: "Jasper AI", category: "CONTEÚDO", logo: "https://www.jasper.ai/favicon.ico", compatible: true },
         { name: "Canva", category: "DESIGN", logo: "https://www.canva.com/favicon.ico", compatible: true },
         { name: "Claude 3.5 Sonnet", category: "LLM CORE", logo: "https://www.anthropic.com/favicon.ico", compatible: true },
-        { name: "Perplexity", category: "PESQUISA", logo: "https://www.perplexity.ai/favicon.ico", compatible: true },
+        { name: "Perplexity", category: "PESQUISA", logo: "images/perplexity-logo.png", compatible: true },
         { name: "Notion AI", category: "KNOWLEDGE", logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png", compatible: true },
         { name: "Gamma", category: "APRESENTAÇÃO", logo: "https://gamma.app/favicon.ico", compatible: true }
     ],
@@ -29,65 +29,25 @@ const stackRecommendations = {
         { name: "Notion AI", category: "KNOWLEDGE", logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png", compatible: true },
         { name: "ChatGPT Plus", category: "LLM CORE", logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", compatible: true },
         { name: "Claude 3.5 Sonnet", category: "LLM CORE", logo: "https://www.anthropic.com/favicon.ico", compatible: true },
-        { name: "Perplexity", category: "PESQUISA", logo: "https://www.perplexity.ai/favicon.ico", compatible: true },
+        { name: "Perplexity", category: "PESQUISA", logo: "images/perplexity-logo.png", compatible: true },
         { name: "Gamma", category: "APRESENTAÇÃO", logo: "https://gamma.app/favicon.ico", compatible: true }
     ],
-    juridico: [
-        { name: "Claude 3.5 Sonnet", category: "LLM CORE", logo: "https://www.anthropic.com/favicon.ico", compatible: true },
-        { name: "Perplexity", category: "PESQUISA", logo: "https://www.perplexity.ai/favicon.ico", compatible: true },
-        { name: "Notion AI", category: "KNOWLEDGE", logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png", compatible: true },
+    vendas: [
         { name: "Zapier", category: "AUTOMAÇÃO", logo: "images/zapier-logo.png", compatible: true },
         { name: "ChatGPT Plus", category: "LLM CORE", logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", compatible: true },
-        { name: "Microsoft Copilot", category: "PRODUTIVIDADE", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Microsoft_365_Copilot_Icon.svg", compatible: true },
-        { name: "Google Gemini Advanced", category: "LLM CORE", logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg", compatible: true },
-        { name: "Gamma", category: "APRESENTAÇÃO", logo: "https://gamma.app/favicon.ico", compatible: true }
-    ],
-    rh: [
-        { name: "Notion AI", category: "KNOWLEDGE", logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png", compatible: true },
-        { name: "ChatGPT Plus", category: "LLM CORE", logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", compatible: true },
-        { name: "Zapier", category: "AUTOMAÇÃO", logo: "images/zapier-logo.png", compatible: true },
-        { name: "Microsoft Copilot", category: "PRODUTIVIDADE", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Microsoft_365_Copilot_Icon.svg", compatible: true },
         { name: "Claude 3.5 Sonnet", category: "LLM CORE", logo: "https://www.anthropic.com/favicon.ico", compatible: true },
-        { name: "Perplexity", category: "PESQUISA", logo: "https://www.perplexity.ai/favicon.ico", compatible: true },
-        { name: "Google Gemini Advanced", category: "LLM CORE", logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg", compatible: true },
-        { name: "Gamma", category: "APRESENTAÇÃO", logo: "https://gamma.app/favicon.ico", compatible: true }
-    ],
-    operacoes: [
-        { name: "Zapier", category: "AUTOMAÇÃO", logo: "images/zapier-logo.png", compatible: true },
-        { name: "Google Gemini Advanced", category: "LLM CORE", logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg", compatible: true },
+        { name: "Perplexity", category: "PESQUISA", logo: "images/perplexity-logo.png", compatible: true },
         { name: "Notion AI", category: "KNOWLEDGE", logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png", compatible: true },
-        { name: "Perplexity", category: "PESQUISA", logo: "https://www.perplexity.ai/favicon.ico", compatible: true },
-        { name: "ChatGPT Plus", category: "LLM CORE", logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", compatible: true },
-        { name: "Claude 3.5 Sonnet", category: "LLM CORE", logo: "https://www.anthropic.com/favicon.ico", compatible: true },
+        { name: "Gamma", category: "APRESENTAÇÃO", logo: "https://gamma.app/favicon.ico", compatible: true },
         { name: "Microsoft Copilot", category: "PRODUTIVIDADE", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Microsoft_365_Copilot_Icon.svg", compatible: true },
-        { name: "Gamma", category: "APRESENTAÇÃO", logo: "https://gamma.app/favicon.ico", compatible: true }
-    ],
-    design: [
-        { name: "Midjourney", category: "IMAGEM", logo: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Midjourney_Emblem.png", compatible: true },
-        { name: "Canva", category: "DESIGN", logo: "https://www.canva.com/favicon.ico", compatible: true },
-        { name: "Adobe Firefly", category: "CRIATIVO", logo: "https://www.adobe.com/content/dam/cc/icons/firefly.svg", compatible: true },
-        { name: "ChatGPT Plus", category: "LLM CORE", logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", compatible: true },
-        { name: "Claude 3.5 Sonnet", category: "LLM CORE", logo: "https://www.anthropic.com/favicon.ico", compatible: true },
-        { name: "Perplexity", category: "PESQUISA", logo: "https://www.perplexity.ai/favicon.ico", compatible: true },
-        { name: "Notion AI", category: "KNOWLEDGE", logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png", compatible: true },
-        { name: "Gamma", category: "APRESENTAÇÃO", logo: "https://gamma.app/favicon.ico", compatible: true }
-    ],
-    produto: [
-        { name: "Zapier", category: "AUTOMAÇÃO", logo: "images/zapier-logo.png", compatible: true },
-        { name: "Perplexity", category: "PESQUISA", logo: "https://www.perplexity.ai/favicon.ico", compatible: true },
-        { name: "Claude 3.5 Sonnet", category: "LLM CORE", logo: "https://www.anthropic.com/favicon.ico", compatible: true },
-        { name: "Notion AI", category: "KNOWLEDGE", logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png", compatible: true },
-        { name: "ChatGPT Plus", category: "LLM CORE", logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", compatible: true },
-        { name: "Microsoft Copilot", category: "PRODUTIVIDADE", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Microsoft_365_Copilot_Icon.svg", compatible: true },
-        { name: "Google Gemini Advanced", category: "LLM CORE", logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg", compatible: true },
-        { name: "Gamma", category: "APRESENTAÇÃO", logo: "https://gamma.app/favicon.ico", compatible: true }
+        { name: "Google Gemini Advanced", category: "LLM CORE", logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg", compatible: true }
     ],
     outros: [
         { name: "ChatGPT Plus", category: "LLM CORE", logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg", compatible: true },
         { name: "Claude 3.5 Sonnet", category: "LLM CORE", logo: "https://www.anthropic.com/favicon.ico", compatible: true },
         { name: "Zapier", category: "AUTOMAÇÃO", logo: "images/zapier-logo.png", compatible: true },
         { name: "Notion AI", category: "KNOWLEDGE", logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png", compatible: true },
-        { name: "Perplexity", category: "PESQUISA", logo: "https://www.perplexity.ai/favicon.ico", compatible: true },
+        { name: "Perplexity", category: "PESQUISA", logo: "images/perplexity-logo.png", compatible: true },
         { name: "Google Gemini Advanced", category: "LLM CORE", logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg", compatible: true },
         { name: "Microsoft Copilot", category: "PRODUTIVIDADE", logo: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Microsoft_365_Copilot_Icon.svg", compatible: true },
         { name: "Gamma", category: "APRESENTAÇÃO", logo: "https://gamma.app/favicon.ico", compatible: true }
@@ -95,14 +55,10 @@ const stackRecommendations = {
 };
 
 const areaNames = {
-    tecnologia: "Tecnologia / TI",
-    marketing: "Marketing / Vendas",
-    financeiro: "Financeiro / Contábil",
-    juridico: "Jurídico",
-    rh: "RH / Pessoas",
-    operacoes: "Operações / Logística",
-    design: "Design / Criativo",
-    produto: "Produto / Inovação",
+    marketing: "Marketing",
+    tecnologia: "Tecnologia",
+    vendas: "Vendas",
+    financeiro: "Financeiro",
     outros: "Outros"
 };
 
@@ -111,6 +67,56 @@ const usageLabels = {
     sim_eventual: "Uso eventual, ainda explorando",
     nao_mas_quero: "Não uso, mas quero começar",
     empresa_tem: "Empresa já oferece"
+};
+
+// ========================================
+// Task Options by Area
+// ========================================
+const taskOptionsByArea = {
+    marketing: [
+        { value: "criar_conteudo_social", text: "Criar conteúdo social" },
+        { value: "gestao_trafego", text: "Gestão de tráfego" },
+        { value: "redacao_artigos", text: "Redação de artigos" },
+        { value: "responder_clientes", text: "Responder clientes" },
+        { value: "analise_metricas", text: "Análise de métricas" },
+        { value: "outra", text: "Outra" }
+    ],
+    tecnologia: [
+        { value: "desenvolvimento_codigo", text: "Desenvolvimento de código" },
+        { value: "code_review", text: "Code review" },
+        { value: "monitoramento_logs", text: "Monitoramento de logs" },
+        { value: "escrita_documentacao", text: "Escrita de documentação" },
+        { value: "testes_qa", text: "Testes/QA" },
+        { value: "suporte_n1_n2", text: "Suporte N1/N2" },
+        { value: "outra", text: "Outra" }
+    ],
+    vendas: [
+        { value: "prospeccao_leads", text: "Prospecção de leads" },
+        { value: "qualificacao_sdr", text: "Qualificação (SDR)" },
+        { value: "reunioes_demo", text: "Reuniões de demo" },
+        { value: "follow_up", text: "Follow up" },
+        { value: "elaboracao_propostas", text: "Elaboração de propostas" },
+        { value: "elaboracao_crm", text: "Elaboração de CRM" },
+        { value: "outra", text: "Outra" }
+    ],
+    financeiro: [
+        { value: "conciliacao_bancaria", text: "Conciliação bancária" },
+        { value: "emissao_notas", text: "Emissão de notas" },
+        { value: "contas_pagar_receber", text: "Contas a pagar/receber" },
+        { value: "relatorios_fechamento", text: "Relatórios de fechamento" },
+        { value: "gestao_reembolsos", text: "Gestão de reembolsos" },
+        { value: "auditoria", text: "Auditoria" },
+        { value: "outra", text: "Outra" }
+    ],
+    outros: [
+        { value: "gestao_emails", text: "Gestão de emails" },
+        { value: "agendamento_reunioes", text: "Agendamento de reuniões" },
+        { value: "organizacao_arquivos", text: "Organização de arquivos" },
+        { value: "preenchimento_planilhas", text: "Preenchimento de planilhas" },
+        { value: "pesquisa_dados", text: "Pesquisa de dados" },
+        { value: "relatorios", text: "Relatórios" },
+        { value: "outra", text: "Outra" }
+    ]
 };
 
 // ========================================
@@ -141,6 +147,18 @@ const aiRecommendations = {
             desc: "Criação de conteúdo otimizado para conversão, com templates específicos para marketing"
         }
     },
+    vendas: {
+        popular: {
+            name: "ChatGPT Plus",
+            logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
+            users: "1.8 milhões"
+        },
+        recommended: {
+            name: "Claude Pro",
+            logo: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Claude_AI_logo.svg",
+            desc: "Análise de pipelines de vendas, criação de propostas personalizadas e automação de follow-ups"
+        }
+    },
     financeiro: {
         popular: {
             name: "Microsoft Copilot",
@@ -153,64 +171,16 @@ const aiRecommendations = {
             desc: "Análise de planilhas, geração de relatórios e integração nativa com Google Workspace"
         }
     },
-    juridico: {
+    vendas: {
         popular: {
             name: "ChatGPT Plus",
             logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
-            users: "890 mil"
+            users: "1.8 milhões"
         },
         recommended: {
             name: "Claude Pro",
             logo: "https://upload.wikimedia.org/wikipedia/commons/8/8a/Claude_AI_logo.svg",
-            desc: "Análise de contratos extensos, pesquisa jurídica e redação legal com janela de contexto de 200K"
-        }
-    },
-    rh: {
-        popular: {
-            name: "ChatGPT Plus",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg",
-            users: "1.5 milhões"
-        },
-        recommended: {
-            name: "Notion AI",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png",
-            desc: "Gestão de documentação, criação de políticas e automação de processos de RH integrados"
-        }
-    },
-    operacoes: {
-        popular: {
-            name: "Microsoft Copilot",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Microsoft_365_Copilot_Icon.svg",
-            users: "980 mil"
-        },
-        recommended: {
-            name: "Google Gemini Advanced",
-            logo: "https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg",
-            desc: "Análise de dados operacionais, otimização de processos e integração com ferramentas Google"
-        }
-    },
-    design: {
-        popular: {
-            name: "Midjourney",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Midjourney_Emblem.png",
-            users: "2.1 milhões"
-        },
-        recommended: {
-            name: "Adobe Firefly",
-            logo: "https://www.adobe.com/content/dam/cc/icons/firefly.svg",
-            desc: "Integração nativa com Creative Cloud, geração comercialmente segura e edição vetorial"
-        }
-    },
-    produto: {
-        popular: {
-            name: "Claude",
-            logo: "https://www.anthropic.com/favicon.ico",
-            users: "1.8 milhões"
-        },
-        recommended: {
-            name: "Notion AI",
-            logo: "https://upload.wikimedia.org/wikipedia/commons/4/45/Notion_app_logo.png",
-            desc: "Gestão de roadmap, documentação de features e colaboração em equipe para produtos"
+            desc: "Análise de pipelines de vendas, criação de propostas personalizadas e automação de follow-ups"
         }
     },
     outros: {
@@ -242,17 +212,22 @@ function generateSlugFromEmail(email) {
 // Form State Management
 // ========================================
 let currentStep = 1;
-const totalSteps = 4;
+const totalSteps = 2;
 
 // Form data storage
 const formData = {
     area: null,
     cargo: null,
-    senioridade: 66,
-    autonomia: 33,
-    nivelTecnico: 25,
-    tarefas: null,
-    usaIA: null
+    senioridadeTop: 50,
+    familiaridadeIA: 50,
+    preferenciaEstrutura: 50,
+    necessidadeExplicacao: 50,
+    frequencia: 50,
+    tempoOcorrencia: 25,
+    complexidade: 25,
+    custoErro: 25,
+    roiEstimado: 25,
+    tasks: []
 };
 
 // ========================================
@@ -319,16 +294,32 @@ function validateStep(step) {
             shakeElement('.options-grid');
             return false;
         }
-    } else if (step === 2) {
-        const tarefas = document.getElementById('tarefas').value.trim();
-        if (!tarefas || tarefas.length < 10) {
-            shakeElement('.textarea-container');
+        
+        // Validar que pelo menos uma tarefa foi adicionada
+        const tasksContainer = document.getElementById('tasksContainer');
+        const taskItems = tasksContainer ? tasksContainer.querySelectorAll('.profile-filters:not(.task-template)') : [];
+        
+        if (taskItems.length === 0) {
+            alert('Por favor, adicione pelo menos uma tarefa antes de continuar.');
+            shakeElement('.tasks-section');
             return false;
         }
-    } else if (step === 3) {
-        const selectedUsaIA = document.querySelector('input[name="usaIA"]:checked');
-        if (!selectedUsaIA) {
-            shakeElement('.radio-options');
+        
+        // Validar que cada tarefa tem uma categoria selecionada
+        let hasInvalidTask = false;
+        taskItems.forEach((taskItem, index) => {
+            const taskSelect = taskItem.querySelector('.cargo-select');
+            if (!taskSelect || !taskSelect.value || taskSelect.value === '') {
+                hasInvalidTask = true;
+                taskItem.style.border = '2px solid #ef4444';
+                setTimeout(() => {
+                    taskItem.style.border = '';
+                }, 2000);
+            }
+        });
+        
+        if (hasInvalidTask) {
+            alert('Por favor, selecione a categoria para todas as tarefas antes de continuar.');
             return false;
         }
     }
@@ -345,22 +336,64 @@ function saveStepData(step) {
         if (cargoSelect) {
             formData.cargo = cargoSelect.value;
         }
-        const senioridadeInput = document.getElementById('senioridade');
-        if (senioridadeInput) {
-            formData.senioridade = parseInt(senioridadeInput.value);
+        const frequenciaInput = document.getElementById('frequencia');
+        if (frequenciaInput) {
+            formData.frequencia = parseInt(frequenciaInput.value);
         }
-        const autonomiaInput = document.getElementById('autonomia');
-        if (autonomiaInput) {
-            formData.autonomia = parseInt(autonomiaInput.value);
+        const tempoOcorrenciaInput = document.getElementById('tempoOcorrencia');
+        if (tempoOcorrenciaInput) {
+            formData.tempoOcorrencia = parseInt(tempoOcorrenciaInput.value);
         }
-        const nivelTecnicoInput = document.getElementById('nivelTecnico');
-        if (nivelTecnicoInput) {
-            formData.nivelTecnico = parseInt(nivelTecnicoInput.value);
+        const complexidadeInput = document.getElementById('complexidade');
+        if (complexidadeInput) {
+            formData.complexidade = parseInt(complexidadeInput.value);
         }
-    } else if (step === 2) {
-        formData.tarefas = document.getElementById('tarefas').value.trim();
-    } else if (step === 3) {
-        formData.usaIA = document.querySelector('input[name="usaIA"]:checked').value;
+        const custoErroInput = document.getElementById('custoErro');
+        if (custoErroInput) {
+            formData.custoErro = parseInt(custoErroInput.value);
+        }
+        const roiEstimadoInput = document.getElementById('roiEstimado');
+        if (roiEstimadoInput) {
+            formData.roiEstimado = parseInt(roiEstimadoInput.value);
+        }
+        
+        // Save all task data from dynamically added tasks
+        const taskSelects = document.querySelectorAll('.tasks-container .cargo-select');
+        formData.tasks = [];
+        taskSelects.forEach((select) => {
+            const taskValue = select.value;
+            if (taskValue) {
+                // Get sliders for this task
+                const taskContainer = select.closest('.profile-filters');
+                const sliders = taskContainer.querySelectorAll('input[type="range"]');
+                const taskData = {
+                    task: taskValue,
+                    taskText: select.options[select.selectedIndex]?.text,
+                    frequencia: null,
+                    tempoOcorrencia: null,
+                    complexidade: null,
+                    custoErro: null,
+                    roiEstimado: null
+                };
+                
+                sliders.forEach(slider => {
+                    const sliderId = slider.id;
+                    if (sliderId.includes('frequencia')) {
+                        taskData.frequencia = parseInt(slider.value);
+                    } else if (sliderId.includes('tempoOcorrencia')) {
+                        taskData.tempoOcorrencia = parseInt(slider.value);
+                    } else if (sliderId.includes('complexidade')) {
+                        taskData.complexidade = parseInt(slider.value);
+                    } else if (sliderId.includes('custoErro')) {
+                        taskData.custoErro = parseInt(slider.value);
+                    } else if (sliderId.includes('roiEstimado')) {
+                        taskData.roiEstimado = parseInt(slider.value);
+                    }
+                });
+                
+                formData.tasks.push(taskData);
+            }
+        });
     }
 }
 
@@ -368,13 +401,13 @@ function saveStepData(step) {
 // Results Functions
 // ========================================
 function showResults() {
-    // Validate step 3
-    if (!validateStep(3)) {
+    // Validate step 1
+    if (!validateStep(1)) {
         return;
     }
     
-    // Save step 3 data
-    saveStepData(3);
+    // Save step 1 data
+    saveStepData(1);
     
     // Show loading overlay
     const loadingOverlay = document.getElementById('loadingOverlay');
@@ -393,13 +426,20 @@ function showResults() {
         // Get stack recommendations
         const stack = stackRecommendations[formData.area] || stackRecommendations.outros;
         const areaName = areaNames[formData.area] || "Outros";
-        const usageLabel = usageLabels[formData.usaIA] || "Não especificado";
         
         // Update header
         document.getElementById('stackAreaName').textContent = areaName;
         document.getElementById('filterArea').textContent = areaName;
-        document.getElementById('filterTasks').textContent = truncateText(formData.tarefas, 30);
-        document.getElementById('filterUsage').textContent = usageLabel;
+        
+        // Get tasks from all task selects
+        const taskSelects = document.querySelectorAll('.tasks-container .cargo-select');
+        const selectedTasks = Array.from(taskSelects)
+            .map(select => select.options[select.selectedIndex]?.text)
+            .filter(text => text && text !== 'Selecione uma tarefa...')
+            .join(', ');
+        
+        document.getElementById('filterTasks').textContent = selectedTasks || 'Tarefas selecionadas';
+        document.getElementById('filterUsage').textContent = 'Análise personalizada';
         
         // Populate stack grid - sempre mostrar 8 cards (2 linhas de 4)
         const stackGrid = document.getElementById('stackGrid');
@@ -434,7 +474,7 @@ function showResults() {
         }
         
         // Show results step
-        showStep(4);
+        showStep(2);
         scrollToElement('.diagnostic-section');
     }, 4000);
 }
@@ -454,14 +494,22 @@ function submitUnlock() {
     // Prepare form data
     const stack = stackRecommendations[formData.area] || stackRecommendations.outros;
     const areaName = areaNames[formData.area] || "Outros";
-    const usageLabel = usageLabels[formData.usaIA] || "Não especificado";
+    
+    // Get tasks from all task selects
+    const taskSelects = document.querySelectorAll('.tasks-container .cargo-select');
+    const selectedTasks = Array.from(taskSelects)
+        .map(select => ({
+            value: select.value,
+            text: select.options[select.selectedIndex]?.text
+        }))
+        .filter(task => task.value && task.value !== '');
     
     const fullData = {
         ...formData,
         email: email,
         timestamp: new Date().toISOString(),
         areaName: areaName,
-        usageLabel: usageLabel,
+        tasks: selectedTasks,
         slug: generateSlugFromEmail(email),
         stack: stack.slice(0, 4) // Envia apenas os 4 primeiros apps recomendados
     };
@@ -518,11 +566,16 @@ function resetForm() {
     // Reset form data
     formData.area = null;
     formData.cargo = null;
-    formData.senioridade = 66;
-    formData.autonomia = 33;
-    formData.nivelTecnico = 25;
-    formData.tarefas = null;
-    formData.usaIA = null;
+    formData.senioridadeTop = 50;
+    formData.familiaridadeIA = 50;
+    formData.preferenciaEstrutura = 50;
+    formData.necessidadeExplicacao = 50;
+    formData.frequencia = 50;
+    formData.tempoOcorrencia = 25;
+    formData.complexidade = 25;
+    formData.custoErro = 25;
+    formData.roiEstimado = 25;
+    formData.tasks = [];
     
     // Reset form inputs
     document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
@@ -534,21 +587,53 @@ function resetForm() {
         cargoSelect.value = '';
     }
     
-    // Reset sliders
-    const senioridadeInput = document.getElementById('senioridade');
-    if (senioridadeInput) {
-        senioridadeInput.value = 66;
-        updateSliderFill('senioridade', 66);
+    // Reset novos sliders superiores
+    const senioridadeTopInput = document.getElementById('senioridadeTop');
+    if (senioridadeTopInput) {
+        senioridadeTopInput.value = 50;
+        updateSliderFill('senioridadeTop', 50);
     }
-    const autonomiaInput = document.getElementById('autonomia');
-    if (autonomiaInput) {
-        autonomiaInput.value = 33;
-        updateSliderFill('autonomia', 33);
+    const familiaridadeIAInput = document.getElementById('familiaridadeIA');
+    if (familiaridadeIAInput) {
+        familiaridadeIAInput.value = 50;
+        updateSliderFill('familiaridadeIA', 50);
     }
-    const nivelTecnicoInput = document.getElementById('nivelTecnico');
-    if (nivelTecnicoInput) {
-        nivelTecnicoInput.value = 25;
-        updateSliderFill('nivelTecnico', 25);
+    const preferenciaEstruturaInput = document.getElementById('preferenciaEstrutura');
+    if (preferenciaEstruturaInput) {
+        preferenciaEstruturaInput.value = 50;
+        updateSliderFill('preferenciaEstrutura', 50);
+    }
+    const necessidadeExplicacaoInput = document.getElementById('necessidadeExplicacao');
+    if (necessidadeExplicacaoInput) {
+        necessidadeExplicacaoInput.value = 50;
+        updateSliderFill('necessidadeExplicacao', 50);
+    }
+    
+    // Reset sliders inferiores (existentes)
+    const frequenciaInput = document.getElementById('frequencia');
+    if (frequenciaInput) {
+        frequenciaInput.value = 50;
+        updateSliderFill('frequencia', 50);
+    }
+    const tempoOcorrenciaInput = document.getElementById('tempoOcorrencia');
+    if (tempoOcorrenciaInput) {
+        tempoOcorrenciaInput.value = 25;
+        updateSliderFill('tempoOcorrencia', 25);
+    }
+    const complexidadeInput = document.getElementById('complexidade');
+    if (complexidadeInput) {
+        complexidadeInput.value = 25;
+        updateSliderFill('complexidade', 25);
+    }
+    const custoErroInput = document.getElementById('custoErro');
+    if (custoErroInput) {
+        custoErroInput.value = 25;
+        updateSliderFill('custoErro', 25);
+    }
+    const roiEstimadoInput = document.getElementById('roiEstimado');
+    if (roiEstimadoInput) {
+        roiEstimadoInput.value = 25;
+        updateSliderFill('roiEstimado', 25);
     }
     
     // Go back to step 1
@@ -588,10 +673,38 @@ function truncateText(text, maxLength) {
 
 // Update slider fill visual
 function updateSliderFill(sliderId, value) {
-    const fillElement = document.getElementById(sliderId + 'Fill');
+    // Handle both formats: baseId and fullId
+    let fillId = sliderId;
+    if (!fillId.endsWith('Fill')) {
+        fillId = sliderId + 'Fill';
+    }
+    const fillElement = document.getElementById(fillId);
     if (fillElement) {
         fillElement.style.width = value + '%';
     }
+}
+
+// Initialize sliders in a given container
+function initializeSlidersInContainer(container) {
+    const sliderNames = ['frequencia', 'tempoOcorrencia', 'complexidade', 'custoErro', 'roiEstimado'];
+    sliderNames.forEach(sliderName => {
+        // Find slider by name or id that contains the slider name
+        const slider = container.querySelector(`input[type="range"][name*="${sliderName}"], input[type="range"][id*="${sliderName}"]`);
+        if (slider) {
+            const sliderId = slider.id;
+            if (sliderId) {
+                // Set initial fill
+                const value = parseInt(slider.value) || 0;
+                updateSliderFill(sliderId, value);
+                
+                // Add input listener
+                slider.addEventListener('input', function(e) {
+                    const val = parseInt(this.value);
+                    updateSliderFill(this.id, val);
+                });
+            }
+        }
+    });
 }
 
 // Add shake animation
@@ -612,8 +725,24 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize progress bar
     updateProgressBar();
     
-    // Initialize sliders
-    const sliders = ['senioridade', 'autonomia', 'nivelTecnico'];
+    // Initialize sliders superiores (novos)
+    const topSliders = ['senioridadeTop', 'familiaridadeIA', 'preferenciaEstrutura', 'necessidadeExplicacao'];
+    topSliders.forEach(sliderId => {
+        const slider = document.getElementById(sliderId);
+        if (slider) {
+            // Set initial fill
+            updateSliderFill(sliderId, parseInt(slider.value));
+            
+            // Update fill on input
+            slider.addEventListener('input', (e) => {
+                const value = parseInt(e.target.value);
+                updateSliderFill(sliderId, value);
+            });
+        }
+    });
+    
+    // Initialize sliders inferiores (existentes)
+    const sliders = ['frequencia', 'tempoOcorrencia', 'complexidade', 'custoErro', 'roiEstimado'];
     sliders.forEach(sliderId => {
         const slider = document.getElementById(sliderId);
         if (slider) {
@@ -706,4 +835,161 @@ document.addEventListener('DOMContentLoaded', () => {
         el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
         observer.observe(el);
     });
+    
+    // Initialize task counter
+    window.taskCounter = 0;
+    
+    // Add event listeners to area radio buttons
+    const areaRadios = document.querySelectorAll('input[name="area"]');
+    areaRadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            if (this.checked) {
+                updateAllTaskSelects(this.value);
+            }
+        });
+    });
+    
+    // Initialize task selects with default area (if one is selected)
+    const selectedArea = document.querySelector('input[name="area"]:checked');
+    if (selectedArea) {
+        updateAllTaskSelects(selectedArea.value);
+    }
 });
+
+// ========================================
+// Update Task Select Options
+// ========================================
+function updateTaskSelectOptions(selectElement, area) {
+    if (!selectElement || !taskOptionsByArea[area]) {
+        return;
+    }
+    
+    // Store current value
+    const currentValue = selectElement.value;
+    
+    // Clear existing options and add placeholder
+    selectElement.innerHTML = '';
+    const defaultOption = document.createElement('option');
+    defaultOption.value = '';
+    defaultOption.textContent = 'Selecione uma tarefa...';
+    selectElement.appendChild(defaultOption);
+    
+    // Add new options
+    taskOptionsByArea[area].forEach(task => {
+        const option = document.createElement('option');
+        option.value = task.value;
+        option.textContent = task.text;
+        selectElement.appendChild(option);
+    });
+    
+    // Restore value if it exists in new options
+    if (currentValue && taskOptionsByArea[area].some(t => t.value === currentValue)) {
+        selectElement.value = currentValue;
+    }
+}
+
+function updateAllTaskSelects(area) {
+    // Update template
+    const templateSelect = document.querySelector('.task-template .cargo-select');
+    if (templateSelect) {
+        updateTaskSelectOptions(templateSelect, area);
+    }
+    
+    // Update all existing task selects
+    const allTaskSelects = document.querySelectorAll('.tasks-container .cargo-select');
+    allTaskSelects.forEach(select => {
+        updateTaskSelectOptions(select, area);
+    });
+}
+
+// ========================================
+// Task Management Functions
+// ========================================
+function addTask() {
+    const tasksContainer = document.getElementById('tasksContainer');
+    const template = document.querySelector('.task-template');
+    
+    if (!tasksContainer || !template) {
+        console.error('Tasks container or template not found');
+        return;
+    }
+    
+    // Get current selected area
+    const selectedArea = document.querySelector('input[name="area"]:checked');
+    const currentArea = selectedArea ? selectedArea.value : 'outros';
+    
+    // Clone the template
+    const newTask = template.cloneNode(true);
+    newTask.classList.remove('task-template');
+    newTask.style.display = 'block';
+    
+    // Update task select options for the new task
+    const newTaskSelect = newTask.querySelector('.cargo-select');
+    if (newTaskSelect) {
+        updateTaskSelectOptions(newTaskSelect, currentArea);
+    }
+    
+    // Generate unique IDs for all inputs and fills
+    window.taskCounter = (window.taskCounter || 0) + 1;
+    const taskId = window.taskCounter;
+    
+    // Update all IDs to be unique
+    const allInputs = newTask.querySelectorAll('input, select');
+    const fillIdMap = {}; // Map old fill IDs to new fill IDs
+    
+    allInputs.forEach(input => {
+        if (input.id) {
+            const oldId = input.id;
+            const newId = `${oldId}_task${taskId}`;
+            input.id = newId;
+            input.name = `${input.name}_task${taskId}`;
+            
+            // Map fill element IDs
+            if (oldId.includes('frequencia') || oldId.includes('tempoOcorrencia') || 
+                oldId.includes('complexidade') || oldId.includes('custoErro') || 
+                oldId.includes('roiEstimado')) {
+                const oldFillId = oldId + 'Fill';
+                const newFillId = newId + 'Fill';
+                fillIdMap[oldFillId] = newFillId;
+            }
+        }
+    });
+    
+    // Update fill element IDs using the map
+    Object.keys(fillIdMap).forEach(oldFillId => {
+        const fillElement = newTask.querySelector(`#${oldFillId}`);
+        if (fillElement) {
+            fillElement.id = fillIdMap[oldFillId];
+        }
+    });
+    
+    // Add delete button
+    const deleteBtn = document.createElement('button');
+    deleteBtn.type = 'button';
+    deleteBtn.className = 'btn-delete-task';
+    deleteBtn.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="3 6 5 6 21 6"></polyline>
+            <path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"></path>
+        </svg>
+    `;
+    deleteBtn.onclick = function() {
+        newTask.remove();
+    };
+    
+    // Add delete button to the profile-filters container (top right corner)
+    newTask.style.position = 'relative';
+    deleteBtn.style.position = 'absolute';
+    deleteBtn.style.top = 'var(--spacing-lg)';
+    deleteBtn.style.right = 'var(--spacing-lg)';
+    newTask.appendChild(deleteBtn);
+    
+    // Append to container
+    tasksContainer.appendChild(newTask);
+    
+    // Initialize sliders for the new task
+    initializeSlidersInContainer(newTask);
+    
+    // Scroll to the new task
+    newTask.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
