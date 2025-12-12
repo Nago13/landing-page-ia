@@ -15,7 +15,7 @@
 <body>
     <!-- Top Banner -->
     <div class="top-banner">
-        <p>Descubra qual IA pode multiplicar sua produtividade hoje</p>
+        <p>Monte seu pedido de IA com argumentos, preços e plano em minutos</p>
     </div>
     
     <!-- Navigation -->
@@ -47,38 +47,37 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="pulse"></span>
-                <span>95% das empresas têm ROI zero em IA</span>
+                <span>Precisa de aprovação do chefe?</span>
             </div>
             <h1 class="hero-title">
-                Sua empresa está <span class="gradient-text">voando às cegas</span> na revolução da IA
+                Você quer usar IA, <span class="gradient-text">mas precisa convencer</span> seu chefe
             </h1>
             <p class="hero-subtitle">
-                Bilhões investidos. Zero métricas. Enquanto sua empresa demora para agir,<br>
-                <strong>você pode assumir o controle</strong> da sua produtividade hoje.
+                Descubra qual IA se encaixa no seu trabalho, com argumentos prontos sobre <strong>o que ela faz</strong>, <strong>como funciona</strong>, <strong>preços e planos</strong> — e receba um relatório pronto para enviar ao seu gestor.
             </p>
             <div class="hero-cta">
                 <a href="#diagnostico" class="btn btn-primary">
-                    <span>Descobrir minha IA ideal</span>
+                    <span>Montar pedido de aprovação</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
                 </a>
-                <a href="#insights" class="btn btn-secondary">Ver dados do mercado</a>
+                <a href="#insights" class="btn btn-secondary">Ver comparativos</a>
             </div>
             <div class="hero-stats">
                 <div class="stat">
-                    <span class="stat-number">$644B</span>
-                    <span class="stat-label">Investimento global em IA (2025)</span>
+                    <span class="stat-number">12h</span>
+                    <span class="stat-label">Tempo médio economizado/semana com IA bem usada</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <span class="stat-number">375M</span>
-                    <span class="stat-label">Empregos em transição até 2030</span>
+                    <span class="stat-number">68%</span>
+                    <span class="stat-label">Pedidos de IA reprovam por falta de justificativa clara</span>
                 </div>
                 <div class="stat-divider"></div>
                 <div class="stat">
-                    <span class="stat-number">63%</span>
-                    <span class="stat-label">Empresas sem habilidades de IA</span>
+                    <span class="stat-number">3 min</span>
+                    <span class="stat-label">Para gerar um relatório pronto para seu gestor</span>
                 </div>
             </div>
         </div>
@@ -88,165 +87,358 @@
         </div>
     </header>
 
-    <!-- Insights Section -->
-    <section class="problem-section" id="insights">
+    <!-- Diagnostic Section -->
+    <section class="diagnostic-section" id="diagnostico">
         <div class="container">
-            <!-- Descoberta Section -->
-            <div class="insight-section">
-                <div class="insight-content">
-                    <div class="insight-tag">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 6v6l4 2"/>
-                        </svg>
-                        <span>DESCOBERTA</span>
-                    </div>
-                    <h2 class="insight-title">
-                        Descubra como suas equipes <span class="gradient-text">usam IA</span>
-                    </h2>
-                    <p class="insight-description">
-                        Categorizamos o que as pessoas estão fazendo com IA, como pesquisa, criação de conteúdo, automação de workflows e muito mais. Essa categorização mostra onde suas iniciativas de IA estão gerando resultados.
-                    </p>
-                    <ul class="insight-bullets">
-                        <li>Identifique padrões de uso em diferentes departamentos</li>
-                        <li>Otimize investimentos baseado em dados reais</li>
-                        <li>Descubra oportunidades inexploradas</li>
-                    </ul>
-                </div>
-                <div class="insight-chart">
-                    <canvas id="discoveryChart"></canvas>
-                </div>
+            <div class="section-header">
+                <span class="section-tag">Diagnóstico Personalizado</span>
+                <h2 class="section-title">Descubra a IA e o <span class="gradient-text">argumento perfeito</span> para seu chefe</h2>
+                <p class="section-subtitle">
+                    Responda 3 perguntas rápidas e receba por email a ferramenta ideal, com preço, plano recomendado, risco e como ela te ajuda no dia a dia.
+                </p>
             </div>
+            
+            <div class="diagnostic-container">
+                <!-- Progress Bar -->
+                <div class="progress-container">
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progressFill"></div>
+                    </div>
+                    <div class="progress-steps">
+                        <div class="progress-step active" data-step="1">1</div>
+                        <div class="progress-step" data-step="2">2</div>
+                        <div class="progress-step" data-step="3">3</div>
+                        <div class="progress-step" data-step="4">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M20 6L9 17l-5-5"/>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
 
-            <!-- Competência Section -->
-            <div class="insight-section">
-                <div class="insight-content">
-                    <div class="insight-tag">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 3v18h18"/>
-                            <path d="M18 17V9M13 17V5M8 17v-3"/>
-                        </svg>
-                        <span>COMPETÊNCIA</span>
+                <!-- Loading Overlay -->
+                <div id="loadingOverlay" class="loading-overlay">
+                    <div class="loading-content">
+                        <div class="loading-spinner">
+                            <div class="spinner-ring"></div>
+                            <div class="spinner-ring"></div>
+                            <div class="spinner-ring"></div>
+                        </div>
+                        <p class="loading-text">Fazendo análise</p>
                     </div>
-                    <h2 class="insight-title">
-                        Entenda a competência de IA <span class="gradient-text">das suas equipes</span>
-                    </h2>
-                    <p class="insight-description">
-                        Melhore a Maturidade de IA. Combinamos uso, competência e sentimento para gerar AI Maturity Scores ao longo do tempo, fornecendo aos líderes medidas claras, comparáveis e consistentes de adoção e impacto entre equipes.
-                    </p>
-                    <ul class="insight-bullets">
-                        <li>Acompanhe evolução por departamento</li>
-                        <li>Compare performance entre times</li>
-                        <li>Identifique áreas que precisam de suporte</li>
-                    </ul>
                 </div>
-                <div class="insight-chart">
-                    <canvas id="competenceChart"></canvas>
-                </div>
-            </div>
 
-            <!-- Eficiência Section -->
-            <div class="insight-section">
-                <div class="insight-content">
-                    <div class="insight-tag">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>
-                        <span>EFICIÊNCIA</span>
+                <!-- Form Steps -->
+                <form id="diagnosticForm" class="diagnostic-form">
+                    <!-- Step 1 -->
+                    <div class="form-step active" data-step="1">
+                        <div class="question-card">
+                            <span class="question-number">01</span>
+                            <h3 class="question-title">Qual é a sua área de atuação?</h3>
+                            <p class="question-desc">Ajuda a escolher IAs com templates e integrações que seu chefe reconhece.</p>
+                            <div class="options-grid">
+                                <label class="option-card">
+                                    <input type="radio" name="area" value="tecnologia" required>
+                                    <div class="option-content">
+                                        <span>Tecnologia / TI</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="area" value="marketing">
+                                    <div class="option-content">
+                                        <span>Marketing / Vendas</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="area" value="financeiro">
+                                    <div class="option-content">
+                                        <span>Financeiro / Contábil</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="area" value="juridico">
+                                    <div class="option-content">
+                                        <span>Jurídico</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="area" value="rh">
+                                    <div class="option-content">
+                                        <span>RH / Pessoas</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="area" value="operacoes">
+                                    <div class="option-content">
+                                        <span>Operações / Logística</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="area" value="design">
+                                    <div class="option-content">
+                                        <span>Design / Criativo</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="area" value="produto">
+                                    <div class="option-content">
+                                        <span>Produto / Inovação</span>
+                                    </div>
+                                </label>
+                                <label class="option-card">
+                                    <input type="radio" name="area" value="outros">
+                                    <div class="option-content">
+                                        <span>Outros</span>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <!-- Cargo e Níveis -->
+                            <div class="profile-filters">
+                                <div class="filter-group">
+                                    <label class="filter-label">CARGO / FUNÇÃO</label>
+                                    <select name="cargo" id="cargo" class="cargo-select">
+                                        <option value="">Selecione um cargo...</option>
+                                        <option value="analista">Analista</option>
+                                        <option value="coordenador">Coordenador</option>
+                                        <option value="gerente">Gerente</option>
+                                        <option value="diretor">Diretor</option>
+                                        <option value="especialista">Especialista</option>
+                                        <option value="consultor">Consultor</option>
+                                        <option value="assistente">Assistente</option>
+                                        <option value="supervisor">Supervisor</option>
+                                        <option value="lider">Líder</option>
+                                        <option value="outro">Outro</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="sliders-group">
+                                    <!-- Senioridade Slider -->
+                                    <div class="slider-container">
+                                        <label class="slider-label">Senioridade</label>
+                                        <div class="slider-wrapper">
+                                            <span class="slider-end-label">Jr</span>
+                                            <div class="slider-track">
+                                                <input type="range" name="senioridade" id="senioridade" class="slider-input" min="0" max="100" value="66" step="1">
+                                                <div class="slider-fill" id="senioridadeFill"></div>
+                                            </div>
+                                            <span class="slider-end-label">Sr</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Autonomia Slider -->
+                                    <div class="slider-container">
+                                        <label class="slider-label">Autonomia</label>
+                                        <div class="slider-wrapper">
+                                            <span class="slider-end-label">Assistido</span>
+                                            <div class="slider-track">
+                                                <input type="range" name="autonomia" id="autonomia" class="slider-input" min="0" max="100" value="33" step="1">
+                                                <div class="slider-fill" id="autonomiaFill"></div>
+                                            </div>
+                                            <span class="slider-end-label">Agente</span>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Nível Técnico Slider -->
+                                    <div class="slider-container">
+                                        <label class="slider-label">Nível Técnico</label>
+                                        <div class="slider-wrapper">
+                                            <span class="slider-end-label">NoCode</span>
+                                            <div class="slider-track">
+                                                <input type="range" name="nivelTecnico" id="nivelTecnico" class="slider-input" min="0" max="100" value="25" step="1">
+                                                <div class="slider-fill" id="nivelTecnicoFill"></div>
+                                            </div>
+                                            <span class="slider-end-label">ProCode</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-nav">
+                            <button type="button" class="btn btn-next" onclick="nextStep(1)">
+                                Próximo
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </button>
+                        </div>
                     </div>
-                    <h2 class="insight-title">
-                        Compare economia de <span class="gradient-text">tempo por equipe</span>
-                    </h2>
-                    <p class="insight-description">
-                        Avalie como a adoção de IA impacta a eficiência da equipe combinando detecção de uso passivo com pesquisas de usuários. Avalie se as equipes estão maximizando o valor que podem obter das soluções de IA disponíveis e forneça suporte de habilitação onde for mais eficaz.
-                    </p>
-                    <ul class="insight-bullets">
-                        <li>Quantifique ganhos de produtividade</li>
-                        <li>Identifique times que precisam de treinamento</li>
-                        <li>Justifique investimentos com dados concretos</li>
-                    </ul>
-                </div>
-                <div class="insight-chart">
-                    <canvas id="efficiencyChart"></canvas>
-                </div>
-            </div>
 
-            <!-- Governança Section -->
-            <div class="insight-section">
-                <div class="insight-content">
-                    <div class="insight-tag">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-                        </svg>
-                        <span>GOVERNANÇA</span>
-                    </div>
-                    <h2 class="insight-title">
-                        Descubra todas as aplicações de IA <span class="gradient-text">em uso</span>
-                    </h2>
-                    <p class="insight-description">
-                        Encontre todas as ferramentas de IA, aprovadas ou não, e defina ou aplique políticas de dados e uso para cada uma. Discernimos entre licenças pessoais e empresariais, e orientamos os usuários para as aplicações aprovadas.
-                    </p>
-                    <ul class="insight-bullets">
-                        <li>Visibilidade completa de ferramentas em uso</li>
-                        <li>Controle de licenças e conformidade</li>
-                        <li>Redução de riscos de segurança</li>
-                    </ul>
-                </div>
-                <div class="governance-dashboard">
-                    <div class="governance-cards">
-                        <div class="governance-card">
-                            <div class="governance-label">Apps Autorizados</div>
-                            <div class="governance-value">42</div>
-                            <div class="governance-trend trend-up">12% ↑</div>
+                    <!-- Step 2 -->
+                    <div class="form-step" data-step="2">
+                        <div class="question-card">
+                            <span class="question-number">02</span>
+                            <h3 class="question-title">Quais tarefas te travam ou tomam mais tempo?</h3>
+                            <p class="question-desc">Detalhe as atividades para mostrarmos impacto direto e horas economizadas.</p>
+                            <div class="textarea-container">
+                                <textarea 
+                                    name="tarefas" 
+                                    id="tarefas" 
+                                    placeholder="Ex: Criar relatórios semanais, responder emails, analisar dados de vendas, redigir contratos, criar apresentações..."
+                                    required
+                                ></textarea>
+                                <div class="textarea-hint">
+                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <path d="M12 16v-4M12 8h.01"/>
+                                    </svg>
+                                    Seja específico: quanto mais detalhes, melhor será a recomendação
+                                </div>
+                            </div>
                         </div>
-                        <div class="governance-card">
-                            <div class="governance-label">Apps Não Autorizados</div>
-                            <div class="governance-value">19</div>
-                            <div class="governance-trend trend-down">10% ↓</div>
-                        </div>
-                        <div class="governance-card">
-                            <div class="governance-label">Risco</div>
-                            <div class="governance-value">21%</div>
-                            <div class="governance-trend trend-down">15% ↓</div>
+                        <div class="form-nav">
+                            <button type="button" class="btn btn-back" onclick="prevStep(2)">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                                </svg>
+                                Voltar
+                            </button>
+                            <button type="button" class="btn btn-next" onclick="nextStep(2)">
+                                Próximo
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                    <div class="governance-apps">
-                        <div class="governance-app-item">
-                            <div class="app-icon">
-                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT">
+
+                    <!-- Step 3 -->
+                    <div class="form-step" data-step="3">
+                        <div class="question-card">
+                            <span class="question-number">03</span>
+                            <h3 class="question-title">Você já usa alguma IA para te ajudar com isso?</h3>
+                            <p class="question-desc">Isso nos ajuda a sugerir planos, limites e argumentos de segurança para seu gestor.</p>
+                            <div class="radio-options">
+                                <label class="radio-option">
+                                    <input type="radio" name="usaIA" value="sim_frequente" required>
+                                    <div class="radio-content">
+                                        <div class="radio-indicator"></div>
+                                        <div class="radio-text">
+                                            <span class="radio-label">Sim, uso frequentemente</span>
+                                            <span class="radio-desc">Uso diariamente ChatGPT, Copilot ou outras ferramentas</span>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="usaIA" value="sim_eventual">
+                                    <div class="radio-content">
+                                        <div class="radio-indicator"></div>
+                                        <div class="radio-text">
+                                            <span class="radio-label">Sim, mas eventualmente</span>
+                                            <span class="radio-desc">Já testei algumas vezes, mas não é consistente</span>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="usaIA" value="nao_mas_quero">
+                                    <div class="radio-content">
+                                        <div class="radio-indicator"></div>
+                                        <div class="radio-text">
+                                            <span class="radio-label">Não, mas quero começar</span>
+                                            <span class="radio-desc">Sei que existe, mas ainda não experimentei de verdade</span>
+                                        </div>
+                                    </div>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="usaIA" value="empresa_tem">
+                                    <div class="radio-content">
+                                        <div class="radio-indicator"></div>
+                                        <div class="radio-text">
+                                            <span class="radio-label">Minha empresa já oferece</span>
+                                            <span class="radio-desc">Tenho acesso via empresa, mas poderia ser melhor</span>
+                                        </div>
+                                    </div>
+                                </label>
                             </div>
-                            <div class="app-info">
-                                <div class="app-name">ChatGPT</div>
-                                <div class="app-type">LLM</div>
-                            </div>
-                            <div class="app-status authorized">Autorizado</div>
-                            <div class="app-events">750 eventos</div>
                         </div>
-                        <div class="governance-app-item">
-                            <div class="app-icon">
-                                <img src="images/midjourney-logo.png?v=2" alt="Midjourney">
-                            </div>
-                            <div class="app-info">
-                                <div class="app-name">Midjourney</div>
-                                <div class="app-type">Imagem</div>
-                            </div>
-                            <div class="app-status unauthorized">Não Autorizado</div>
-                            <div class="app-events">340 eventos</div>
-                        </div>
-                        <div class="governance-app-item">
-                            <div class="app-icon">
-                                <img src="images/claude-logo.png?v=10" alt="Claude">
-                            </div>
-                            <div class="app-info">
-                                <div class="app-name">Claude</div>
-                                <div class="app-type">LLM/Código</div>
-                            </div>
-                            <div class="app-status unauthorized">Não Autorizado</div>
-                            <div class="app-events">200 eventos</div>
+                        <div class="form-nav">
+                            <button type="button" class="btn btn-back" onclick="prevStep(3)">
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                                </svg>
+                                Voltar
+                            </button>
+                            <button type="button" class="btn btn-primary btn-submit" onclick="showResults()">
+                                Ver minha recomendação
+                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
+                                    <path d="M22 4L12 14.01l-3-3"/>
+                                </svg>
+                            </button>
                         </div>
                     </div>
-                </div>
+
+                    <!-- Results Step -->
+                    <div class="form-step" data-step="4">
+                        <div class="stack-report">
+                            <div class="stack-header">
+                                <span class="stack-badge">SEU STACK RECOMENDADO</span>
+                                <h2 class="stack-title">Arquitetura sugerida para o time</h2>
+                                <p class="stack-subtitle" id="stackSubtitle">Stack baseada na área de <span id="stackAreaName"></span>.</p>
+                                
+                                <div class="stack-filters">
+                                    <div class="filter-tag">
+                                        <span class="filter-tag-label">Área:</span>
+                                        <span class="filter-tag-value" id="filterArea">Produto / Inovação</span>
+                                    </div>
+                                    <div class="filter-tag">
+                                        <span class="filter-tag-label">Tarefas:</span>
+                                        <span class="filter-tag-value" id="filterTasks">huhiuouhojn</span>
+                                    </div>
+                                    <div class="filter-tag">
+                                        <span class="filter-tag-label">Uso:</span>
+                                        <span class="filter-tag-value" id="filterUsage">Uso eventual, ainda explorando</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stack-grid" id="stackGrid">
+                                <!-- Cards serão inseridos dinamicamente via JavaScript -->
+                            </div>
+                            
+                            <!-- Modal de Desbloqueio -->
+                            <div class="unlock-modal" id="unlockModal">
+                                <div class="unlock-modal-content">
+                                    <div class="unlock-icon">
+                                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <rect x="3" y="11" width="18" height="11" rx="2"/>
+                                            <path d="M7 11V7a5 5 0 0110 0v4"/>
+                                        </svg>
+                                    </div>
+                                    <h3 class="unlock-title">Desbloqueie analise completo gratuitamente</h3>
+                                    <p class="unlock-description">Veja o detalhamento de ROI, curva de aprendizado e lógica técnica de cada escolha.</p>
+                                    <ul class="unlock-features">
+                                        <li>
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20 6L9 17l-5-5"/>
+                                            </svg>
+                                            Cálculo de ROI
+                                        </li>
+                                        <li>
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M20 6L9 17l-5-5"/>
+                                            </svg>
+                                            Lógica técnica
+                                        </li>
+                                    </ul>
+                                    <div class="unlock-form">
+                                        <label class="unlock-label">Seu e-mail corporativo</label>
+                                        <input type="email" id="unlockEmail" class="unlock-input" placeholder="seu@empresa.com" required>
+                                        <button type="button" class="btn btn-primary unlock-btn" onclick="submitUnlock()">
+                                            Desbloquear
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="stack-footer">
+                                <button type="button" class="btn btn-secondary btn-reset" onclick="resetForm()">
+                                    Responder novamente
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
         </div>
     </section>
@@ -256,9 +448,9 @@
         <div class="container">
             <div class="section-header">
                 <span class="section-tag">Compatibilidade</span>
-                <h2 class="section-title">Funciona com as principais <span class="gradient-text">ferramentas de IA</span></h2>
+                <h2 class="section-title">Compare rapidamente as <span class="gradient-text">melhores IAs</span></h2>
                 <p class="section-subtitle">
-                    Compatível com OpenAI, Claude, Gemini, Perplexity e <strong>300+ melhores ferramentas de IA</strong>
+                    Mostramos como a sua IA ideal funciona, para que serve e quais planos existem — incluindo custos que cabem no seu pedido.
                 </p>
             </div>
             
@@ -351,314 +543,165 @@
         </div>
     </section>
 
-    <!-- Diagnostic Section -->
-    <section class="diagnostic-section" id="diagnostico">
+    <!-- Insights Section -->
+    <section class="problem-section" id="insights">
         <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Diagnóstico Personalizado</span>
-                <h2 class="section-title">Descubra qual IA vai <span class="gradient-text">transformar</span> seu trabalho</h2>
-                <p class="section-subtitle">
-                    Responda 3 perguntas rápidas e descubra a ferramenta ideal para você — sem esperar pela sua empresa.
-                </p>
+            <!-- Descoberta Section -->
+            <div class="insight-section">
+                <div class="insight-content">
+                    <div class="insight-tag">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 6v6l4 2"/>
+                        </svg>
+                        <span>DESCOBERTA</span>
+                    </div>
+                    <h2 class="insight-title">
+                        Identifique qual IA você precisa e <span class="gradient-text">como justificar</span>
+                    </h2>
+                    <p class="insight-description">
+                        Nosso diagnóstico mapeia suas tarefas e indica a IA ideal. Você recebe um relatório completo explicando qual IA usar, para que serve e como apresentar ao seu chefe.
+                    </p>
+                    <ul class="insight-bullets">
+                        <li>Descubra qual IA resolve suas tarefas específicas</li>
+                        <li>Entenda como cada ferramenta funciona na prática</li>
+                        <li>Receba argumentos prontos para apresentar ao gestor</li>
+                    </ul>
+                </div>
+                <div class="insight-chart">
+                    <canvas id="discoveryChart"></canvas>
+                </div>
             </div>
-            
-            <div class="diagnostic-container">
-                <!-- Progress Bar -->
-                <div class="progress-container">
-                    <div class="progress-bar">
-                        <div class="progress-fill" id="progressFill"></div>
+
+            <!-- Competência Section -->
+            <div class="insight-section">
+                <div class="insight-content">
+                    <div class="insight-tag">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 3v18h18"/>
+                            <path d="M18 17V9M13 17V5M8 17v-3"/>
+                        </svg>
+                        <span>COMPETÊNCIA</span>
                     </div>
-                    <div class="progress-steps">
-                        <div class="progress-step active" data-step="1">1</div>
-                        <div class="progress-step" data-step="2">2</div>
-                        <div class="progress-step" data-step="3">3</div>
-                        <div class="progress-step" data-step="4">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M20 6L9 17l-5-5"/>
-                            </svg>
+                    <h2 class="insight-title">
+                        Mostre que você sabe usar IA e que <span class="gradient-text">o risco é baixo</span>
+                    </h2>
+                    <p class="insight-description">
+                        Seu relatório inclui argumentos sobre segurança, governança e boas práticas. Mostre ao seu chefe que você já entende os riscos e sabe usar a ferramenta com responsabilidade.
+                    </p>
+                    <ul class="insight-bullets">
+                        <li>Argumentos prontos sobre segurança e proteção de dados</li>
+                        <li>Exemplos de produtividade em empresas similares</li>
+                        <li>Plano de uso responsável que reduz objeções</li>
+                    </ul>
+                </div>
+                <div class="insight-chart">
+                    <canvas id="competenceChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Eficiência Section -->
+            <div class="insight-section">
+                <div class="insight-content">
+                    <div class="insight-tag">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                        <span>EFICIÊNCIA</span>
+                    </div>
+                    <h2 class="insight-title">
+                        Calcule quanto tempo e dinheiro <span class="gradient-text">você vai economizar</span>
+                    </h2>
+                    <p class="insight-description">
+                        Seu relatório inclui cálculos práticos: horas economizadas por semana, custo-benefício do plano e retorno esperado. Números simples que seu chefe entende na hora.
+                    </p>
+                    <ul class="insight-bullets">
+                        <li>Veja quantas horas você economiza por semana</li>
+                        <li>Compare o custo da IA com o tempo que ela libera</li>
+                        <li>Receba métricas prontas para apresentar na reunião</li>
+                    </ul>
+                </div>
+                <div class="insight-chart">
+                    <canvas id="efficiencyChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Governança Section -->
+            <div class="insight-section">
+                <div class="insight-content">
+                    <div class="insight-tag">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                        <span>GOVERNANÇA</span>
+                    </div>
+                    <h2 class="insight-title">
+                        Saiba quais IAs são <span class="gradient-text">seguras e aprovadas</span>
+                    </h2>
+                    <p class="insight-description">
+                        Seu relatório explica quais planos são seguros para empresas, diferenças entre licenças pessoais e empresariais, e como reduzir riscos de compliance. Tudo para facilitar a aprovação do seu chefe.
+                    </p>
+                    <ul class="insight-bullets">
+                        <li>Entenda a diferença entre planos pessoais e empresariais</li>
+                        <li>Veja quais IAs têm menor risco de dados</li>
+                        <li>Receba argumentos para reduzir objeções de compliance</li>
+                    </ul>
+                </div>
+                <div class="governance-dashboard">
+                    <div class="governance-cards">
+                        <div class="governance-card">
+                            <div class="governance-label">Apps Autorizados</div>
+                            <div class="governance-value">42</div>
+                            <div class="governance-trend trend-up">12% ↑</div>
+                        </div>
+                        <div class="governance-card">
+                            <div class="governance-label">Apps Não Autorizados</div>
+                            <div class="governance-value">19</div>
+                            <div class="governance-trend trend-down">10% ↓</div>
+                        </div>
+                        <div class="governance-card">
+                            <div class="governance-label">Risco</div>
+                            <div class="governance-value">21%</div>
+                            <div class="governance-trend trend-down">15% ↓</div>
+                        </div>
+                    </div>
+                    <div class="governance-apps">
+                        <div class="governance-app-item">
+                            <div class="app-icon">
+                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT">
+                            </div>
+                            <div class="app-info">
+                                <div class="app-name">ChatGPT</div>
+                                <div class="app-type">LLM</div>
+                            </div>
+                            <div class="app-status authorized">Autorizado</div>
+                            <div class="app-events">750 eventos</div>
+                        </div>
+                        <div class="governance-app-item">
+                            <div class="app-icon">
+                                <img src="images/midjourney-logo.png?v=2" alt="Midjourney">
+                            </div>
+                            <div class="app-info">
+                                <div class="app-name">Midjourney</div>
+                                <div class="app-type">Imagem</div>
+                            </div>
+                            <div class="app-status unauthorized">Não Autorizado</div>
+                            <div class="app-events">340 eventos</div>
+                        </div>
+                        <div class="governance-app-item">
+                            <div class="app-icon">
+                                <img src="images/claude-logo.png?v=10" alt="Claude">
+                            </div>
+                            <div class="app-info">
+                                <div class="app-name">Claude</div>
+                                <div class="app-type">LLM/Código</div>
+                            </div>
+                            <div class="app-status unauthorized">Não Autorizado</div>
+                            <div class="app-events">200 eventos</div>
                         </div>
                     </div>
                 </div>
-
-                <!-- Loading Overlay -->
-                <div id="loadingOverlay" class="loading-overlay">
-                    <div class="loading-content">
-                        <div class="loading-spinner">
-                            <div class="spinner-ring"></div>
-                            <div class="spinner-ring"></div>
-                            <div class="spinner-ring"></div>
-                        </div>
-                        <p class="loading-text">Fazendo análise</p>
-                    </div>
-                </div>
-
-                <!-- Form Steps -->
-                <form id="diagnosticForm" class="diagnostic-form">
-                    <!-- Step 1 -->
-                    <div class="form-step active" data-step="1">
-                        <div class="question-card">
-                            <span class="question-number">01</span>
-                            <h3 class="question-title">Qual é a sua área de atuação?</h3>
-                            <p class="question-desc">Selecione a área que melhor descreve seu trabalho atual.</p>
-                            <div class="options-grid">
-                                <label class="option-card">
-                                    <input type="radio" name="area" value="tecnologia" required>
-                                    <div class="option-content">
-                                        <span>Tecnologia / TI</span>
-                                    </div>
-                                </label>
-                                <label class="option-card">
-                                    <input type="radio" name="area" value="marketing">
-                                    <div class="option-content">
-                                        <span>Marketing / Vendas</span>
-                                    </div>
-                                </label>
-                                <label class="option-card">
-                                    <input type="radio" name="area" value="financeiro">
-                                    <div class="option-content">
-                                        <span>Financeiro / Contábil</span>
-                                    </div>
-                                </label>
-                                <label class="option-card">
-                                    <input type="radio" name="area" value="juridico">
-                                    <div class="option-content">
-                                        <span>Jurídico</span>
-                                    </div>
-                                </label>
-                                <label class="option-card">
-                                    <input type="radio" name="area" value="rh">
-                                    <div class="option-content">
-                                        <span>RH / Pessoas</span>
-                                    </div>
-                                </label>
-                                <label class="option-card">
-                                    <input type="radio" name="area" value="operacoes">
-                                    <div class="option-content">
-                                        <span>Operações / Logística</span>
-                                    </div>
-                                </label>
-                                <label class="option-card">
-                                    <input type="radio" name="area" value="design">
-                                    <div class="option-content">
-                                        <span>Design / Criativo</span>
-                                    </div>
-                                </label>
-                                <label class="option-card">
-                                    <input type="radio" name="area" value="produto">
-                                    <div class="option-content">
-                                        <span>Produto / Inovação</span>
-                                    </div>
-                                </label>
-                                <label class="option-card">
-                                    <input type="radio" name="area" value="outros">
-                                    <div class="option-content">
-                                        <span>Outros</span>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-nav">
-                            <button type="button" class="btn btn-next" onclick="nextStep(1)">
-                                Próximo
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Step 2 -->
-                    <div class="form-step" data-step="2">
-                        <div class="question-card">
-                            <span class="question-number">02</span>
-                            <h3 class="question-title">Quais tarefas te demandam mais tempo?</h3>
-                            <p class="question-desc">Descreva as atividades que consomem a maior parte do seu dia.</p>
-                            <div class="textarea-container">
-                                <textarea 
-                                    name="tarefas" 
-                                    id="tarefas" 
-                                    placeholder="Ex: Criar relatórios semanais, responder emails, analisar dados de vendas, redigir contratos, criar apresentações..."
-                                    required
-                                ></textarea>
-                                <div class="textarea-hint">
-                                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                        <circle cx="12" cy="12" r="10"/>
-                                        <path d="M12 16v-4M12 8h.01"/>
-                                    </svg>
-                                    Seja específico: quanto mais detalhes, melhor será a recomendação
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-nav">
-                            <button type="button" class="btn btn-back" onclick="prevStep(2)">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M19 12H5M12 19l-7-7 7-7"/>
-                                </svg>
-                                Voltar
-                            </button>
-                            <button type="button" class="btn btn-next" onclick="nextStep(2)">
-                                Próximo
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M5 12h14M12 5l7 7-7 7"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Step 3 -->
-                    <div class="form-step" data-step="3">
-                        <div class="question-card">
-                            <span class="question-number">03</span>
-                            <h3 class="question-title">Você já usa alguma IA para te ajudar com isso?</h3>
-                            <p class="question-desc">Conte-nos sobre sua experiência atual com ferramentas de IA.</p>
-                            <div class="radio-options">
-                                <label class="radio-option">
-                                    <input type="radio" name="usaIA" value="sim_frequente" required>
-                                    <div class="radio-content">
-                                        <div class="radio-indicator"></div>
-                                        <div class="radio-text">
-                                            <span class="radio-label">Sim, uso frequentemente</span>
-                                            <span class="radio-desc">Uso diariamente ChatGPT, Copilot ou outras ferramentas</span>
-                                        </div>
-                                    </div>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="usaIA" value="sim_eventual">
-                                    <div class="radio-content">
-                                        <div class="radio-indicator"></div>
-                                        <div class="radio-text">
-                                            <span class="radio-label">Sim, mas eventualmente</span>
-                                            <span class="radio-desc">Já testei algumas vezes, mas não é consistente</span>
-                                        </div>
-                                    </div>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="usaIA" value="nao_mas_quero">
-                                    <div class="radio-content">
-                                        <div class="radio-indicator"></div>
-                                        <div class="radio-text">
-                                            <span class="radio-label">Não, mas quero começar</span>
-                                            <span class="radio-desc">Sei que existe, mas ainda não experimentei de verdade</span>
-                                        </div>
-                                    </div>
-                                </label>
-                                <label class="radio-option">
-                                    <input type="radio" name="usaIA" value="empresa_tem">
-                                    <div class="radio-content">
-                                        <div class="radio-indicator"></div>
-                                        <div class="radio-text">
-                                            <span class="radio-label">Minha empresa já oferece</span>
-                                            <span class="radio-desc">Tenho acesso via empresa, mas poderia ser melhor</span>
-                                        </div>
-                                    </div>
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-nav">
-                            <button type="button" class="btn btn-back" onclick="prevStep(3)">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M19 12H5M12 19l-7-7 7-7"/>
-                                </svg>
-                                Voltar
-                            </button>
-                            <button type="button" class="btn btn-primary btn-submit" onclick="showResults()">
-                                Ver minha recomendação
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M22 11.08V12a10 10 0 11-5.93-9.14"/>
-                                    <path d="M22 4L12 14.01l-3-3"/>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-
-                    <!-- Results Step -->
-                    <div class="form-step" data-step="4">
-                        <div class="results-card">
-                            <div class="results-header">
-                                <div class="results-icon">
-                                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                                        <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                                    </svg>
-                                </div>
-                                <h3 class="results-title">Sua Recomendação Personalizada</h3>
-                            </div>
-                            
-                            <div class="results-content">
-                                <div class="result-section">
-                                    <span class="result-label">Para:</span>
-                                    <p class="result-task" id="resultTask">Criar relatórios e análises de dados</p>
-                                </div>
-                                
-                                <div class="result-comparison">
-                                    <div class="result-popular">
-                                        <span class="result-badge">Mais Popular</span>
-                                        <div class="ai-card">
-                                            <div class="ai-logo" id="popularAILogo">
-                                                <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" alt="ChatGPT">
-                                            </div>
-                                            <div class="ai-info">
-                                                <h4 id="popularAIName">ChatGPT</h4>
-                                                <p id="popularAIUsers">Usado por <strong>2.4 milhões</strong> de profissionais em empresas</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="result-divider">
-                                        <span>vs</span>
-                                    </div>
-                                    
-                                    <div class="result-recommended">
-                                        <span class="result-badge recommended">Melhor Custo-Benefício</span>
-                                        <div class="ai-card highlight">
-                                            <div class="ai-logo" id="recommendedAILogo">
-                                                <img src="https://www.gstatic.com/lamda/images/gemini_sparkle_v002_d4735304ff6292a690345.svg" alt="Gemini">
-                                            </div>
-                                            <div class="ai-info">
-                                                <h4 id="recommendedAIName">Google Gemini Advanced</h4>
-                                                <p id="recommendedAIDesc">Integração nativa com Google Workspace, análise de documentos e planilhas com contexto empresarial</p>
-                                            </div>
-                                            <div class="ai-highlight">
-                                                <span class="highlight-tag">Recomendado para você</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="result-cta">
-                                    <div class="cta-box">
-                                        <h4>Receba o relatório completo</h4>
-                                        <p>Entenda como começar a usar essa IA na sua empresa, com guias práticos e argumentos para apresentar ao seu gestor.</p>
-                                        <div class="email-form">
-                                            <input type="email" id="emailInput" placeholder="seu@email.com" required>
-                                            <button type="button" class="btn btn-primary" onclick="submitEmail()">
-                                                Enviar relatório
-                                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                    <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z"/>
-                                                </svg>
-                                            </button>
-                                        </div>
-                                        <p class="email-hint">
-                                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                                <rect x="3" y="11" width="18" height="11" rx="2"/>
-                                                <path d="M7 11V7a5 5 0 0110 0v4"/>
-                                            </svg>
-                                            Seus dados estão seguros. Não compartilhamos com terceiros.
-                                        </p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-nav center">
-                            <button type="button" class="btn btn-secondary" onclick="resetForm()">
-                                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <path d="M1 4v6h6M23 20v-6h-6"/>
-                                    <path d="M20.49 9A9 9 0 005.64 5.64L1 10m22 4l-4.64 4.36A9 9 0 013.51 15"/>
-                                </svg>
-                                Fazer novo diagnóstico
-                            </button>
-                        </div>
-                    </div>
-                </form>
             </div>
         </div>
     </section>
@@ -791,10 +834,10 @@
     <section class="cta-section">
         <div class="container">
             <div class="cta-content">
-                <h2>Não espere pela sua empresa.</h2>
-                <p>Enquanto decisões corporativas levam meses, você pode começar a multiplicar sua produtividade hoje.</p>
+                <h2>Chegue para seu chefe com um pedido pronto.</h2>
+                <p>Em minutos, você escolhe a IA certa, mostra preço e plano, e envia um relatório claro de aprovação.</p>
                 <a href="#diagnostico" class="btn btn-primary btn-large">
-                    Descobrir minha IA ideal
+                    Montar meu pedido agora
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
@@ -812,7 +855,7 @@
                         <span class="logo-icon">◈</span>
                         <span class="logo-text">AI<span class="logo-accent">Catalyst</span></span>
                     </a>
-                    <p>Acelerando a adoção inteligente de IA para profissionais que não querem ficar para trás.</p>
+                    <p>Ferramenta pensada para o funcionário de base que precisa justificar ao chefe qual IA contratar e por quê.</p>
                 </div>
                 <div class="footer-links">
                     <div class="footer-column">
@@ -846,7 +889,7 @@
                 </svg>
             </div>
             <h3>Relatório enviado!</h3>
-            <p>Verifique sua caixa de entrada em alguns minutos. Você receberá um guia completo para começar a usar IA de forma estratégica.</p>
+            <p>Verifique sua caixa de entrada. Seu relatório já está pronto para encaminhar ao gestor com argumentos, preço e plano.</p>
             <button class="btn btn-primary" onclick="closeModal()">Entendido</button>
         </div>
     </div>
@@ -992,7 +1035,7 @@
                     plugins: {
                         title: {
                             display: true,
-                            text: 'AI Maturity Score por Departamento',
+                            text: 'Como profissionais como você estão evoluindo com IA',
                             color: '#E8ECF3',
                             font: {
                                 size: 14,
