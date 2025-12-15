@@ -230,6 +230,22 @@ const formData = {
     tasks: []
 };
 
+// Function to toggle AI used field visibility
+function toggleAIUsedField(radioGroup) {
+    const taskContainer = radioGroup.closest('.profile-filters');
+    const aiUsedField = taskContainer.querySelector('.ai-used-field');
+    const iaUsadaInput = taskContainer.querySelector('input[name*="iaUsada"]');
+    
+    if (radioGroup.querySelector('input[value="sim"]:checked')) {
+        aiUsedField.style.display = 'block';
+    } else {
+        aiUsedField.style.display = 'none';
+        if (iaUsadaInput) {
+            iaUsadaInput.value = '';
+        }
+    }
+}
+
 // ========================================
 // Navigation Functions
 // ========================================
@@ -336,25 +352,45 @@ function saveStepData(step) {
         if (cargoSelect) {
             formData.cargo = cargoSelect.value;
         }
+        
+        // Coletar os 4 sliders superiores (níveis gerais do usuário)
+        const senioridadeTopInput = document.getElementById('senioridadeTop');
+        if (senioridadeTopInput) {
+            formData.senioridadeTop = parseInt(senioridadeTopInput.value) || 0;
+        }
+        const familiaridadeIAInput = document.getElementById('familiaridadeIA');
+        if (familiaridadeIAInput) {
+            formData.familiaridadeIA = parseInt(familiaridadeIAInput.value) || 0;
+        }
+        const preferenciaEstruturaInput = document.getElementById('preferenciaEstrutura');
+        if (preferenciaEstruturaInput) {
+            formData.preferenciaEstrutura = parseInt(preferenciaEstruturaInput.value) || 0;
+        }
+        const necessidadeExplicacaoInput = document.getElementById('necessidadeExplicacao');
+        if (necessidadeExplicacaoInput) {
+            formData.necessidadeExplicacao = parseInt(necessidadeExplicacaoInput.value) || 0;
+        }
+        
+        // Coletar sliders inferiores do template (mantido para compatibilidade)
         const frequenciaInput = document.getElementById('frequencia');
         if (frequenciaInput) {
-            formData.frequencia = parseInt(frequenciaInput.value);
+            formData.frequencia = parseInt(frequenciaInput.value) || 0;
         }
         const tempoOcorrenciaInput = document.getElementById('tempoOcorrencia');
         if (tempoOcorrenciaInput) {
-            formData.tempoOcorrencia = parseInt(tempoOcorrenciaInput.value);
+            formData.tempoOcorrencia = parseInt(tempoOcorrenciaInput.value) || 0;
         }
         const complexidadeInput = document.getElementById('complexidade');
         if (complexidadeInput) {
-            formData.complexidade = parseInt(complexidadeInput.value);
+            formData.complexidade = parseInt(complexidadeInput.value) || 0;
         }
         const custoErroInput = document.getElementById('custoErro');
         if (custoErroInput) {
-            formData.custoErro = parseInt(custoErroInput.value);
+            formData.custoErro = parseInt(custoErroInput.value) || 0;
         }
         const roiEstimadoInput = document.getElementById('roiEstimado');
         if (roiEstimadoInput) {
-            formData.roiEstimado = parseInt(roiEstimadoInput.value);
+            formData.roiEstimado = parseInt(roiEstimadoInput.value) || 0;
         }
         
         // Save all task data from dynamically added tasks
@@ -373,23 +409,36 @@ function saveStepData(step) {
                     tempoOcorrencia: null,
                     complexidade: null,
                     custoErro: null,
-                    roiEstimado: null
+                    roiEstimado: null,
+                    usaIA: null,
+                    iaUsada: null
                 };
                 
                 sliders.forEach(slider => {
                     const sliderId = slider.id;
                     if (sliderId.includes('frequencia')) {
-                        taskData.frequencia = parseInt(slider.value);
+                        taskData.frequencia = parseInt(slider.value) || 0;
                     } else if (sliderId.includes('tempoOcorrencia')) {
-                        taskData.tempoOcorrencia = parseInt(slider.value);
+                        taskData.tempoOcorrencia = parseInt(slider.value) || 0;
                     } else if (sliderId.includes('complexidade')) {
-                        taskData.complexidade = parseInt(slider.value);
+                        taskData.complexidade = parseInt(slider.value) || 0;
                     } else if (sliderId.includes('custoErro')) {
-                        taskData.custoErro = parseInt(slider.value);
+                        taskData.custoErro = parseInt(slider.value) || 0;
                     } else if (sliderId.includes('roiEstimado')) {
-                        taskData.roiEstimado = parseInt(slider.value);
+                        taskData.roiEstimado = parseInt(slider.value) || 0;
                     }
                 });
+                
+                // Save AI usage data
+                const usaIARadio = taskContainer.querySelector('input[name*="usaIA"]:checked');
+                if (usaIARadio) {
+                    taskData.usaIA = usaIARadio.value;
+                }
+                
+                const iaUsadaInput = taskContainer.querySelector('input[name*="iaUsada"]');
+                if (iaUsadaInput && iaUsadaInput.value.trim()) {
+                    taskData.iaUsada = iaUsadaInput.value.trim();
+                }
                 
                 formData.tasks.push(taskData);
             }
@@ -491,27 +540,99 @@ function submitUnlock() {
         return;
     }
     
+    // Garantir que todos os dados estão atualizados antes de enviar
+    saveStepData(1);
+    
     // Prepare form data
     const stack = stackRecommendations[formData.area] || stackRecommendations.outros;
     const areaName = areaNames[formData.area] || "Outros";
     
-    // Get tasks from all task selects
-    const taskSelects = document.querySelectorAll('.tasks-container .cargo-select');
-    const selectedTasks = Array.from(taskSelects)
-        .map(select => ({
-            value: select.value,
-            text: select.options[select.selectedIndex]?.text
-        }))
-        .filter(task => task.value && task.value !== '');
+    // Coletar novamente os sliders superiores para garantir que estão atualizados
+    const senioridadeTopInput = document.getElementById('senioridadeTop');
+    const familiaridadeIAInput = document.getElementById('familiaridadeIA');
+    const preferenciaEstruturaInput = document.getElementById('preferenciaEstrutura');
+    const necessidadeExplicacaoInput = document.getElementById('necessidadeExplicacao');
     
+    // Coletar todos os dados das tarefas com informações completas
+    const taskSelects = document.querySelectorAll('.tasks-container .cargo-select');
+    const tasksComplete = [];
+    
+    taskSelects.forEach((select) => {
+        const taskValue = select.value;
+        if (taskValue) {
+            const taskContainer = select.closest('.profile-filters');
+            const sliders = taskContainer.querySelectorAll('input[type="range"]');
+            
+            const taskData = {
+                task: taskValue,
+                taskText: select.options[select.selectedIndex]?.text,
+                frequencia: null,
+                tempoOcorrencia: null,
+                complexidade: null,
+                custoErro: null,
+                roiEstimado: null,
+                usaIA: null,
+                iaUsada: null
+            };
+            
+            // Coletar valores dos sliders da tarefa (0-100)
+            sliders.forEach(slider => {
+                const sliderId = slider.id;
+                if (sliderId.includes('frequencia')) {
+                    taskData.frequencia = parseInt(slider.value) || 0;
+                } else if (sliderId.includes('tempoOcorrencia')) {
+                    taskData.tempoOcorrencia = parseInt(slider.value) || 0;
+                } else if (sliderId.includes('complexidade')) {
+                    taskData.complexidade = parseInt(slider.value) || 0;
+                } else if (sliderId.includes('custoErro')) {
+                    taskData.custoErro = parseInt(slider.value) || 0;
+                } else if (sliderId.includes('roiEstimado')) {
+                    taskData.roiEstimado = parseInt(slider.value) || 0;
+                }
+            });
+            
+            // Coletar resposta sobre uso de IA
+            const usaIARadio = taskContainer.querySelector('input[name*="usaIA"]:checked');
+            if (usaIARadio) {
+                taskData.usaIA = usaIARadio.value;
+            }
+            
+            // Coletar qual IA é usada (se aplicável)
+            const iaUsadaInput = taskContainer.querySelector('input[name*="iaUsada"]');
+            if (iaUsadaInput && iaUsadaInput.value.trim()) {
+                taskData.iaUsada = iaUsadaInput.value.trim();
+            }
+            
+            tasksComplete.push(taskData);
+        }
+    });
+    
+    // Preparar objeto completo com todos os dados
     const fullData = {
-        ...formData,
+        // Dados básicos
         email: email,
         timestamp: new Date().toISOString(),
+        area: formData.area,
         areaName: areaName,
-        tasks: selectedTasks,
+        cargo: formData.cargo || null,
         slug: generateSlugFromEmail(email),
-        stack: stack.slice(0, 4) // Envia apenas os 4 primeiros apps recomendados
+        
+        // Sliders superiores (níveis gerais do usuário - valores de 0 a 100)
+        senioridadeTop: senioridadeTopInput ? parseInt(senioridadeTopInput.value) || 0 : formData.senioridadeTop,
+        familiaridadeIA: familiaridadeIAInput ? parseInt(familiaridadeIAInput.value) || 0 : formData.familiaridadeIA,
+        preferenciaEstrutura: preferenciaEstruturaInput ? parseInt(preferenciaEstruturaInput.value) || 0 : formData.preferenciaEstrutura,
+        necessidadeExplicacao: necessidadeExplicacaoInput ? parseInt(necessidadeExplicacaoInput.value) || 0 : formData.necessidadeExplicacao,
+        
+        // Tarefas com todos os dados completos (sliders de 0 a 100 + respostas de IA)
+        tasks: tasksComplete,
+        
+        // Stack recomendado (apenas dados serializáveis)
+        stack: stack.slice(0, 4).map(app => ({
+            name: app.name,
+            category: app.category,
+            logo: app.logo,
+            compatible: app.compatible
+        }))
     };
     
     // Show loading state
@@ -520,8 +641,12 @@ function submitUnlock() {
     unlockBtn.innerHTML = 'Gerando relatório...';
     unlockBtn.disabled = true;
     
-    // URL do webhook do n8n (substitua pela sua URL real)
-    const N8N_WEBHOOK_URL = 'https://seu-n8n.com/webhook/generate-report'; // TODO: Atualizar com sua URL do n8n
+    // URL do webhook do n8n
+    const N8N_WEBHOOK_URL = 'https://n8n-n8n.pkrul2.easypanel.host/webhook/9176790a-5610-48aa-9e61-ad026bf6cbdd';
+    
+    // Log dos dados antes de enviar (para debug)
+    console.log('Enviando dados para webhook:', fullData);
+    console.log('URL do webhook:', N8N_WEBHOOK_URL);
     
     // Send to n8n webhook
     fetch(N8N_WEBHOOK_URL, {
@@ -531,23 +656,75 @@ function submitUnlock() {
         },
         body: JSON.stringify(fullData)
     })
-    .then(response => {
+    .then(async response => {
+        console.log('Resposta recebida:', response.status, response.statusText);
+        
+        // Tentar ler como texto primeiro para ver o que veio
+        const textResponse = await response.text();
+        console.log('Resposta do servidor (texto):', textResponse);
+        
         if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
+            throw new Error(`HTTP error! status: ${response.status} - ${textResponse}`);
         }
-        return response.json();
+        
+        // Tentar parsear como JSON
+        try {
+            return JSON.parse(textResponse);
+        } catch (e) {
+            // Se não for JSON, retornar um objeto com a resposta
+            console.warn('Resposta não é JSON válido, retornando texto');
+            return { success: true, message: textResponse };
+        }
     })
     .then(data => {
+        console.log('Dados processados:', data);
+        
+        // Se a requisição chegou aqui, significa que foi bem-sucedida (HTTP 200)
+        // O webhook simples do n8n pode retornar diferentes formatos:
+        // - {"workflowId": "...", "executionId": "..."}
+        // - {"message": "Workflow was started"}
+        // - Texto simples: "Workflow was started"
+        // Todos esses são sinais de sucesso!
+        
         if (data.success && data.slug) {
-            // Redirect to report page
+            // Caso especial: se o n8n retornar success e slug, redireciona para relatório
             window.location.href = `/relatorio/${data.slug}.html`;
+        } else if (data.success) {
+            // Se tiver success, mostra mensagem de sucesso
+            console.log('Webhook executado com sucesso');
+            alert('Resposta enviada! O email com o seu relatório já está a caminho, verifique sua caixa de entrada.');
+            unlockBtn.innerHTML = originalText;
+            unlockBtn.disabled = false;
+        } else if (data.error) {
+            // Se tiver erro explícito, lança erro
+            throw new Error(data.error);
         } else {
-            throw new Error(data.error || 'Erro ao gerar relatório');
+            // Qualquer outra resposta HTTP 200 é considerada sucesso
+            // (workflowId, executionId, message, ou qualquer outra coisa)
+            console.log('Webhook do n8n executado com sucesso:', data);
+            alert('Resposta enviada! O email com o seu relatório já está a caminho, verifique sua caixa de entrada.');
+            unlockBtn.innerHTML = originalText;
+            unlockBtn.disabled = false;
         }
     })
     .catch(error => {
         console.error('Erro ao gerar relatório:', error);
-        alert('Erro ao gerar relatório. Por favor, tente novamente.');
+        console.error('Tipo do erro:', error.name);
+        console.error('Mensagem do erro:', error.message);
+        console.error('Stack do erro:', error.stack);
+        console.error('Dados que tentaram ser enviados:', JSON.stringify(fullData, null, 2));
+        
+        // Mensagem de erro mais detalhada
+        let errorMessage = 'Erro ao gerar relatório. ';
+        if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
+            errorMessage += 'Erro de conexão. Verifique sua internet e se o webhook do n8n está acessível.';
+        } else if (error.message.includes('CORS')) {
+            errorMessage += 'Erro de CORS. Verifique as configurações do n8n.';
+        } else {
+            errorMessage += error.message || 'Por favor, tente novamente.';
+        }
+        
+        alert(errorMessage);
         unlockBtn.innerHTML = originalText;
         unlockBtn.disabled = false;
     });
@@ -577,11 +754,29 @@ function resetForm() {
     formData.roiEstimado = 25;
     formData.tasks = [];
     
+    // Reset task counter
+    window.taskCounter = 0;
+    
+    // Clear all dynamically added tasks
+    const tasksContainer = document.getElementById('tasksContainer');
+    if (tasksContainer) {
+        // Remove all task items (but keep the template)
+        const taskItems = tasksContainer.querySelectorAll('.profile-filters:not(.task-template)');
+        taskItems.forEach(task => task.remove());
+    }
+    
     // Reset form inputs
     document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
-    document.getElementById('tarefas').value = '';
     
-    // Reset cargo select
+    // Reset and hide AI used fields
+    document.querySelectorAll('.ai-used-field').forEach(field => {
+        field.style.display = 'none';
+    });
+    document.querySelectorAll('input[name*="iaUsada"]').forEach(input => {
+        input.value = '';
+    });
+    
+    // Reset cargo select in template
     const cargoSelect = document.getElementById('cargo');
     if (cargoSelect) {
         cargoSelect.value = '';
@@ -609,7 +804,7 @@ function resetForm() {
         updateSliderFill('necessidadeExplicacao', 50);
     }
     
-    // Reset sliders inferiores (existentes)
+    // Reset sliders inferiores no template (se existirem)
     const frequenciaInput = document.getElementById('frequencia');
     if (frequenciaInput) {
         frequenciaInput.value = 50;
@@ -636,9 +831,39 @@ function resetForm() {
         updateSliderFill('roiEstimado', 25);
     }
     
+    // Hide loading overlay if visible
+    const loadingOverlay = document.getElementById('loadingOverlay');
+    if (loadingOverlay) {
+        loadingOverlay.classList.remove('active');
+    }
+    
+    // Reset unlock email input
+    const unlockEmailInput = document.getElementById('unlockEmail');
+    if (unlockEmailInput) {
+        unlockEmailInput.value = '';
+    }
+    
     // Go back to step 1
     showStep(1);
-    scrollToElement('.diagnostic-section');
+    
+    // Scroll to the diagnostic section after a small delay to ensure DOM is updated
+    setTimeout(() => {
+        const diagnosticSection = document.querySelector('.diagnostic-section');
+        if (diagnosticSection) {
+            const offset = 120;
+            const elementPosition = diagnosticSection.getBoundingClientRect().top + window.pageYOffset;
+            window.scrollTo({
+                top: elementPosition - offset,
+                behavior: 'smooth'
+            });
+        } else {
+            // Fallback: scroll to top of page
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+    }, 150);
 }
 
 // ========================================
@@ -989,6 +1214,14 @@ function addTask() {
     
     // Initialize sliders for the new task
     initializeSlidersInContainer(newTask);
+    
+    // Add event listeners for AI usage radio buttons
+    const usaIARadios = newTask.querySelectorAll('input[name*="usaIA"]');
+    usaIARadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            toggleAIUsedField(this.closest('.filter-group').querySelector('.radio-group-inline'));
+        });
+    });
     
     // Scroll to the new task
     newTask.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
