@@ -1499,6 +1499,90 @@ img {
     color: var(--color-text-primary);
 }
 
+/* Radio Group Inline (Sim/Não) */
+.radio-group-inline {
+    display: flex;
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-sm);
+}
+
+.radio-option-inline {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--color-bg-tertiary);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+    flex: 1;
+    justify-content: center;
+}
+
+.radio-option-inline:hover {
+    border-color: var(--color-border-hover);
+    background: var(--color-bg-secondary);
+}
+
+.radio-option-inline input[type="radio"] {
+    display: none;
+}
+
+.radio-option-inline span {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    pointer-events: none;
+}
+
+.radio-option-inline input[type="radio"]:checked ~ span {
+    color: var(--color-accent-primary);
+    font-weight: 600;
+}
+
+.radio-option-inline:has(input[type="radio"]:checked) {
+    border-color: var(--color-accent-primary);
+    background: rgba(139, 92, 246, 0.1);
+}
+
+/* Text Input for AI Used */
+.text-input {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--color-bg-tertiary);
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    color: var(--color-text-primary);
+    font-size: 0.95rem;
+    font-family: var(--font-primary);
+    transition: all var(--transition-fast);
+    margin-top: var(--spacing-sm);
+}
+
+.text-input:hover {
+    border-color: var(--color-border-hover);
+}
+
+.text-input:focus {
+    outline: none;
+    border-color: var(--color-accent-primary);
+    background: var(--color-bg-secondary);
+}
+
+.text-input::placeholder {
+    color: var(--color-text-muted);
+}
+
+/* AI Used Field */
+.ai-used-field {
+    margin-top: var(--spacing-md);
+}
+
+/* Espaçamento após sliders para perguntas sobre IA */
+.sliders-group + .filter-group {
+    margin-top: 22px;
+}
+
 .level-sliders-group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
