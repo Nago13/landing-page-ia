@@ -257,3 +257,6 @@ const N8N_GET_REPORT_URL = 'https://SEU-N8N.com/webhook/get-report';
 - **Slug incorreto**: Verifique a função `generateSlugFromEmail()` no script.js
 
 
+
+
+
