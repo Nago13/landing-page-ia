@@ -896,7 +896,7 @@ function submitUnlock() {
         } else if (data.success) {
             // Se tiver success, mostra mensagem de sucesso
             console.log('Webhook executado com sucesso');
-            alert('Relatório gerado com sucesso! Verifique o n8n para ver os dados recebidos.');
+            alert('Resposta enviada com sucesso! Cheque seu email, por favor.');
             unlockBtn.innerHTML = originalText;
             unlockBtn.disabled = false;
         } else if (data.error) {
@@ -906,7 +906,7 @@ function submitUnlock() {
             // Qualquer outra resposta HTTP 200 é considerada sucesso
             // (workflowId, executionId, message, ou qualquer outra coisa)
             console.log('Webhook do n8n executado com sucesso:', data);
-            alert('Dados enviados com sucesso para o n8n! O workflow foi iniciado.');
+            alert('Resposta enviada com sucesso! Cheque seu email, por favor.');
             unlockBtn.innerHTML = originalText;
             unlockBtn.disabled = false;
         }
