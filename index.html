@@ -935,8 +935,26 @@
 
         // Gráfico 1: Descoberta - Donut Chart
         const discoveryCtx = document.getElementById('discoveryChart');
+        let discoveryChartInstance = null;
+        
+        // Função para determinar configurações baseadas no tamanho da tela
+        function getChartConfig() {
+            const isMobile = window.innerWidth <= 640;
+            const isTablet = window.innerWidth > 640 && window.innerWidth <= 768;
+            
+            return {
+                maintainAspectRatio: false,
+                legendPadding: isMobile ? 8 : 12,
+                legendFontSize: isMobile ? 9 : 11,
+                legendBoxSize: isMobile ? 6 : 8,
+                cutout: isMobile ? '60%' : '65%'
+            };
+        }
+        
         if (discoveryCtx) {
-            const discoveryChart = new Chart(discoveryCtx, {
+            const config = getChartConfig();
+            
+            discoveryChartInstance = new Chart(discoveryCtx, {
                 type: 'doughnut',
                 data: {
                     labels: ['Knowledge & Research', 'Writing & Communication', 'Analysis & Decision Support', 'Creative & Ideation', 'Coding & Technical Tasks', 'Admin & Ops Automation'],
@@ -956,20 +974,20 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: config.maintainAspectRatio,
                     plugins: {
                         legend: {
                             display: true,
                             position: 'bottom',
                             labels: {
                                 usePointStyle: true,
-                                padding: 12,
+                                padding: config.legendPadding,
                                 color: '#9CA3AF',
                                 font: {
-                                    size: 11
+                                    size: config.legendFontSize
                                 },
-                                boxWidth: 8,
-                                boxHeight: 8
+                                boxWidth: config.legendBoxSize,
+                                boxHeight: config.legendBoxSize
                             }
                         },
                         tooltip: {
@@ -980,7 +998,7 @@
                         mode: null,
                         intersect: false
                     },
-                    cutout: '65%'
+                    cutout: config.cutout
                 }
             });
             
@@ -1013,13 +1031,22 @@
                         }
                     }
                 }
+                
+                // Garantir tamanho estável do canvas
+                const canvas = discoveryCtx;
+                if (canvas) {
+                    canvas.style.width = '100%';
+                    canvas.style.height = 'auto';
+                    canvas.style.maxWidth = '100%';
+                }
             }, 200);
         }
 
         // Gráfico 2: Competência - Line Chart
         const competenceCtx = document.getElementById('competenceChart');
+        let competenceChartInstance = null;
         if (competenceCtx) {
-            new Chart(competenceCtx, {
+            competenceChartInstance = new Chart(competenceCtx, {
                 type: 'line',
                 data: {
                     labels: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun'],
@@ -1060,7 +1087,8 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: window.innerWidth > 768,
+                    aspectRatio: window.innerWidth > 768 ? 2 : 1.5,
                     interaction: {
                         mode: null,
                         intersect: false
@@ -1071,11 +1099,11 @@
                             text: 'Como profissionais como você estão evoluindo com IA',
                             color: '#E8ECF3',
                             font: {
-                                size: 14,
+                                size: window.innerWidth > 640 ? 14 : 12,
                                 weight: 600
                             },
                             padding: {
-                                bottom: 20
+                                bottom: window.innerWidth > 640 ? 20 : 15
                             }
                         },
                         legend: {
@@ -1083,8 +1111,11 @@
                             position: 'bottom',
                             labels: {
                                 usePointStyle: true,
-                                padding: 15,
-                                color: '#9CA3AF'
+                                padding: window.innerWidth > 640 ? 15 : 10,
+                                color: '#9CA3AF',
+                                font: {
+                                    size: window.innerWidth > 640 ? 12 : 10
+                                }
                             }
                         },
                         tooltip: {
@@ -1101,7 +1132,10 @@
                             },
                             ticks: {
                                 color: '#9CA3AF',
-                                stepSize: 20
+                                stepSize: 20,
+                                font: {
+                                    size: window.innerWidth > 640 ? 12 : 10
+                                }
                             }
                         },
                         x: {
@@ -1109,7 +1143,10 @@
                                 display: false
                             },
                             ticks: {
-                                color: '#9CA3AF'
+                                color: '#9CA3AF',
+                                font: {
+                                    size: window.innerWidth > 640 ? 12 : 10
+                                }
                             }
                         }
                     }
@@ -1119,8 +1156,9 @@
 
         // Gráfico 3: Eficiência - Stacked Bar Chart
         const efficiencyCtx = document.getElementById('efficiencyChart');
+        let efficiencyChartInstance = null;
         if (efficiencyCtx) {
-            new Chart(efficiencyCtx, {
+            efficiencyChartInstance = new Chart(efficiencyCtx, {
                 type: 'bar',
                 data: {
                     labels: ['Sales', 'Engineering', 'Marketing', 'Finance'],
@@ -1145,18 +1183,19 @@
                 },
                 options: {
                     responsive: true,
-                    maintainAspectRatio: true,
+                    maintainAspectRatio: window.innerWidth > 768,
+                    aspectRatio: window.innerWidth > 768 ? 2 : 1.5,
                     plugins: {
                         title: {
                             display: true,
                             text: 'Tempo Economizado por Semana',
                             color: '#E8ECF3',
                             font: {
-                                size: 14,
+                                size: window.innerWidth > 640 ? 14 : 12,
                                 weight: 600
                             },
                             padding: {
-                                bottom: 20
+                                bottom: window.innerWidth > 640 ? 20 : 15
                             }
                         },
                         legend: {
@@ -1164,8 +1203,11 @@
                             position: 'bottom',
                             labels: {
                                 usePointStyle: true,
-                                padding: 15,
-                                color: '#9CA3AF'
+                                padding: window.innerWidth > 640 ? 15 : 10,
+                                color: '#9CA3AF',
+                                font: {
+                                    size: window.innerWidth > 640 ? 12 : 10
+                                }
                             }
                         },
                         tooltip: {
@@ -1183,7 +1225,10 @@
                                 display: false
                             },
                             ticks: {
-                                color: '#9CA3AF'
+                                color: '#9CA3AF',
+                                font: {
+                                    size: window.innerWidth > 640 ? 12 : 10
+                                }
                             }
                         },
                         y: {
@@ -1193,7 +1238,10 @@
                             title: {
                                 display: true,
                                 text: 'Horas',
-                                color: '#9CA3AF'
+                                color: '#9CA3AF',
+                                font: {
+                                    size: window.innerWidth > 640 ? 12 : 10
+                                }
                             },
                             grid: {
                                 color: '#374151',
@@ -1201,13 +1249,50 @@
                             },
                             ticks: {
                                 color: '#9CA3AF',
-                                stepSize: 3
+                                stepSize: 3,
+                                font: {
+                                    size: window.innerWidth > 640 ? 12 : 10
+                                }
                             }
                         }
                     }
                 }
             });
         }
+        
+        // Atualizar gráficos quando a janela for redimensionada (com debounce mais longo)
+        let resizeChartTimeout;
+        let lastWidth = window.innerWidth;
+        let isResizing = false;
+        
+        window.addEventListener('resize', () => {
+            if (!isResizing) {
+                isResizing = true;
+            }
+            
+            clearTimeout(resizeChartTimeout);
+            resizeChartTimeout = setTimeout(() => {
+                const currentWidth = window.innerWidth;
+                const widthChanged = Math.abs(currentWidth - lastWidth) > 100; // Só atualiza se mudança significativa (100px)
+                
+                if (widthChanged) {
+                    lastWidth = currentWidth;
+                    
+                    // Atualizar apenas gráficos de linha e barra, não o donut
+                    if (competenceChartInstance) {
+                        competenceChartInstance.resize();
+                    }
+                    if (efficiencyChartInstance) {
+                        efficiencyChartInstance.resize();
+                    }
+                    
+                    // O gráfico de descoberta (donut) não precisa ser redimensionado
+                    // Ele se adapta automaticamente via CSS
+                }
+                
+                isResizing = false;
+            }, 500); // Debounce maior para evitar atualizações frequentes
+        });
     </script>
     
     <!-- Parallax Effect for Fixed Orbs -->
