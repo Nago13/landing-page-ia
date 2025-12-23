@@ -3194,3 +3194,182 @@ body {
         height: 12px;
     }
 }
+
+/* ========================================
+   Sessions Section
+   ======================================== */
+.sessions-section {
+    padding: var(--spacing-3xl) 0;
+    background: var(--color-bg-secondary);
+    position: relative;
+}
+
+.sessions-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: var(--spacing-lg);
+    margin-top: var(--spacing-2xl);
+}
+
+.sessions-empty {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: var(--spacing-3xl) var(--spacing-xl);
+    color: var(--color-text-muted);
+}
+
+.sessions-empty svg {
+    margin-bottom: var(--spacing-lg);
+    opacity: 0.5;
+}
+
+.sessions-empty p {
+    font-size: 1rem;
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+.session-card {
+    background: var(--color-bg-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-lg);
+    transition: all var(--transition-base);
+    position: relative;
+    overflow: hidden;
+}
+
+.session-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--gradient-primary);
+    opacity: 0;
+    transition: opacity var(--transition-base);
+}
+
+.session-card:hover {
+    border-color: var(--color-border-hover);
+    background: var(--color-bg-card-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.session-card:hover::before {
+    opacity: 1;
+}
+
+.session-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: var(--spacing-md);
+}
+
+.session-card-info {
+    flex: 1;
+}
+
+.session-card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: var(--color-text-primary);
+    margin-bottom: var(--spacing-xs);
+}
+
+.session-card-email {
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+}
+
+.session-card-badge {
+    background: var(--color-bg-tertiary);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+}
+
+.session-card-body {
+    margin-bottom: var(--spacing-md);
+}
+
+.session-card-link-wrapper {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-sm);
+    padding: var(--spacing-xs);
+}
+
+.session-card-link {
+    flex: 1;
+    font-size: 0.875rem;
+    color: var(--color-text-secondary);
+    font-family: var(--font-mono);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    background: transparent;
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+.session-card-link:focus {
+    color: var(--color-text-primary);
+}
+
+.btn-copy-link {
+    padding: var(--spacing-xs);
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: var(--radius-sm);
+}
+
+.btn-copy-link:hover {
+    color: var(--color-accent-secondary);
+    background: var(--color-bg-card);
+}
+
+.session-card-footer {
+    display: flex;
+    gap: var(--spacing-sm);
+    align-items: center;
+}
+
+.btn-sm {
+    padding: var(--spacing-xs) var(--spacing-md);
+    font-size: 0.875rem;
+}
+
+.btn-text {
+    color: var(--color-text-muted);
+    transition: color var(--transition-fast);
+}
+
+.btn-text:hover {
+    color: var(--color-text-secondary);
+}
+
+@media (max-width: 768px) {
+    .sessions-container {
+        grid-template-columns: 1fr;
+    }
+    
+    .session-card-header {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+    
+    .session-card-badge {
+        align-self: flex-start;
+    }
+}

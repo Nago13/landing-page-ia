@@ -198,6 +198,11 @@ const aiRecommendations = {
 };
 
 // ========================================
+// Configuration
+// ========================================
+const SITE_BASE_URL = 'https://ianafirma.com.br';
+
+// ========================================
 // Utility Functions
 // ========================================
 // Função para gerar slug do email
@@ -206,6 +211,197 @@ function generateSlugFromEmail(email) {
     const companyName = domain.split('.')[0]; // pega apenas o nome da empresa (antes do .com)
     const nameSlug = name.replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, ''); // remove caracteres especiais
     return `${nameSlug}-${companyName}`;
+}
+
+// ========================================
+// Sessions Management
+// ========================================
+// Função para carregar sessões do localStorage
+function loadSessions() {
+    const sessions = JSON.parse(localStorage.getItem('analysisSessions') || '[]');
+    return sessions;
+}
+
+// Função para salvar sessões no localStorage
+function saveSessions(sessions) {
+    localStorage.setItem('analysisSessions', JSON.stringify(sessions));
+}
+
+// Função para criar uma nova sessão
+function createSession(email, slug, areaName, timestamp) {
+    const sessions = loadSessions();
+    
+    // Verificar se já existe uma sessão com o mesmo slug
+    const existingSession = sessions.find(s => s.slug === slug);
+    if (existingSession) {
+        // Atualizar timestamp se já existir
+        existingSession.timestamp = timestamp;
+        saveSessions(sessions);
+        renderSessions();
+        return existingSession;
+    }
+    
+    // Criar nova sessão
+    const newSession = {
+        id: Date.now().toString(),
+        email: email,
+        slug: slug,
+        areaName: areaName,
+        timestamp: timestamp,
+        link: `${SITE_BASE_URL}#sessao-${slug}`
+    };
+    
+    sessions.unshift(newSession); // Adicionar no início
+    saveSessions(sessions);
+    renderSessions();
+    
+    return newSession;
+}
+
+// Função para renderizar as sessões na página
+function renderSessions() {
+    const sessionsContainer = document.getElementById('sessionsContainer');
+    const sessionsEmpty = document.getElementById('sessionsEmpty');
+    
+    if (!sessionsContainer) return;
+    
+    const sessions = loadSessions();
+    
+    // Limpar container
+    sessionsContainer.innerHTML = '';
+    
+    if (sessions.length === 0) {
+        // Mostrar mensagem de vazio
+        if (sessionsEmpty) {
+            sessionsContainer.appendChild(sessionsEmpty);
+        }
+        return;
+    }
+    
+    // Esconder mensagem de vazio
+    if (sessionsEmpty) {
+        sessionsEmpty.style.display = 'none';
+    }
+    
+    // Criar cards para cada sessão
+    sessions.forEach(session => {
+        const sessionCard = document.createElement('div');
+        sessionCard.className = 'session-card';
+        sessionCard.id = `sessao-${session.slug}`;
+        
+        const date = new Date(session.timestamp);
+        const formattedDate = date.toLocaleDateString('pt-BR', {
+            day: '2-digit',
+            month: '2-digit',
+            year: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit'
+        });
+        
+        const sessionLink = session.link || `${SITE_BASE_URL}#sessao-${session.slug}`;
+        
+        sessionCard.innerHTML = `
+            <div class="session-card-header">
+                <div class="session-card-info">
+                    <h3 class="session-card-title">Análise ${session.areaName}</h3>
+                    <p class="session-card-email">${session.email}</p>
+                </div>
+                <div class="session-card-badge">
+                    <span>${formattedDate}</span>
+                </div>
+            </div>
+            <div class="session-card-body">
+                <div class="session-card-link-wrapper">
+                    <input type="text" class="session-card-link" value="${sessionLink}" readonly>
+                    <button class="btn-copy-link" onclick="copySessionLink('${session.slug}')" title="Copiar link">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"></path>
+                            <rect x="8" y="2" width="8" height="4" rx="1" ry="1"></rect>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+            <div class="session-card-footer">
+                <a href="${sessionLink}" class="btn btn-secondary btn-sm">Ver análise</a>
+                <button class="btn btn-text btn-sm" onclick="deleteSession('${session.id}')">Excluir</button>
+            </div>
+        `;
+        
+        sessionsContainer.appendChild(sessionCard);
+    });
+}
+
+// Função para copiar link da sessão
+function copySessionLink(slug) {
+    const sessionCard = document.getElementById(`sessao-${slug}`);
+    if (!sessionCard) return;
+    
+    const linkInput = sessionCard.querySelector('.session-card-link');
+    if (!linkInput) return;
+    
+    const linkText = linkInput.value;
+    
+    // Tentar usar a API moderna do Clipboard primeiro
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(linkText).then(() => {
+            showCopyFeedback(sessionCard);
+        }).catch(err => {
+            console.error('Erro ao copiar:', err);
+            // Fallback para método antigo
+            fallbackCopy(linkInput);
+        });
+    } else {
+        // Fallback para método antigo
+        fallbackCopy(linkInput);
+    }
+}
+
+// Função auxiliar para mostrar feedback visual
+function showCopyFeedback(sessionCard) {
+    const copyBtn = sessionCard.querySelector('.btn-copy-link');
+    if (!copyBtn) return;
+    
+    const originalHTML = copyBtn.innerHTML;
+    copyBtn.innerHTML = `
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M20 6L9 17l-5-5"/>
+        </svg>
+    `;
+    copyBtn.style.color = '#34D399';
+    
+    setTimeout(() => {
+        copyBtn.innerHTML = originalHTML;
+        copyBtn.style.color = '';
+    }, 2000);
+}
+
+// Função auxiliar para fallback de cópia
+function fallbackCopy(linkInput) {
+    linkInput.select();
+    linkInput.setSelectionRange(0, 99999); // Para mobile
+    
+    try {
+        document.execCommand('copy');
+        const sessionCard = linkInput.closest('.session-card');
+        if (sessionCard) {
+            showCopyFeedback(sessionCard);
+        }
+    } catch (err) {
+        console.error('Erro ao copiar:', err);
+        alert('Erro ao copiar link. Por favor, copie manualmente.');
+    }
+}
+
+// Função para excluir sessão
+function deleteSession(sessionId) {
+    if (!confirm('Tem certeza que deseja excluir esta análise?')) {
+        return;
+    }
+    
+    const sessions = loadSessions();
+    const filteredSessions = sessions.filter(s => s.id !== sessionId);
+    saveSessions(filteredSessions);
+    renderSessions();
 }
 
 // ========================================
@@ -686,9 +882,17 @@ function submitUnlock() {
         // - Texto simples: "Workflow was started"
         // Todos esses são sinais de sucesso!
         
+        // Criar nova sessão após sucesso
+        const email = document.getElementById('unlockEmail').value.trim();
+        const slug = generateSlugFromEmail(email);
+        const areaName = areaNames[formData.area] || "Outros";
+        const timestamp = new Date().toISOString();
+        
+        createSession(email, slug, areaName, timestamp);
+        
         if (data.success && data.slug) {
             // Caso especial: se o n8n retornar success e slug, redireciona para relatório
-            window.location.href = `/relatorio/${data.slug}.html`;
+            window.location.href = `${SITE_BASE_URL}/relatorio/${data.slug}.html`;
         } else if (data.success) {
             // Se tiver success, mostra mensagem de sucesso
             console.log('Webhook executado com sucesso');
@@ -1079,6 +1283,9 @@ document.addEventListener('DOMContentLoaded', () => {
     if (selectedArea) {
         updateAllTaskSelects(selectedArea.value);
     }
+    
+    // Initialize sessions
+    renderSessions();
 });
 
 // ========================================
