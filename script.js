@@ -74,48 +74,51 @@ const usageLabels = {
 // ========================================
 const taskOptionsByArea = {
     marketing: [
-        { value: "criar_conteudo_social", text: "Criar conteúdo social" },
-        { value: "gestao_trafego", text: "Gestão de tráfego" },
-        { value: "redacao_artigos", text: "Redação de artigos" },
-        { value: "responder_clientes", text: "Responder clientes" },
-        { value: "analise_metricas", text: "Análise de métricas" },
-        { value: "outra", text: "Outra" }
+        { value: "criacao_conteudo", text: "Criação de conteúdo (copywriting, research)" },
+        { value: "gestao_emails", text: "Gestão de emails (copywriting)" },
+        { value: "redacao_anuncios", text: "Redação de anúncios (copywriting)" },
+        { value: "redes_sociais", text: "Redes sociais (copywriting)" },
+        { value: "pesquisa_mercado", text: "Pesquisa de mercado (research, data analysis)" },
+        { value: "analise_metricas", text: "Análise de métricas (data analysis)" },
+        { value: "outra", text: "Outra (custom)" }
     ],
     tecnologia: [
-        { value: "desenvolvimento_codigo", text: "Desenvolvimento de código" },
-        { value: "code_review", text: "Code review" },
-        { value: "monitoramento_logs", text: "Monitoramento de logs" },
-        { value: "escrita_documentacao", text: "Escrita de documentação" },
-        { value: "testes_qa", text: "Testes/QA" },
-        { value: "suporte_n1_n2", text: "Suporte N1/N2" },
-        { value: "outra", text: "Outra" }
+        { value: "code_review", text: "Code review (code generation, reasoning)" },
+        { value: "debugging", text: "Debugging (code generation, logic)" },
+        { value: "desenvolvimento_codigo", text: "Desenvolvimento de código (code generation)" },
+        { value: "documentacao_tecnica", text: "Documentação técnica (copywriting)" },
+        { value: "testes_qa", text: "Testes/QA (code generation)" },
+        { value: "design_arquitetura", text: "Design de arquitetura (reasoning, analysis)" },
+        { value: "monitoramento_logs", text: "Monitoramento de logs (analysis)" },
+        { value: "outra", text: "Outra (custom)" }
     ],
     vendas: [
-        { value: "prospeccao_leads", text: "Prospecção de leads" },
-        { value: "qualificacao_sdr", text: "Qualificação (SDR)" },
-        { value: "reunioes_demo", text: "Reuniões de demo" },
-        { value: "follow_up", text: "Follow up" },
-        { value: "elaboracao_propostas", text: "Elaboração de propostas" },
-        { value: "elaboracao_crm", text: "Elaboração de CRM" },
-        { value: "outra", text: "Outra" }
+        { value: "prospeccao_leads", text: "Prospecção de leads (research)" },
+        { value: "qualificacao_sdr", text: "Qualificação (SDR) (copywriting)" },
+        { value: "reunioes_demo", text: "Reuniões de demo (copywriting)" },
+        { value: "follow_up", text: "Follow up (copywriting)" },
+        { value: "elaboracao_propostas", text: "Elaboração de propostas (copywriting)" },
+        { value: "elaboracao_crm", text: "Elaboração de CRM (summarization)" },
+        { value: "analise_deals", text: "Análise de deals (data analysis, reasoning)" },
+        { value: "outra", text: "Outra (custom)" }
     ],
     financeiro: [
-        { value: "conciliacao_bancaria", text: "Conciliação bancária" },
-        { value: "emissao_notas", text: "Emissão de notas" },
-        { value: "contas_pagar_receber", text: "Contas a pagar/receber" },
-        { value: "relatorios_fechamento", text: "Relatórios de fechamento" },
-        { value: "gestao_reembolsos", text: "Gestão de reembolsos" },
-        { value: "auditoria", text: "Auditoria" },
-        { value: "outra", text: "Outra" }
+        { value: "conciliacao_bancaria", text: "Conciliação bancária (data analysis)" },
+        { value: "emissao_notas", text: "Emissão de notas (data organization)" },
+        { value: "contas_pagar_receber", text: "Contas a pagar/receber (data analysis)" },
+        { value: "relatorios_fechamento", text: "Relatórios de fechamento (data analysis, summarization)" },
+        { value: "gestao_reembolsos", text: "Gestão de reembolsos (data verification)" },
+        { value: "auditoria", text: "Auditoria (organization, accuracy)" },
+        { value: "analise_financeira", text: "Análise financeira (data analysis)" },
+        { value: "outra", text: "Outra (custom)" }
     ],
     outros: [
-        { value: "gestao_emails", text: "Gestão de emails" },
-        { value: "agendamento_reunioes", text: "Agendamento de reuniões" },
-        { value: "organizacao_arquivos", text: "Organização de arquivos" },
-        { value: "preenchimento_planilhas", text: "Preenchimento de planilhas" },
-        { value: "pesquisa_dados", text: "Pesquisa de dados" },
-        { value: "relatorios", text: "Relatórios" },
-        { value: "outra", text: "Outra" }
+        { value: "redacao_geral", text: "Redação geral (copywriting)" },
+        { value: "pesquisa", text: "Pesquisa (research)" },
+        { value: "analise_dados", text: "Análise de dados (data analysis)" },
+        { value: "automacao", text: "Automação (automation)" },
+        { value: "resumo_reunioes", text: "Resumo de reuniões (summarization)" },
+        { value: "outra", text: "Outra (custom)" }
     ]
 };
 
@@ -416,31 +419,16 @@ const formData = {
     cargo: null,
     senioridadeTop: 50,
     familiaridadeIA: 50,
-    preferenciaEstrutura: 50,
-    necessidadeExplicacao: 50,
+    setupComplexityTolerance: 50,
+    riskTolerance: 50,
     frequencia: 50,
-    tempoOcorrencia: 25,
+    timePerInstance: 25,
     complexidade: 25,
-    custoErro: 25,
-    roiEstimado: 25,
+    impacto: 25,
+    automationOpenness: 25,
     tasks: []
 };
 
-// Function to toggle AI used field visibility
-function toggleAIUsedField(radioGroup) {
-    const taskContainer = radioGroup.closest('.profile-filters');
-    const aiUsedField = taskContainer.querySelector('.ai-used-field');
-    const iaUsadaInput = taskContainer.querySelector('input[name*="iaUsada"]');
-    
-    if (radioGroup.querySelector('input[value="sim"]:checked')) {
-        aiUsedField.style.display = 'block';
-    } else {
-        aiUsedField.style.display = 'none';
-        if (iaUsadaInput) {
-            iaUsadaInput.value = '';
-        }
-    }
-}
 
 // ========================================
 // Navigation Functions
@@ -558,13 +546,13 @@ function saveStepData(step) {
         if (familiaridadeIAInput) {
             formData.familiaridadeIA = parseInt(familiaridadeIAInput.value) || 0;
         }
-        const preferenciaEstruturaInput = document.getElementById('preferenciaEstrutura');
-        if (preferenciaEstruturaInput) {
-            formData.preferenciaEstrutura = parseInt(preferenciaEstruturaInput.value) || 0;
+        const setupComplexityToleranceInput = document.getElementById('setupComplexityTolerance');
+        if (setupComplexityToleranceInput) {
+            formData.setupComplexityTolerance = parseInt(setupComplexityToleranceInput.value) || 0;
         }
-        const necessidadeExplicacaoInput = document.getElementById('necessidadeExplicacao');
-        if (necessidadeExplicacaoInput) {
-            formData.necessidadeExplicacao = parseInt(necessidadeExplicacaoInput.value) || 0;
+        const riskToleranceInput = document.getElementById('riskTolerance');
+        if (riskToleranceInput) {
+            formData.riskTolerance = parseInt(riskToleranceInput.value) || 0;
         }
         
         // Coletar sliders inferiores do template (mantido para compatibilidade)
@@ -572,21 +560,21 @@ function saveStepData(step) {
         if (frequenciaInput) {
             formData.frequencia = parseInt(frequenciaInput.value) || 0;
         }
-        const tempoOcorrenciaInput = document.getElementById('tempoOcorrencia');
-        if (tempoOcorrenciaInput) {
-            formData.tempoOcorrencia = parseInt(tempoOcorrenciaInput.value) || 0;
+        const timePerInstanceInput = document.getElementById('timePerInstance');
+        if (timePerInstanceInput) {
+            formData.timePerInstance = parseInt(timePerInstanceInput.value) || 0;
         }
         const complexidadeInput = document.getElementById('complexidade');
         if (complexidadeInput) {
             formData.complexidade = parseInt(complexidadeInput.value) || 0;
         }
-        const custoErroInput = document.getElementById('custoErro');
-        if (custoErroInput) {
-            formData.custoErro = parseInt(custoErroInput.value) || 0;
+        const impactoInput = document.getElementById('impacto');
+        if (impactoInput) {
+            formData.impacto = parseInt(impactoInput.value) || 0;
         }
-        const roiEstimadoInput = document.getElementById('roiEstimado');
-        if (roiEstimadoInput) {
-            formData.roiEstimado = parseInt(roiEstimadoInput.value) || 0;
+        const automationOpennessInput = document.getElementById('automationOpenness');
+        if (automationOpennessInput) {
+            formData.automationOpenness = parseInt(automationOpennessInput.value) || 0;
         }
         
         // Save all task data from dynamically added tasks
@@ -602,38 +590,32 @@ function saveStepData(step) {
                     task: taskValue,
                     taskText: select.options[select.selectedIndex]?.text,
                     frequencia: null,
-                    tempoOcorrencia: null,
+                    timePerInstance: null,
                     complexidade: null,
-                    custoErro: null,
-                    roiEstimado: null,
-                    usaIA: null,
-                    iaUsada: null
+                    impacto: null,
+                    automationOpenness: null,
+                    dataSensitivity: null
                 };
                 
                 sliders.forEach(slider => {
                     const sliderId = slider.id;
                     if (sliderId.includes('frequencia')) {
                         taskData.frequencia = parseInt(slider.value) || 0;
-                    } else if (sliderId.includes('tempoOcorrencia')) {
-                        taskData.tempoOcorrencia = parseInt(slider.value) || 0;
+                    } else if (sliderId.includes('timePerInstance')) {
+                        taskData.timePerInstance = parseInt(slider.value) || 0;
                     } else if (sliderId.includes('complexidade')) {
                         taskData.complexidade = parseInt(slider.value) || 0;
-                    } else if (sliderId.includes('custoErro')) {
-                        taskData.custoErro = parseInt(slider.value) || 0;
-                    } else if (sliderId.includes('roiEstimado')) {
-                        taskData.roiEstimado = parseInt(slider.value) || 0;
+                    } else if (sliderId.includes('impacto')) {
+                        taskData.impacto = parseInt(slider.value) || 0;
+                    } else if (sliderId.includes('automationOpenness')) {
+                        taskData.automationOpenness = parseInt(slider.value) || 0;
                     }
                 });
                 
-                // Save AI usage data
-                const usaIARadio = taskContainer.querySelector('input[name*="usaIA"]:checked');
-                if (usaIARadio) {
-                    taskData.usaIA = usaIARadio.value;
-                }
-                
-                const iaUsadaInput = taskContainer.querySelector('input[name*="iaUsada"]');
-                if (iaUsadaInput && iaUsadaInput.value.trim()) {
-                    taskData.iaUsada = iaUsadaInput.value.trim();
+                // Save data sensitivity
+                const dataSensitivityRadio = taskContainer.querySelector('input[name*="dataSensitivity"]:checked');
+                if (dataSensitivityRadio) {
+                    taskData.dataSensitivity = dataSensitivityRadio.value;
                 }
                 
                 formData.tasks.push(taskData);
@@ -746,8 +728,8 @@ function submitUnlock() {
     // Coletar novamente os sliders superiores para garantir que estão atualizados
     const senioridadeTopInput = document.getElementById('senioridadeTop');
     const familiaridadeIAInput = document.getElementById('familiaridadeIA');
-    const preferenciaEstruturaInput = document.getElementById('preferenciaEstrutura');
-    const necessidadeExplicacaoInput = document.getElementById('necessidadeExplicacao');
+    const setupComplexityToleranceInput = document.getElementById('setupComplexityTolerance');
+    const riskToleranceInput = document.getElementById('riskTolerance');
     
     // Coletar todos os dados das tarefas com informações completas
     const taskSelects = document.querySelectorAll('.tasks-container .cargo-select');
@@ -763,12 +745,11 @@ function submitUnlock() {
                 task: taskValue,
                 taskText: select.options[select.selectedIndex]?.text,
                 frequencia: null,
-                tempoOcorrencia: null,
+                timePerInstance: null,
                 complexidade: null,
-                custoErro: null,
-                roiEstimado: null,
-                usaIA: null,
-                iaUsada: null
+                impacto: null,
+                automationOpenness: null,
+                dataSensitivity: null
             };
             
             // Coletar valores dos sliders da tarefa (0-100)
@@ -776,27 +757,21 @@ function submitUnlock() {
                 const sliderId = slider.id;
                 if (sliderId.includes('frequencia')) {
                     taskData.frequencia = parseInt(slider.value) || 0;
-                } else if (sliderId.includes('tempoOcorrencia')) {
-                    taskData.tempoOcorrencia = parseInt(slider.value) || 0;
+                } else if (sliderId.includes('timePerInstance')) {
+                    taskData.timePerInstance = parseInt(slider.value) || 0;
                 } else if (sliderId.includes('complexidade')) {
                     taskData.complexidade = parseInt(slider.value) || 0;
-                } else if (sliderId.includes('custoErro')) {
-                    taskData.custoErro = parseInt(slider.value) || 0;
-                } else if (sliderId.includes('roiEstimado')) {
-                    taskData.roiEstimado = parseInt(slider.value) || 0;
+                } else if (sliderId.includes('impacto')) {
+                    taskData.impacto = parseInt(slider.value) || 0;
+                } else if (sliderId.includes('automationOpenness')) {
+                    taskData.automationOpenness = parseInt(slider.value) || 0;
                 }
             });
             
-            // Coletar resposta sobre uso de IA
-            const usaIARadio = taskContainer.querySelector('input[name*="usaIA"]:checked');
-            if (usaIARadio) {
-                taskData.usaIA = usaIARadio.value;
-            }
-            
-            // Coletar qual IA é usada (se aplicável)
-            const iaUsadaInput = taskContainer.querySelector('input[name*="iaUsada"]');
-            if (iaUsadaInput && iaUsadaInput.value.trim()) {
-                taskData.iaUsada = iaUsadaInput.value.trim();
+            // Coletar sensibilidade de dados
+            const dataSensitivityRadio = taskContainer.querySelector('input[name*="dataSensitivity"]:checked');
+            if (dataSensitivityRadio) {
+                taskData.dataSensitivity = dataSensitivityRadio.value;
             }
             
             tasksComplete.push(taskData);
@@ -816,8 +791,8 @@ function submitUnlock() {
         // Sliders superiores (níveis gerais do usuário - valores de 0 a 100)
         senioridadeTop: senioridadeTopInput ? parseInt(senioridadeTopInput.value) || 0 : formData.senioridadeTop,
         familiaridadeIA: familiaridadeIAInput ? parseInt(familiaridadeIAInput.value) || 0 : formData.familiaridadeIA,
-        preferenciaEstrutura: preferenciaEstruturaInput ? parseInt(preferenciaEstruturaInput.value) || 0 : formData.preferenciaEstrutura,
-        necessidadeExplicacao: necessidadeExplicacaoInput ? parseInt(necessidadeExplicacaoInput.value) || 0 : formData.necessidadeExplicacao,
+        setupComplexityTolerance: setupComplexityToleranceInput ? parseInt(setupComplexityToleranceInput.value) || 0 : formData.setupComplexityTolerance,
+        riskTolerance: riskToleranceInput ? parseInt(riskToleranceInput.value) || 0 : formData.riskTolerance,
         
         // Tarefas com todos os dados completos (sliders de 0 a 100 + respostas de IA)
         tasks: tasksComplete,
@@ -949,13 +924,13 @@ function resetForm() {
     formData.cargo = null;
     formData.senioridadeTop = 50;
     formData.familiaridadeIA = 50;
-    formData.preferenciaEstrutura = 50;
-    formData.necessidadeExplicacao = 50;
+    formData.setupComplexityTolerance = 50;
+    formData.riskTolerance = 50;
     formData.frequencia = 50;
-    formData.tempoOcorrencia = 25;
+    formData.timePerInstance = 25;
     formData.complexidade = 25;
-    formData.custoErro = 25;
-    formData.roiEstimado = 25;
+    formData.impacto = 25;
+    formData.automationOpenness = 25;
     formData.tasks = [];
     
     // Reset task counter
@@ -972,12 +947,9 @@ function resetForm() {
     // Reset form inputs
     document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
     
-    // Reset and hide AI used fields
-    document.querySelectorAll('.ai-used-field').forEach(field => {
-        field.style.display = 'none';
-    });
-    document.querySelectorAll('input[name*="iaUsada"]').forEach(input => {
-        input.value = '';
+    // Reset data sensitivity radio buttons
+    document.querySelectorAll('input[name*="dataSensitivity"]').forEach(input => {
+        input.checked = false;
     });
     
     // Reset cargo select in template
@@ -997,15 +969,15 @@ function resetForm() {
         familiaridadeIAInput.value = 50;
         updateSliderFill('familiaridadeIA', 50);
     }
-    const preferenciaEstruturaInput = document.getElementById('preferenciaEstrutura');
-    if (preferenciaEstruturaInput) {
-        preferenciaEstruturaInput.value = 50;
-        updateSliderFill('preferenciaEstrutura', 50);
+    const setupComplexityToleranceInput = document.getElementById('setupComplexityTolerance');
+    if (setupComplexityToleranceInput) {
+        setupComplexityToleranceInput.value = 50;
+        updateSliderFill('setupComplexityTolerance', 50);
     }
-    const necessidadeExplicacaoInput = document.getElementById('necessidadeExplicacao');
-    if (necessidadeExplicacaoInput) {
-        necessidadeExplicacaoInput.value = 50;
-        updateSliderFill('necessidadeExplicacao', 50);
+    const riskToleranceInput = document.getElementById('riskTolerance');
+    if (riskToleranceInput) {
+        riskToleranceInput.value = 50;
+        updateSliderFill('riskTolerance', 50);
     }
     
     // Reset sliders inferiores no template (se existirem)
@@ -1014,25 +986,25 @@ function resetForm() {
         frequenciaInput.value = 50;
         updateSliderFill('frequencia', 50);
     }
-    const tempoOcorrenciaInput = document.getElementById('tempoOcorrencia');
-    if (tempoOcorrenciaInput) {
-        tempoOcorrenciaInput.value = 25;
-        updateSliderFill('tempoOcorrencia', 25);
+    const timePerInstanceInput = document.getElementById('timePerInstance');
+    if (timePerInstanceInput) {
+        timePerInstanceInput.value = 25;
+        updateSliderFill('timePerInstance', 25);
     }
     const complexidadeInput = document.getElementById('complexidade');
     if (complexidadeInput) {
         complexidadeInput.value = 25;
         updateSliderFill('complexidade', 25);
     }
-    const custoErroInput = document.getElementById('custoErro');
-    if (custoErroInput) {
-        custoErroInput.value = 25;
-        updateSliderFill('custoErro', 25);
+    const impactoInput = document.getElementById('impacto');
+    if (impactoInput) {
+        impactoInput.value = 25;
+        updateSliderFill('impacto', 25);
     }
-    const roiEstimadoInput = document.getElementById('roiEstimado');
-    if (roiEstimadoInput) {
-        roiEstimadoInput.value = 25;
-        updateSliderFill('roiEstimado', 25);
+    const automationOpennessInput = document.getElementById('automationOpenness');
+    if (automationOpennessInput) {
+        automationOpennessInput.value = 25;
+        updateSliderFill('automationOpenness', 25);
     }
     
     // Hide loading overlay if visible
@@ -1115,7 +1087,7 @@ function updateSliderFill(sliderId, value) {
 
 // Initialize sliders in a given container
 function initializeSlidersInContainer(container) {
-    const sliderNames = ['frequencia', 'tempoOcorrencia', 'complexidade', 'custoErro', 'roiEstimado'];
+    const sliderNames = ['frequencia', 'timePerInstance', 'complexidade', 'impacto', 'automationOpenness'];
     sliderNames.forEach(sliderName => {
         // Find slider by name or id that contains the slider name
         const slider = container.querySelector(`input[type="range"][name*="${sliderName}"], input[type="range"][id*="${sliderName}"]`);
@@ -1155,7 +1127,7 @@ document.addEventListener('DOMContentLoaded', () => {
     updateProgressBar();
     
     // Initialize sliders superiores (novos)
-    const topSliders = ['senioridadeTop', 'familiaridadeIA', 'preferenciaEstrutura', 'necessidadeExplicacao'];
+    const topSliders = ['senioridadeTop', 'familiaridadeIA', 'setupComplexityTolerance', 'riskTolerance'];
     topSliders.forEach(sliderId => {
         const slider = document.getElementById(sliderId);
         if (slider) {
@@ -1171,7 +1143,7 @@ document.addEventListener('DOMContentLoaded', () => {
     });
     
     // Initialize sliders inferiores (existentes)
-    const sliders = ['frequencia', 'tempoOcorrencia', 'complexidade', 'custoErro', 'roiEstimado'];
+    const sliders = ['frequencia', 'timePerInstance', 'complexidade', 'impacto', 'automationOpenness'];
     sliders.forEach(sliderId => {
         const slider = document.getElementById(sliderId);
         if (slider) {
@@ -1377,9 +1349,9 @@ function addTask() {
             input.name = `${input.name}_task${taskId}`;
             
             // Map fill element IDs
-            if (oldId.includes('frequencia') || oldId.includes('tempoOcorrencia') || 
-                oldId.includes('complexidade') || oldId.includes('custoErro') || 
-                oldId.includes('roiEstimado')) {
+            if (oldId.includes('frequencia') || oldId.includes('timePerInstance') || 
+                oldId.includes('complexidade') || oldId.includes('impacto') || 
+                oldId.includes('automationOpenness')) {
                 const oldFillId = oldId + 'Fill';
                 const newFillId = newId + 'Fill';
                 fillIdMap[oldFillId] = newFillId;
@@ -1422,13 +1394,7 @@ function addTask() {
     // Initialize sliders for the new task
     initializeSlidersInContainer(newTask);
     
-    // Add event listeners for AI usage radio buttons
-    const usaIARadios = newTask.querySelectorAll('input[name*="usaIA"]');
-    usaIARadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            toggleAIUsedField(this.closest('.filter-group').querySelector('.radio-group-inline'));
-        });
-    });
+    // Data sensitivity is already handled by HTML required attribute
     
     // Scroll to the new task
     newTask.scrollIntoView({ behavior: 'smooth', block: 'nearest' });

@@ -1558,6 +1558,50 @@ body {
 }
 
 /* Radio Group Inline (Sim/Não) */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-sm);
+    margin-top: calc(var(--spacing-sm) * 0.8);
+}
+
+.radio-group .radio-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    padding: calc(var(--spacing-sm) * 0.8) calc(var(--spacing-lg) * 0.8);
+    background: var(--color-bg-tertiary);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-fast);
+}
+
+.radio-group .radio-option:hover {
+    border-color: var(--color-border-hover);
+    background: var(--color-bg-secondary);
+}
+
+.radio-group .radio-option input[type="radio"] {
+    display: none;
+}
+
+.radio-group .radio-option span {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--color-text-primary);
+    pointer-events: none;
+}
+
+.radio-group .radio-option input[type="radio"]:checked ~ span {
+    color: var(--color-accent-primary);
+    font-weight: 600;
+}
+
+.radio-group .radio-option:has(input[type="radio"]:checked) {
+    border-color: var(--color-accent-primary);
+    background: rgba(139, 92, 246, 0.1);
+}
+
 .radio-group-inline {
     display: flex;
     gap: calc(var(--spacing-md) * 0.8);

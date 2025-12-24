@@ -163,29 +163,29 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Preferência de Estrutura Slider -->
+                                <!-- Tolerância de Complexidade de Setup Slider -->
                                 <div class="slider-container">
-                                    <label class="slider-label">Flexibilidade</label>
+                                    <label class="slider-label">Tolerância de Complexidade de Setup</label>
                                     <div class="slider-wrapper">
-                                        <span class="slider-end-label">Flexível</span>
+                                        <span class="slider-end-label">Preciso usar imediatamente</span>
                                         <div class="slider-track">
-                                            <input type="range" name="preferenciaEstrutura" id="preferenciaEstrutura" class="slider-input" min="0" max="100" value="50" step="1">
-                                            <div class="slider-fill" id="preferenciaEstruturaFill"></div>
+                                            <input type="range" name="setupComplexityTolerance" id="setupComplexityTolerance" class="slider-input" min="0" max="100" value="50" step="1">
+                                            <div class="slider-fill" id="setupComplexityToleranceFill"></div>
                                         </div>
-                                        <span class="slider-end-label">Estruturado</span>
+                                        <span class="slider-end-label">Posso aprender e configurar</span>
                                     </div>
                                 </div>
                                 
-                                <!-- Necessidade de Explicação Slider -->
+                                <!-- Tolerância a Risco Slider -->
                                 <div class="slider-container">
-                                    <label class="slider-label">Necessidade de Explicação</label>
+                                    <label class="slider-label">Tolerância a Risco</label>
                                     <div class="slider-wrapper">
-                                        <span class="slider-end-label">Mínima</span>
+                                        <span class="slider-end-label">Prefiro ferramentas estabelecidas</span>
                                         <div class="slider-track">
-                                            <input type="range" name="necessidadeExplicacao" id="necessidadeExplicacao" class="slider-input" min="0" max="100" value="50" step="1">
-                                            <div class="slider-fill" id="necessidadeExplicacaoFill"></div>
+                                            <input type="range" name="riskTolerance" id="riskTolerance" class="slider-input" min="0" max="100" value="50" step="1">
+                                            <div class="slider-fill" id="riskToleranceFill"></div>
                                         </div>
-                                        <span class="slider-end-label">Detalhada</span>
+                                        <span class="slider-end-label">Aberto a ferramentas novas</span>
                                     </div>
                                 </div>
                             </div>
@@ -288,14 +288,14 @@
                                         </div>
                                     </div>
                                     
-                                    <!-- Tempo por Ocorrência Slider -->
+                                    <!-- Tempo por Instância Slider -->
                                     <div class="slider-container">
-                                        <label class="slider-label">Tempo gasto com a tarefa</label>
+                                        <label class="slider-label">Tempo por Instância</label>
                                         <div class="slider-wrapper">
                                             <span class="slider-end-label">Rápido</span>
                                             <div class="slider-track">
-                                                <input type="range" name="tempoOcorrencia" id="tempoOcorrencia" class="slider-input" min="0" max="100" value="25" step="1">
-                                                <div class="slider-fill" id="tempoOcorrenciaFill"></div>
+                                                <input type="range" name="timePerInstance" id="timePerInstance" class="slider-input" min="0" max="100" value="25" step="1">
+                                                <div class="slider-fill" id="timePerInstanceFill"></div>
                                             </div>
                                             <span class="slider-end-label">Demorado</span>
                                         </div>
@@ -314,52 +314,54 @@
                                         </div>
                                     </div>
                                     
-                                    <!-- Custo do Erro Slider -->
+                                    <!-- Impacto Slider -->
                                     <div class="slider-container">
-                                        <label class="slider-label">Custo do Erro</label>
+                                        <label class="slider-label">Impacto</label>
                                         <div class="slider-wrapper">
-                                            <span class="slider-end-label">Baixo</span>
+                                            <span class="slider-end-label">Baixa</span>
                                             <div class="slider-track">
-                                                <input type="range" name="custoErro" id="custoErro" class="slider-input" min="0" max="100" value="25" step="1">
-                                                <div class="slider-fill" id="custoErroFill"></div>
+                                                <input type="range" name="impacto" id="impacto" class="slider-input" min="0" max="100" value="25" step="1">
+                                                <div class="slider-fill" id="impactoFill"></div>
                                             </div>
-                                            <span class="slider-end-label">Crítico</span>
+                                            <span class="slider-end-label">Crítica</span>
                                         </div>
                                     </div>
                                     
-                                    <!-- ROI Estimado Slider -->
+                                    <!-- Abertura à Automação Slider -->
                                     <div class="slider-container">
-                                        <label class="slider-label">Nível de automação</label>
+                                        <label class="slider-label">Abertura à Automação</label>
                                         <div class="slider-wrapper">
-                                            <span class="slider-end-label">Manual</span>
+                                            <span class="slider-end-label">Mínimal</span>
                                             <div class="slider-track">
-                                                <input type="range" name="roiEstimado" id="roiEstimado" class="slider-input" min="0" max="100" value="25" step="1">
-                                                <div class="slider-fill" id="roiEstimadoFill"></div>
+                                                <input type="range" name="automationOpenness" id="automationOpenness" class="slider-input" min="0" max="100" value="25" step="1">
+                                                <div class="slider-fill" id="automationOpennessFill"></div>
                                             </div>
-                                            <span class="slider-end-label">Já uso IA</span>
+                                            <span class="slider-end-label">Já usa IA</span>
                                         </div>
                                     </div>
                                 </div>
                                 
-                                <!-- Campo: Você já usa alguma IA para ajudar nessa tarefa? -->
+                                <!-- Sensibilidade de Dados -->
                                 <div class="filter-group">
-                                    <label class="filter-label">Você já usa alguma IA para ajudar nessa tarefa?</label>
-                                    <div class="radio-group-inline">
-                                        <label class="radio-option-inline">
-                                            <input type="radio" name="usaIA" id="usaIA_sim" value="sim">
-                                            <span>Sim</span>
+                                    <label class="filter-label">Sensibilidade de Dados para essa Tarefa</label>
+                                    <div class="radio-group">
+                                        <label class="radio-option">
+                                            <input type="radio" name="dataSensitivity" id="dataSensitivity_publico" value="publico" required>
+                                            <span>Público</span>
                                         </label>
-                                        <label class="radio-option-inline">
-                                            <input type="radio" name="usaIA" id="usaIA_nao" value="nao">
-                                            <span>Não</span>
+                                        <label class="radio-option">
+                                            <input type="radio" name="dataSensitivity" id="dataSensitivity_interno" value="interno">
+                                            <span>Interno</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="dataSensitivity" id="dataSensitivity_sensivel" value="sensivel">
+                                            <span>Sensível</span>
+                                        </label>
+                                        <label class="radio-option">
+                                            <input type="radio" name="dataSensitivity" id="dataSensitivity_altamente_sensivel" value="altamente_sensivel">
+                                            <span>Altamente Sensível</span>
                                         </label>
                                     </div>
-                                </div>
-                                
-                                <!-- Campo: Qual a IA usada? (só aparece se Sim for selecionado) -->
-                                <div class="filter-group ai-used-field" style="display: none;">
-                                    <label class="filter-label">Qual a IA usada?</label>
-                                    <input type="text" name="iaUsada" id="iaUsada" class="text-input" placeholder="Ex: ChatGPT, Claude, Copilot...">
                                 </div>
                             </div>
                         </div>
