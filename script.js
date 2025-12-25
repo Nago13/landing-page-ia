@@ -802,7 +802,7 @@ function submitUnlock() {
     unlockBtn.disabled = true;
     
     // URL do webhook do n8n
-    const N8N_WEBHOOK_URL = 'https://ianafirma.app.n8n.cloud/webhook-test/dabfbfe6-2e55-4ca2-9c3e-9a0053d92084';
+    const N8N_WEBHOOK_URL = 'https://ianafirma.app.n8n.cloud/webhook/dabfbfe6-2e55-4ca2-9c3e-9a0053d92084';
     
     // Log dos dados antes de enviar (para debug)
     console.log('Enviando dados para webhook:', fullData);
