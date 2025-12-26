@@ -27,7 +27,6 @@
             </a>
             <div class="nav-links">
                 <a href="#diagnostico">Diagnóstico</a>
-                <a href="#sessoes">Minhas Análises</a>
                 <a href="#insights">Insights</a>
                 <a href="#blog">Blog</a>
             </div>
@@ -341,26 +340,16 @@
                                     </div>
                                 </div>
                                 
-                                <!-- Sensibilidade de Dados -->
-                                <div class="filter-group">
-                                    <label class="filter-label">Sensibilidade de Dados para essa Tarefa</label>
-                                    <div class="radio-group">
-                                        <label class="radio-option">
-                                            <input type="radio" name="dataSensitivity" id="dataSensitivity_publico" value="publico" required>
-                                            <span>Público</span>
-                                        </label>
-                                        <label class="radio-option">
-                                            <input type="radio" name="dataSensitivity" id="dataSensitivity_interno" value="interno">
-                                            <span>Interno</span>
-                                        </label>
-                                        <label class="radio-option">
-                                            <input type="radio" name="dataSensitivity" id="dataSensitivity_sensivel" value="sensivel">
-                                            <span>Sensível</span>
-                                        </label>
-                                        <label class="radio-option">
-                                            <input type="radio" name="dataSensitivity" id="dataSensitivity_altamente_sensivel" value="altamente_sensivel">
-                                            <span>Altamente Sensível</span>
-                                        </label>
+                                <!-- Sensibilidade de Dados Slider -->
+                                <div class="slider-container">
+                                    <label class="slider-label">Sensibilidade de Dados para essa Tarefa</label>
+                                    <div class="slider-wrapper">
+                                        <span class="slider-end-label">Público</span>
+                                        <div class="slider-track">
+                                            <input type="range" name="dataSensitivity" id="dataSensitivity" class="slider-input" min="0" max="100" value="0" step="1">
+                                            <div class="slider-fill" id="dataSensitivityFill"></div>
+                                        </div>
+                                        <span class="slider-end-label">Altamente Sensível</span>
                                     </div>
                                 </div>
                             </div>
@@ -447,31 +436,6 @@
                         </div>
                     </div>
                 </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Sessions Section -->
-    <section class="sessions-section" id="sessoes">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-tag">Suas Análises</span>
-                <h2 class="section-title">Acesse suas <span class="gradient-text">análises personalizadas</span></h2>
-                <p class="section-subtitle">
-                    Todas as análises que você solicitou estão disponíveis aqui. Clique no link para acessar.
-                </p>
-            </div>
-            
-            <div id="sessionsContainer" class="sessions-container">
-                <!-- As sessões serão adicionadas aqui dinamicamente -->
-                <div class="sessions-empty" id="sessionsEmpty">
-                    <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                    <p>Nenhuma análise criada ainda. Complete o diagnóstico para gerar sua primeira análise.</p>
-                </div>
             </div>
         </div>
     </section>
@@ -921,7 +885,6 @@
                     <div class="footer-column">
                         <h4>Navegação</h4>
                         <a href="#diagnostico">Diagnóstico</a>
-                        <a href="#sessoes">Minhas Análises</a>
                         <a href="#insights">Insights</a>
                         <a href="#blog">Blog</a>
                     </div>
