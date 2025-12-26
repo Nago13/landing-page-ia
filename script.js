@@ -917,7 +917,7 @@ function updateSliderFill(sliderId, value) {
 
 // Initialize sliders in a given container
 function initializeSlidersInContainer(container) {
-    const sliderNames = ['frequencia', 'tempoOcorrencia', 'complexidade', 'custoErro', 'roiEstimado', 'dataSensitivity'];
+    const sliderNames = ['frequencia', 'timePerInstance', 'tempoOcorrencia', 'complexidade', 'impacto', 'custoErro', 'roiEstimado', 'automationOpenness', 'dataSensitivity'];
     sliderNames.forEach(sliderName => {
         // Find slider by name or id that contains the slider name
         const slider = container.querySelector(`input[type="range"][name*="${sliderName}"], input[type="range"][id*="${sliderName}"]`);
@@ -956,29 +956,14 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize progress bar
     updateProgressBar();
     
-    // Initialize sliders superiores (novos)
-    const topSliders = ['senioridadeTop', 'familiaridadeIA', 'preferenciaEstrutura', 'necessidadeExplicacao'];
-    topSliders.forEach(sliderId => {
-        const slider = document.getElementById(sliderId);
-        if (slider) {
+    // Initialize all sliders on page load
+    const allSliders = document.querySelectorAll('input[type="range"].slider-input');
+    allSliders.forEach(slider => {
+        const sliderId = slider.id;
+        if (sliderId) {
             // Set initial fill
-            updateSliderFill(sliderId, parseInt(slider.value));
-            
-            // Update fill on input
-            slider.addEventListener('input', (e) => {
-                const value = parseInt(e.target.value);
-                updateSliderFill(sliderId, value);
-            });
-        }
-    });
-    
-    // Initialize sliders inferiores (existentes)
-    const sliders = ['frequencia', 'tempoOcorrencia', 'complexidade', 'custoErro', 'roiEstimado'];
-    sliders.forEach(sliderId => {
-        const slider = document.getElementById(sliderId);
-        if (slider) {
-            // Set initial fill
-            updateSliderFill(sliderId, parseInt(slider.value));
+            const value = parseInt(slider.value) || 0;
+            updateSliderFill(sliderId, value);
             
             // Update fill on input
             slider.addEventListener('input', (e) => {
@@ -1175,10 +1160,12 @@ function addTask() {
             input.id = newId;
             input.name = `${input.name}_task${taskId}`;
             
-            // Map fill element IDs
-            if (oldId.includes('frequencia') || oldId.includes('tempoOcorrencia') || 
-                oldId.includes('complexidade') || oldId.includes('custoErro') || 
-                oldId.includes('roiEstimado')) {
+            // Map fill element IDs for all sliders
+            if (oldId.includes('frequencia') || oldId.includes('timePerInstance') || 
+                oldId.includes('tempoOcorrencia') || oldId.includes('complexidade') || 
+                oldId.includes('impacto') || oldId.includes('custoErro') || 
+                oldId.includes('roiEstimado') || oldId.includes('automationOpenness') || 
+                oldId.includes('dataSensitivity')) {
                 const oldFillId = oldId + 'Fill';
                 const newFillId = newId + 'Fill';
                 fillIdMap[oldFillId] = newFillId;
