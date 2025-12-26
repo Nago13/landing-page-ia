@@ -8,6 +8,40 @@ Este documento explica como configurar os workflows no n8n para gerar e servir r
 2. Acesso a uma API de IA (OpenAI, Anthropic, etc.)
 3. URL do seu site onde os relatórios serão hospedados
 
+## ⚠️ CONFIGURAÇÃO DE CORS (IMPORTANTE!)
+
+Se o webhook não está recebendo requisições (nenhuma execução aparece no n8n), provavelmente é um problema de CORS.
+
+### Solução 1: Usar nó "Respond to Webhook" com Headers CORS
+
+1. No final do seu workflow, adicione um nó **"Respond to Webhook"**
+2. Configure os seguintes **Response Headers**:
+   ```
+   Access-Control-Allow-Origin: *
+   Access-Control-Allow-Methods: POST, OPTIONS
+   Access-Control-Allow-Headers: Content-Type, Accept
+   ```
+3. Ou para aceitar apenas do seu domínio (mais seguro):
+   ```
+   Access-Control-Allow-Origin: https://seu-dominio.com
+   Access-Control-Allow-Methods: POST, OPTIONS
+   Access-Control-Allow-Headers: Content-Type, Accept
+   ```
+
+### Solução 2: Configurar CORS no nó Webhook (se disponível)
+
+1. Clique no nó **Webhook**
+2. Vá na aba **"Settings"**
+3. Procure por opções de CORS ou Response Headers
+4. Adicione os headers mencionados acima
+
+### Solução 3: Usar nó "Set Response Headers" antes de Responder
+
+1. Adicione um nó **"Set"** ou **"Set Response Headers"** antes do nó de resposta
+2. Configure os headers CORS conforme mostrado acima
+
+**Nota**: Se estiver usando n8n.cloud, algumas configurações de CORS podem já estar habilitadas, mas é importante verificar.
+
 ## Workflow 1: Gerar Relatório (`/webhook/generate-report`)
 
 ### Passo 1: Criar Webhook Trigger
@@ -255,6 +289,9 @@ const N8N_GET_REPORT_URL = 'https://SEU-N8N.com/webhook/get-report';
 - **Erro ao gerar relatório**: Verifique as chaves da API de IA
 - **Relatório não carrega**: Verifique se o HTML está sendo salvo corretamente
 - **Slug incorreto**: Verifique a função `generateSlugFromEmail()` no script.js
+
+
+
 
 
 

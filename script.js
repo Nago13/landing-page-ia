@@ -648,7 +648,7 @@ function submitUnlock() {
     unlockBtn.disabled = true;
     
     // URL do webhook do n8n
-    const N8N_WEBHOOK_URL = 'https://n8n-n8n.pkrul2.easypanel.host/webhook/9176790a-5610-48aa-9e61-ad026bf6cbdd';
+    const N8N_WEBHOOK_URL = 'https://ianafirma.app.n8n.cloud/webhook/dabfbfe6-2e55-4ca2-9c3e-9a0053d92084';
     
     // Log dos dados antes de enviar (para debug)
     console.log('Enviando dados para webhook:', fullData);
@@ -674,13 +674,21 @@ function submitUnlock() {
         }
         
         // Tentar parsear como JSON
+        let data;
         try {
-            return JSON.parse(textResponse);
+            data = textResponse ? JSON.parse(textResponse) : {};
         } catch (e) {
-            // Se não for JSON, retornar um objeto com a resposta
-            console.warn('Resposta não é JSON válido, retornando texto');
-            return { success: true, message: textResponse };
+            // Se não for JSON, verificar se é uma string vazia ou mensagem simples
+            console.warn('Resposta não é JSON válido:', e);
+            if (textResponse.trim() === '') {
+                // Resposta vazia pode ser normal para webhooks do n8n
+                data = { success: true, message: 'Webhook recebido' };
+            } else {
+                data = { success: true, message: textResponse };
+            }
         }
+        
+        return data;
     })
     .then(data => {
         console.log('Dados processados:', data);
