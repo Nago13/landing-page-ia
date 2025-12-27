@@ -1148,6 +1148,8 @@ function showTasksSection() {
     const tasksSection = document.getElementById('tasksSection');
     if (tasksSection) {
         tasksSection.style.display = 'block';
+        // Update UI to show header and empty state correctly
+        updateTasksUI();
     }
 }
 
@@ -1161,13 +1163,14 @@ function updateTasksUI() {
     const taskItems = tasksContainer.querySelectorAll('.profile-filters:not(.task-template)');
     const hasTasks = taskItems.length > 0;
     
+    // Always show header when tasks section is visible
+    if (tasksHeader) tasksHeader.style.display = 'flex';
+    
     if (hasTasks) {
-        // Show header with button, hide empty state
-        if (tasksHeader) tasksHeader.style.display = 'flex';
+        // Hide empty state when there are tasks
         if (tasksEmptyState) tasksEmptyState.style.display = 'none';
     } else {
-        // Hide header, show empty state with centered button
-        if (tasksHeader) tasksHeader.style.display = 'none';
+        // Show empty state with centered button when no tasks
         if (tasksEmptyState) tasksEmptyState.style.display = 'flex';
     }
 }
