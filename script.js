@@ -992,7 +992,9 @@ const sliderLevels = {
 
 // Get level text based on slider value (0-100)
 function getSliderLevel(sliderId, value) {
-    const levels = sliderLevels[sliderId];
+    // Extract base slider name (remove _task suffix if present)
+    const baseSliderId = sliderId.split('_task')[0];
+    const levels = sliderLevels[baseSliderId];
     if (!levels) return '';
     
     // Map value 0-100 to index 0-4
