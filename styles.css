@@ -1770,6 +1770,14 @@ body {
     gap: var(--spacing-xs);
 }
 
+.slider-label-wrapper-task {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-xs);
+    position: relative;
+}
+
 .slider-label {
     font-size: 0.95rem;
     font-weight: 600;
