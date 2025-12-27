@@ -1758,17 +1758,23 @@ body {
 .slider-label-wrapper {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: var(--spacing-xs);
+    justify-content: space-between;
+    gap: var(--spacing-md);
     margin-bottom: var(--spacing-xs);
     position: relative;
+}
+
+.slider-label-group {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-xs);
 }
 
 .slider-label {
     font-size: 0.72rem;
     font-weight: 600;
     color: var(--color-text-primary);
-    text-align: center;
+    text-align: left;
     margin-bottom: 0;
 }
 
@@ -1878,6 +1884,7 @@ body {
     white-space: nowrap;
     min-width: fit-content;
     flex-shrink: 0;
+    margin-left: auto;
 }
 
 .slider-track {
