@@ -327,6 +327,73 @@
                                     </select>
                                 </div>
                                 
+                                <!-- Você já usa alguma IA para isso? -->
+                                <div class="filter-group">
+                                    <label class="filter-label">VOCÊ JÁ USA ALGUMA IA PARA ISSO?</label>
+                                    <div class="radio-group-inline">
+                                        <label class="radio-option-inline">
+                                            <input type="radio" name="usaIA" value="nao" checked>
+                                            <span>Não</span>
+                                        </label>
+                                        <label class="radio-option-inline">
+                                            <input type="radio" name="usaIA" value="sim">
+                                            <span>Sim</span>
+                                        </label>
+                                    </div>
+                                    
+                                    <!-- Campo que aparece quando "Sim" é selecionado -->
+                                    <div class="ai-tools-selection" style="display: none;">
+                                        <div class="ai-tools-grid">
+                                            <label class="ai-tool-option">
+                                                <input type="checkbox" name="aiTools" value="chatgpt">
+                                                <div class="ai-tool-content">
+                                                    <div class="ai-tool-logo chatgpt-logo"></div>
+                                                    <span>ChatGPT</span>
+                                                </div>
+                                            </label>
+                                            <label class="ai-tool-option">
+                                                <input type="checkbox" name="aiTools" value="claude">
+                                                <div class="ai-tool-content">
+                                                    <div class="ai-tool-logo claude-logo"></div>
+                                                    <span>Claude</span>
+                                                </div>
+                                            </label>
+                                            <label class="ai-tool-option">
+                                                <input type="checkbox" name="aiTools" value="gemini">
+                                                <div class="ai-tool-content">
+                                                    <div class="ai-tool-logo gemini-logo"></div>
+                                                    <span>Gemini</span>
+                                                </div>
+                                            </label>
+                                            <label class="ai-tool-option">
+                                                <input type="checkbox" name="aiTools" value="copilot">
+                                                <div class="ai-tool-content">
+                                                    <span>Copilot</span>
+                                                </div>
+                                            </label>
+                                            <label class="ai-tool-option">
+                                                <input type="checkbox" name="aiTools" value="perplexity">
+                                                <div class="ai-tool-content">
+                                                    <div class="ai-tool-logo perplexity-logo"></div>
+                                                    <span>Perplexity</span>
+                                                </div>
+                                            </label>
+                                            <label class="ai-tool-option">
+                                                <input type="checkbox" name="aiTools" value="outro">
+                                                <div class="ai-tool-content">
+                                                    <span>+</span>
+                                                    <span>Outro</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        
+                                        <!-- Campo de texto que aparece quando "Outro" é selecionado -->
+                                        <div class="ai-other-field" style="display: none;">
+                                            <input type="text" name="aiOther" class="text-input" placeholder="Especifique qual IA você usa...">
+                                        </div>
+                                    </div>
+                                </div>
+                                
                                 <div class="sliders-group">
                                     <!-- Frequência Slider -->
                                     <div class="slider-container">

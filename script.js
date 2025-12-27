@@ -246,6 +246,81 @@ function toggleAIUsedField(radioGroup) {
     }
 }
 
+// Function to toggle AI tools selection visibility
+function toggleAIToolsSelection(radioInput) {
+    const taskContainer = radioInput.closest('.profile-filters');
+    const aiToolsSelection = taskContainer.querySelector('.ai-tools-selection');
+    
+    if (radioInput.value === 'sim') {
+        if (aiToolsSelection) {
+            aiToolsSelection.style.display = 'block';
+        }
+    } else {
+        if (aiToolsSelection) {
+            aiToolsSelection.style.display = 'none';
+            // Uncheck all AI tool checkboxes
+            const checkboxes = aiToolsSelection.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(cb => cb.checked = false);
+            // Hide "Outro" field
+            const otherField = taskContainer.querySelector('.ai-other-field');
+            if (otherField) {
+                otherField.style.display = 'none';
+                const otherInput = taskContainer.querySelector('input[name*="aiOther"]');
+                if (otherInput) {
+                    otherInput.value = '';
+                }
+            }
+        }
+    }
+}
+
+// Function to toggle "Outro" field visibility
+function toggleAIOtherField(checkbox) {
+    const taskContainer = checkbox.closest('.profile-filters');
+    const otherField = taskContainer.querySelector('.ai-other-field');
+    
+    if (checkbox.checked && checkbox.value === 'outro') {
+        if (otherField) {
+            otherField.style.display = 'block';
+        }
+    } else {
+        if (otherField) {
+            otherField.style.display = 'none';
+            const otherInput = taskContainer.querySelector('input[name*="aiOther"]');
+            if (otherInput) {
+                otherInput.value = '';
+            }
+        }
+    }
+}
+
+// Initialize AI tools selection for a container
+function initializeAIToolsSelection(container) {
+    // Set up radio button listeners for Não/Sim
+    const usaIARadios = container.querySelectorAll('input[name*="usaIA"]');
+    usaIARadios.forEach(radio => {
+        radio.addEventListener('change', function() {
+            toggleAIToolsSelection(this);
+        });
+        // Initialize visibility on load
+        if (radio.checked) {
+            toggleAIToolsSelection(radio);
+        }
+    });
+    
+    // Set up checkbox listeners for AI tools
+    const aiToolCheckboxes = container.querySelectorAll('input[name*="aiTools"]');
+    aiToolCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            toggleAIOtherField(this);
+        });
+        // Initialize visibility on load
+        if (checkbox.checked) {
+            toggleAIOtherField(checkbox);
+        }
+    });
+}
+
 // ========================================
 // Navigation Functions
 // ========================================
@@ -1229,6 +1304,12 @@ document.addEventListener('DOMContentLoaded', () => {
             select.classList.add('task-selected');
         }
     });
+    
+    // Initialize AI tools selection for template (hidden by default)
+    const template = document.querySelector('.task-template');
+    if (template) {
+        initializeAIToolsSelection(template);
+    }
 });
 
 // ========================================
@@ -1352,7 +1433,11 @@ function addTask() {
             const oldId = input.id;
             const newId = `${oldId}_task${taskId}`;
             input.id = newId;
+        }
+        // Update name for all inputs (including checkboxes and radio buttons)
+        if (input.name) {
             input.name = `${input.name}_task${taskId}`;
+        }
             
             // Map fill element IDs for all sliders
             if (oldId.includes('frequencia') || oldId.includes('timePerInstance') || 
@@ -1422,6 +1507,9 @@ function addTask() {
     // Initialize sliders for the new task
     initializeSlidersInContainer(newTask);
     
+    // Initialize AI tools selection
+    initializeAIToolsSelection(newTask);
+    
     // Add event listener to task select to remove animation when selected
     const taskSelect = newTask.querySelector('.cargo-select');
     if (taskSelect) {
@@ -1436,14 +1524,6 @@ function addTask() {
     
     // Update UI to show header instead of empty state
     updateTasksUI();
-    
-    // Add event listeners for AI usage radio buttons
-    const usaIARadios = newTask.querySelectorAll('input[name*="usaIA"]');
-    usaIARadios.forEach(radio => {
-        radio.addEventListener('change', function() {
-            toggleAIUsedField(this.closest('.filter-group').querySelector('.radio-group-inline'));
-        });
-    });
     
     // Scroll to the new task
     newTask.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
