@@ -1588,19 +1588,18 @@ body {
     animation: pulse-border 2s ease-in-out infinite;
 }
 
-.cargo-select:hover {
+.cargo-select:hover:not(.task-selected) {
     border-color: var(--color-accent-secondary);
     box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
     transform: translateY(-1px);
 }
 
-.cargo-select:focus {
+.cargo-select:focus:not(.task-selected) {
     outline: none;
     border-color: var(--color-accent-primary);
     box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
 }
 
-.cargo-select:not(:invalid):not([value=""]),
 .cargo-select.task-selected {
     border-color: var(--color-border);
     animation: none;
