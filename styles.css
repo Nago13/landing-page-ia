@@ -1565,7 +1565,7 @@ body {
     color: var(--color-text-secondary);
     text-transform: uppercase;
     letter-spacing: 0.05em;
-    margin-bottom: calc(var(--spacing-sm) * 0.8);
+    margin-bottom: calc(var(--spacing-lg) * 0.8);
 }
 
 .cargo-select {
@@ -1585,6 +1585,7 @@ body {
     background-position: right calc(var(--spacing-md) * 0.8) center;
     padding-right: calc(calc(var(--spacing-xl) * 0.8) + 16px);
     animation: pulse-border 1.5s ease-in-out infinite;
+    margin-bottom: calc(var(--spacing-lg) * 0.8);
 }
 
 .cargo-select:hover:not(.task-selected) {
@@ -1753,6 +1754,11 @@ body {
 /* Espaçamento após sliders para perguntas sobre IA */
 .sliders-group + .filter-group {
     margin-top: 17.6px;
+}
+
+/* Espaçamento após campo de seleção de tarefa */
+.filter-group + .sliders-group {
+    margin-top: calc(var(--spacing-lg) * 0.8);
 }
 
 .level-sliders-group {
