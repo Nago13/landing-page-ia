@@ -1311,15 +1311,14 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Initialize "Outros" field visibility on load
     const selectedAreaOnLoad = document.querySelector('input[name="area"]:checked');
-    if (selectedAreaOnLoad && selectedAreaOnLoad.value === 'outros') {
-        if (areaOtherField) {
-            areaOtherField.style.display = 'block';
-        }
-    }
-    
-    // Initialize tasks section visibility based on current selection
-    const selectedAreaOnLoad = document.querySelector('input[name="area"]:checked');
     if (selectedAreaOnLoad) {
+        // Show "Outros" field if "outros" is selected
+        if (selectedAreaOnLoad.value === 'outros') {
+            if (areaOtherField) {
+                areaOtherField.style.display = 'block';
+            }
+        }
+        // Initialize tasks section visibility
         showTasksSection();
         updateTasksUI();
     }
