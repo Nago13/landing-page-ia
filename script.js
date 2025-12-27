@@ -1433,11 +1433,6 @@ function addTask() {
             const oldId = input.id;
             const newId = `${oldId}_task${taskId}`;
             input.id = newId;
-        }
-        // Update name for all inputs (including checkboxes and radio buttons)
-        if (input.name) {
-            input.name = `${input.name}_task${taskId}`;
-        }
             
             // Map fill element IDs for all sliders
             if (oldId.includes('frequencia') || oldId.includes('timePerInstance') || 
@@ -1449,6 +1444,11 @@ function addTask() {
                 const newFillId = newId + 'Fill';
                 fillIdMap[oldFillId] = newFillId;
             }
+        }
+        
+        // Update name for all inputs (including checkboxes and radio buttons)
+        if (input.name) {
+            input.name = `${input.name}_task${taskId}`;
         }
     });
     
