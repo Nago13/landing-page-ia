@@ -422,6 +422,15 @@ function saveStepData(step) {
         const selectedArea = document.querySelector('input[name="area"]:checked');
         if (selectedArea) {
             formData.area = selectedArea.value;
+            // Save custom area name if "outros" is selected
+            if (selectedArea.value === 'outros') {
+                const areaOtherInput = document.getElementById('areaOther');
+                if (areaOtherInput && areaOtherInput.value) {
+                    formData.areaOther = areaOtherInput.value.trim();
+                }
+            } else {
+                formData.areaOther = null;
+            }
         }
         const cargoSelect = document.getElementById('cargo');
         if (cargoSelect) {
@@ -552,7 +561,11 @@ function showResults() {
     setTimeout(() => {
         // Get stack recommendations
         const stack = stackRecommendations[formData.area] || stackRecommendations.outros;
-        const areaName = areaNames[formData.area] || "Outros";
+        // Use custom area name if "outros" is selected and has a custom name
+        let areaName = areaNames[formData.area] || "Outros";
+        if (formData.area === 'outros' && formData.areaOther) {
+            areaName = formData.areaOther;
+        }
         
         // Update header
         document.getElementById('stackAreaName').textContent = areaName;
@@ -623,7 +636,11 @@ function submitUnlock() {
     
     // Prepare form data
     const stack = stackRecommendations[formData.area] || stackRecommendations.outros;
-    const areaName = areaNames[formData.area] || "Outros";
+    // Use custom area name if "outros" is selected and has a custom name
+    let areaName = areaNames[formData.area] || "Outros";
+    if (formData.area === 'outros' && formData.areaOther) {
+        areaName = formData.areaOther;
+    }
     
     // Coletar novamente os sliders superiores para garantir que estão atualizados
     const senioridadeTopInput = document.getElementById('senioridadeTop');
@@ -1252,9 +1269,26 @@ document.addEventListener('DOMContentLoaded', () => {
     
     // Add event listeners to area radio buttons
     const areaRadios = document.querySelectorAll('input[name="area"]');
+    const areaOtherField = document.getElementById('areaOtherField');
+    const areaOtherInput = document.getElementById('areaOther');
+    
     areaRadios.forEach(radio => {
         radio.addEventListener('change', function() {
             if (this.checked) {
+                // Show/hide "Outros" field
+                if (this.value === 'outros') {
+                    if (areaOtherField) {
+                        areaOtherField.style.display = 'block';
+                    }
+                } else {
+                    if (areaOtherField) {
+                        areaOtherField.style.display = 'none';
+                    }
+                    if (areaOtherInput) {
+                        areaOtherInput.value = '';
+                    }
+                }
+                
                 updateAllTaskSelects(this.value);
                 showTasksSection();
                 updateTasksUI();
@@ -1274,6 +1308,14 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+    
+    // Initialize "Outros" field visibility on load
+    const selectedAreaOnLoad = document.querySelector('input[name="area"]:checked');
+    if (selectedAreaOnLoad && selectedAreaOnLoad.value === 'outros') {
+        if (areaOtherField) {
+            areaOtherField.style.display = 'block';
+        }
+    }
     
     // Initialize tasks section visibility based on current selection
     const selectedAreaOnLoad = document.querySelector('input[name="area"]:checked');
