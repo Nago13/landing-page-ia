@@ -1166,6 +1166,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (selectedArea) {
         updateAllTaskSelects(selectedArea.value);
     }
+    
+    // Add event listeners to existing task selects to remove animation when selected
+    const existingTaskSelects = document.querySelectorAll('.tasks-container .cargo-select');
+    existingTaskSelects.forEach(select => {
+        select.addEventListener('change', function() {
+            if (this.value && this.value !== '') {
+                this.classList.add('task-selected');
+            } else {
+                this.classList.remove('task-selected');
+            }
+        });
+        
+        // Check if already has a value
+        if (select.value && select.value !== '') {
+            select.classList.add('task-selected');
+        }
+    });
 });
 
 // ========================================
@@ -1339,6 +1356,18 @@ function addTask() {
     
     // Initialize sliders for the new task
     initializeSlidersInContainer(newTask);
+    
+    // Add event listener to task select to remove animation when selected
+    const taskSelect = newTask.querySelector('.cargo-select');
+    if (taskSelect) {
+        taskSelect.addEventListener('change', function() {
+            if (this.value && this.value !== '') {
+                this.classList.add('task-selected');
+            } else {
+                this.classList.remove('task-selected');
+            }
+        });
+    }
     
     // Update UI to show header instead of empty state
     updateTasksUI();

@@ -1572,27 +1572,54 @@ body {
     width: 100%;
     padding: calc(var(--spacing-md) * 0.8) calc(var(--spacing-lg) * 0.8);
     background: var(--color-bg-tertiary);
-    border: 2px solid var(--color-border);
+    border: 2px solid var(--color-accent-primary);
     border-radius: var(--radius-md);
     color: var(--color-text-primary);
     font-size: 0.76rem;
     font-family: var(--font-primary);
     cursor: pointer;
-    transition: all var(--transition-fast);
+    transition: all var(--transition-base);
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%239ca8b9' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
     background-repeat: no-repeat;
     background-position: right calc(var(--spacing-md) * 0.8) center;
     padding-right: calc(calc(var(--spacing-xl) * 0.8) + 16px);
+    box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.3);
+    animation: pulse-border 2s ease-in-out infinite;
 }
 
 .cargo-select:hover {
-    border-color: var(--color-border-hover);
+    border-color: var(--color-accent-secondary);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.2);
+    transform: translateY(-1px);
 }
 
 .cargo-select:focus {
     outline: none;
     border-color: var(--color-accent-primary);
+    box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.3);
+}
+
+.cargo-select:not(:invalid):not([value=""]),
+.cargo-select.task-selected {
+    border-color: var(--color-border);
+    animation: none;
+    box-shadow: none;
+}
+
+.cargo-select.task-selected:hover {
+    border-color: var(--color-border-hover);
+    box-shadow: none;
+    transform: none;
+}
+
+@keyframes pulse-border {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+    }
 }
 
 .cargo-select option {
