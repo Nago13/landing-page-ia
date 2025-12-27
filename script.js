@@ -779,6 +779,12 @@ function resetForm() {
         taskItems.forEach(task => task.remove());
     }
     
+    // Hide tasks section
+    const tasksSection = document.getElementById('tasksSection');
+    if (tasksSection) {
+        tasksSection.style.display = 'none';
+    }
+    
     // Reset form inputs
     document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
     
@@ -1069,9 +1075,18 @@ document.addEventListener('DOMContentLoaded', () => {
         radio.addEventListener('change', function() {
             if (this.checked) {
                 updateAllTaskSelects(this.value);
+                showTasksSection();
+                updateTasksUI();
             }
         });
     });
+    
+    // Initialize tasks section visibility based on current selection
+    const selectedAreaOnLoad = document.querySelector('input[name="area"]:checked');
+    if (selectedAreaOnLoad) {
+        showTasksSection();
+        updateTasksUI();
+    }
     
     // Initialize task selects with default area (if one is selected)
     const selectedArea = document.querySelector('input[name="area"]:checked');
@@ -1129,6 +1144,34 @@ function updateAllTaskSelects(area) {
 // ========================================
 // Task Management Functions
 // ========================================
+function showTasksSection() {
+    const tasksSection = document.getElementById('tasksSection');
+    if (tasksSection) {
+        tasksSection.style.display = 'block';
+    }
+}
+
+function updateTasksUI() {
+    const tasksContainer = document.getElementById('tasksContainer');
+    const tasksHeader = document.getElementById('tasksHeader');
+    const tasksEmptyState = document.getElementById('tasksEmptyState');
+    
+    if (!tasksContainer) return;
+    
+    const taskItems = tasksContainer.querySelectorAll('.profile-filters:not(.task-template)');
+    const hasTasks = taskItems.length > 0;
+    
+    if (hasTasks) {
+        // Show header with button, hide empty state
+        if (tasksHeader) tasksHeader.style.display = 'flex';
+        if (tasksEmptyState) tasksEmptyState.style.display = 'none';
+    } else {
+        // Hide header, show empty state with centered button
+        if (tasksHeader) tasksHeader.style.display = 'none';
+        if (tasksEmptyState) tasksEmptyState.style.display = 'flex';
+    }
+}
+
 function addTask() {
     const tasksContainer = document.getElementById('tasksContainer');
     const template = document.querySelector('.task-template');
@@ -1140,7 +1183,11 @@ function addTask() {
     
     // Get current selected area
     const selectedArea = document.querySelector('input[name="area"]:checked');
-    const currentArea = selectedArea ? selectedArea.value : 'outros';
+    if (!selectedArea) {
+        alert('Por favor, selecione uma área de atuação primeiro.');
+        return;
+    }
+    const currentArea = selectedArea.value;
     
     // Clone the template
     const newTask = template.cloneNode(true);
@@ -1201,6 +1248,7 @@ function addTask() {
     `;
     deleteBtn.onclick = function() {
         newTask.remove();
+        updateTasksUI();
     };
     
     // Add delete button to the profile-filters container (top right corner)
@@ -1215,6 +1263,9 @@ function addTask() {
     
     // Initialize sliders for the new task
     initializeSlidersInContainer(newTask);
+    
+    // Update UI to show header instead of empty state
+    updateTasksUI();
     
     // Add event listeners for AI usage radio buttons
     const usaIARadios = newTask.querySelectorAll('input[name*="usaIA"]');

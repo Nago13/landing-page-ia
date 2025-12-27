@@ -288,8 +288,8 @@
                             </div>
                             
                             <!-- Suas Principais Tarefas -->
-                            <div class="tasks-section">
-                                <div class="tasks-header">
+                            <div class="tasks-section" id="tasksSection" style="display: none;">
+                                <div class="tasks-header" id="tasksHeader" style="display: none;">
                                     <h4 class="tasks-title">Suas Principais Tarefas</h4>
                                     <button type="button" class="btn-add-task" onclick="addTask()">
                                         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -301,6 +301,16 @@
                                 </div>
                                 <div id="tasksContainer" class="tasks-container">
                                     <!-- Tarefas serão adicionadas aqui dinamicamente -->
+                                </div>
+                                <div id="tasksEmptyState" class="tasks-empty-state">
+                                    <p class="tasks-empty-text">Adicione suas tarefas para receber recomendações precisas</p>
+                                    <button type="button" class="btn-add-first-task" onclick="addTask()">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                                        </svg>
+                                        Adicionar Primeira Tarefa
+                                    </button>
                                 </div>
                             </div>
                             
