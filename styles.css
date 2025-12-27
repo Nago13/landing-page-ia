@@ -1730,7 +1730,7 @@ body {
 
 .level-sliders-group {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 1fr;
     gap: calc(var(--spacing-xl) * 0.8);
     margin-bottom: calc(var(--spacing-2xl) * 0.8);
     padding-bottom: calc(var(--spacing-xl) * 0.8);
