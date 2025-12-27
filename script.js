@@ -916,6 +916,63 @@ function truncateText(text, maxLength) {
     return text.substring(0, maxLength).trim() + '...';
 }
 
+// Define slider levels for each slider
+const sliderLevels = {
+    senioridadeTop: [
+        'Jr (0-2 anos)',
+        'Jr-Mid (2-4 anos)',
+        'Mid (4-8 anos)',
+        'Sr-Mid (8-12 anos)',
+        'Sr (12+ anos)'
+    ],
+    familiaridadeIA: [
+        'Iniciante',
+        'Básico',
+        'Intermediário',
+        'Avançado',
+        'Especialista'
+    ],
+    setupComplexityTolerance: [
+        'Quero algo que funcione na hora',
+        'Topo aprender o básico rápido',
+        'Consigo investir um pouco de tempo',
+        'Topo estudar para aproveitar bem',
+        'Gosto de aprender ferramentas profundas'
+    ],
+    riskTolerance: [
+        'Só gigantes (Google, Microsoft)',
+        'Preferência por empresas já estabelecidas',
+        'Sem preferência de maturidade',
+        'Aberto a startups',
+        'Quanto mais novo, melhor'
+    ]
+};
+
+// Get level text based on slider value (0-100)
+function getSliderLevel(sliderId, value) {
+    const levels = sliderLevels[sliderId];
+    if (!levels) return '';
+    
+    // Map value 0-100 to index 0-4
+    // 0-20 = 0, 20-40 = 1, 40-60 = 2, 60-80 = 3, 80-100 = 4
+    let index = Math.floor(value / 20);
+    if (index >= levels.length) index = levels.length - 1;
+    
+    return levels[index];
+}
+
+// Update slider level display
+function updateSliderLevel(sliderId, value) {
+    const levelId = sliderId + 'Level';
+    const levelElement = document.getElementById(levelId);
+    if (levelElement) {
+        const levelText = getSliderLevel(sliderId, value);
+        if (levelText) {
+            levelElement.textContent = levelText;
+        }
+    }
+}
+
 // Update slider fill visual
 function updateSliderFill(sliderId, value) {
     // Handle both formats: baseId and fullId
@@ -927,6 +984,9 @@ function updateSliderFill(sliderId, value) {
     if (fillElement) {
         fillElement.style.width = value + '%';
     }
+    
+    // Also update level display
+    updateSliderLevel(sliderId, value);
 }
 
 // Initialize sliders in a given container
