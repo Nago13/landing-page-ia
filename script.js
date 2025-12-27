@@ -945,6 +945,48 @@ const sliderLevels = {
         'Sem preferência de maturidade',
         'Aberto a startups',
         'Quanto mais novo, melhor'
+    ],
+    frequencia: [
+        'Ocasional (1-2x/mês)',
+        'Semanal raro',
+        'Semanal',
+        'Quase diária',
+        'Diária'
+    ],
+    timePerInstance: [
+        'Rápido (5-15 min)',
+        '15-30 min',
+        '30-60 min',
+        '1-3 horas',
+        '3+ horas'
+    ],
+    complexidade: [
+        'Baixa (rotina)',
+        'Baixa-média',
+        'Média',
+        'Alta-média',
+        'Alta (especialista)'
+    ],
+    impacto: [
+        'Negligível',
+        'Menor',
+        'Moderado',
+        'Alto',
+        'Crítico'
+    ],
+    automationOpenness: [
+        'Mínima (brainstorm)',
+        '30% autônomo',
+        '50% autônomo',
+        '70% autônomo',
+        '90%+ autônomo'
+    ],
+    dataSensitivity: [
+        'Público',
+        'Interno',
+        'Sensível',
+        'Muito sensível',
+        'Altamente sensível'
     ]
 };
 
@@ -966,7 +1008,9 @@ function updateSliderLevel(sliderId, value) {
     const levelId = sliderId + 'Level';
     const levelElement = document.getElementById(levelId);
     if (levelElement) {
-        const levelText = getSliderLevel(sliderId, value);
+        // Extract base slider name (before _task suffix) for lookup
+        const baseSliderId = sliderId.split('_task')[0];
+        const levelText = getSliderLevel(baseSliderId, value);
         if (levelText) {
             levelElement.textContent = levelText;
         }
@@ -1326,6 +1370,25 @@ function addTask() {
         const fillElement = newTask.querySelector(`#${oldFillId}`);
         if (fillElement) {
             fillElement.id = fillIdMap[oldFillId];
+        }
+    });
+    
+    // Update slider-level element IDs to match their corresponding sliders
+    const sliderLevelElements = newTask.querySelectorAll('.slider-level');
+    sliderLevelElements.forEach(levelElement => {
+        if (levelElement.id) {
+            const oldLevelId = levelElement.id;
+            // Extract the slider name (e.g., 'frequencia' from 'frequenciaLevel')
+            const sliderName = oldLevelId.replace('Level', '');
+            
+            // Find the corresponding slider input
+            const sliderInput = newTask.querySelector(`input[id*="${sliderName}"]`);
+            if (sliderInput && sliderInput.id) {
+                // Get the new slider ID and create matching level ID
+                const newSliderId = sliderInput.id;
+                const newLevelId = newSliderId + 'Level';
+                levelElement.id = newLevelId;
+            }
         }
     });
     

@@ -1806,7 +1806,8 @@ body {
 .slider-label-wrapper-task {
     display: flex;
     align-items: center;
-    gap: var(--spacing-xs);
+    justify-content: space-between;
+    gap: var(--spacing-md);
     margin-bottom: var(--spacing-xs);
     position: relative;
 }
