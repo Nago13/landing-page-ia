@@ -1137,6 +1137,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateAllTaskSelects(this.value);
                 showTasksSection();
                 updateTasksUI();
+                
+                // Scroll to area section title
+                setTimeout(() => {
+                    const areaSectionTitle = document.querySelector('.area-section-title');
+                    if (areaSectionTitle) {
+                        const offset = 100;
+                        const elementPosition = areaSectionTitle.getBoundingClientRect().top + window.pageYOffset;
+                        window.scrollTo({
+                            top: elementPosition - offset,
+                            behavior: 'smooth'
+                        });
+                    }
+                }, 100);
             }
         });
     });
