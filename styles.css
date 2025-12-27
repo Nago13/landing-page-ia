@@ -1841,11 +1841,8 @@ body {
     background-size: contain;
 }
 
-.ai-tool-option:has(input[value='outro']) .ai-tool-content {
-    border-color: var(--color-accent-primary);
-}
-
 .ai-tool-option:has(input[value='outro']:checked) .ai-tool-content {
+    border-color: var(--color-accent-primary);
     background: rgba(139, 92, 246, 0.1);
 }
 
