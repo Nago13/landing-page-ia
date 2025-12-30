@@ -3451,12 +3451,12 @@ body {
         padding: var(--spacing-lg);
     }
     
-    /* Governança: dashboard antes do texto no mobile */
-    .insight-section:has(.governance-dashboard) .governance-dashboard {
+    /* Governança: texto antes do dashboard no mobile */
+    .insight-section:has(.governance-dashboard) .insight-content {
         order: 1;
     }
     
-    .insight-section:has(.governance-dashboard) .insight-content {
+    .insight-section:has(.governance-dashboard) .governance-dashboard {
         order: 2;
     }
     
@@ -3593,11 +3593,48 @@ body {
     }
     
     .demo-report-card {
-        padding: var(--spacing-lg);
+        padding: var(--spacing-md);
+        max-width: 320px;
+        transform: scale(0.85);
+        transform-origin: center;
+        margin: 0 auto;
+    }
+    
+    .demo-report-title {
+        font-size: 1rem;
+    }
+    
+    .demo-report-subtitle {
+        font-size: 0.75rem;
+    }
+    
+    .demo-rec-title {
+        font-size: 1rem;
+    }
+    
+    .demo-rec-desc {
+        font-size: 0.8rem;
     }
     
     .demo-metrics {
         grid-template-columns: 1fr;
+        gap: var(--spacing-xs);
+    }
+    
+    .demo-metric-card {
+        padding: var(--spacing-sm);
+    }
+    
+    .demo-metric-value {
+        font-size: 0.875rem;
+    }
+    
+    .demo-metric-label {
+        font-size: 0.65rem;
+    }
+    
+    .demo-arguments-list li {
+        font-size: 0.8rem;
     }
     
     .top-banner {
@@ -3817,12 +3854,12 @@ body {
         overflow: hidden;
     }
     
-    /* Governança: dashboard antes do texto no mobile */
-    .insight-section:has(.governance-dashboard) .governance-dashboard {
+    /* Governança: texto antes do dashboard no mobile */
+    .insight-section:has(.governance-dashboard) .insight-content {
         order: 1;
     }
     
-    .insight-section:has(.governance-dashboard) .insight-content {
+    .insight-section:has(.governance-dashboard) .governance-dashboard {
         order: 2;
     }
     
@@ -3904,6 +3941,27 @@ body {
     .option-icon {
         width: 16px;
         height: 16px;
+    }
+    
+    .demo-report-card {
+        padding: var(--spacing-sm);
+        max-width: 280px;
+        transform: scale(0.75);
+        transform-origin: center;
+    }
+    
+    .demo-report-header {
+        margin-bottom: var(--spacing-md);
+    }
+    
+    .demo-report-profile {
+        margin-bottom: var(--spacing-md);
+        padding-bottom: var(--spacing-md);
+    }
+    
+    .demo-recommendation-card {
+        padding: var(--spacing-sm);
+        margin-bottom: var(--spacing-md);
     }
     
     .question-card {
@@ -3995,12 +4053,12 @@ body {
         overflow: hidden;
     }
     
-    /* Governança: dashboard antes do texto no mobile */
-    .insight-section:has(.governance-dashboard) .governance-dashboard {
+    /* Governança: texto antes do dashboard no mobile */
+    .insight-section:has(.governance-dashboard) .insight-content {
         order: 1;
     }
     
-    .insight-section:has(.governance-dashboard) .insight-content {
+    .insight-section:has(.governance-dashboard) .governance-dashboard {
         order: 2;
     }
     
