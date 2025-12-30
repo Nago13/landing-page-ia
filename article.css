@@ -43,11 +43,11 @@
 }
 
 .orb-pink {
-    background: #ec4899 !important;
+    background: #60a5fa !important;
 }
 
 .orb-green {
-    background: #10b981 !important;
+    background: #3b82f6 !important;
 }
 
 .article-meta-top {
@@ -87,15 +87,15 @@
 }
 
 .article-tag.tag-career {
-    background: rgba(139, 92, 246, 0.1);
-    border-color: rgba(139, 92, 246, 0.2);
+    background: rgba(96, 165, 250, 0.1);
+    border-color: rgba(96, 165, 250, 0.2);
     color: var(--color-accent-tertiary);
 }
 
 .article-tag.tag-leadership {
-    background: rgba(16, 185, 129, 0.1);
-    border-color: rgba(16, 185, 129, 0.2);
-    color: #10b981;
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.2);
+    color: #3b82f6;
 }
 
 .article-title {
@@ -228,8 +228,8 @@
 }
 
 .stats-box.highlight-box {
-    border-color: rgba(239, 68, 68, 0.3);
-    background: linear-gradient(135deg, rgba(239, 68, 68, 0.05) 0%, transparent 100%);
+    border-color: rgba(59, 130, 246, 0.3);
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.05) 0%, transparent 100%);
 }
 
 .stat-item {
@@ -436,20 +436,20 @@
 }
 
 .callout.callout-warning {
-    background: rgba(245, 158, 11, 0.05);
-    border-color: rgba(245, 158, 11, 0.2);
+    background: rgba(59, 130, 246, 0.05);
+    border-color: rgba(59, 130, 246, 0.2);
 }
 
 .callout.callout-warning .callout-icon {
-    background: rgba(245, 158, 11, 0.1);
+    background: rgba(59, 130, 246, 0.1);
 }
 
 .callout.callout-warning .callout-icon svg {
-    stroke: #f59e0b;
+    stroke: #3b82f6;
 }
 
 .callout.callout-warning .callout-content h4 {
-    color: #f59e0b;
+    color: #3b82f6;
 }
 
 /* Article CTA */

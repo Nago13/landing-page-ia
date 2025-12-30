@@ -1120,8 +1120,8 @@
 
     <script>
         // Configuração dos gráficos
-        Chart.defaults.color = '#9CA3AF';
-        Chart.defaults.borderColor = '#374151';
+        Chart.defaults.color = '#475569';
+        Chart.defaults.borderColor = '#e2e8f0';
         Chart.defaults.font.family = "'Outfit', sans-serif";
 
         // Gráfico 1: Descoberta - Donut Chart
@@ -1152,12 +1152,12 @@
                     datasets: [{
                         data: [28, 22, 18, 14, 12, 6],
                         backgroundColor: [
-                            '#A78BFA',
-                            '#F59E0B',
-                            '#34D399',
-                            '#EC4899',
                             '#3B82F6',
-                            '#6B7280'
+                            '#2563eb',
+                            '#60a5fa',
+                            '#93c5fd',
+                            '#1d4ed8',
+                            '#dbeafe'
                         ],
                         borderWidth: 0,
                         spacing: 2
@@ -1244,34 +1244,34 @@
                     datasets: [{
                         label: 'Finance',
                         data: [45, 52, 48, 58, 62, 68],
-                        borderColor: '#A78BFA',
-                        backgroundColor: 'rgba(167, 139, 250, 0.1)',
+                        borderColor: '#3B82F6',
+                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
                         tension: 0.5,
                         fill: false,
-                        pointBackgroundColor: '#A78BFA',
-                        pointBorderColor: '#1F2937',
+                        pointBackgroundColor: '#3b82f6',
+                        pointBorderColor: '#ffffff',
                         pointBorderWidth: 2,
                         pointRadius: 5
                     }, {
                         label: 'Marketing',
                         data: [30, 38, 42, 40, 48, 52],
-                        borderColor: '#34D399',
-                        backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                        borderColor: '#2563eb',
+                        backgroundColor: 'rgba(37, 99, 235, 0.1)',
                         tension: 0.6,
                         fill: false,
-                        pointBackgroundColor: '#34D399',
-                        pointBorderColor: '#1F2937',
+                        pointBackgroundColor: '#2563eb',
+                        pointBorderColor: '#ffffff',
                         pointBorderWidth: 2,
                         pointRadius: 5
                     }, {
                         label: 'Engineering',
                         data: [20, 25, 22, 28, 32, 35],
-                        borderColor: '#3B82F6',
-                        backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                        borderColor: '#60a5fa',
+                        backgroundColor: 'rgba(96, 165, 250, 0.1)',
                         tension: 0.4,
                         fill: false,
-                        pointBackgroundColor: '#3B82F6',
-                        pointBorderColor: '#1F2937',
+                        pointBackgroundColor: '#60a5fa',
+                        pointBorderColor: '#ffffff',
                         pointBorderWidth: 2,
                         pointRadius: 5
                     }]
@@ -1288,7 +1288,7 @@
                         title: {
                             display: true,
                             text: 'Como profissionais como você estão evoluindo com IA',
-                            color: '#E8ECF3',
+                            color: '#1e293b',
                             font: {
                                 size: window.innerWidth > 640 ? 14 : 12,
                                 weight: 600
@@ -1303,7 +1303,7 @@
                             labels: {
                                 usePointStyle: true,
                                 padding: window.innerWidth > 640 ? 15 : 10,
-                                color: '#9CA3AF',
+                                color: '#475569',
                                 font: {
                                     size: window.innerWidth > 640 ? 12 : 10
                                 }
@@ -1318,11 +1318,11 @@
                             beginAtZero: true,
                             max: 80,
                             grid: {
-                                color: '#374151',
+                                color: '#e2e8f0',
                                 drawBorder: false
                             },
                             ticks: {
-                                color: '#9CA3AF',
+                                color: '#475569',
                                 stepSize: 20,
                                 font: {
                                     size: window.innerWidth > 640 ? 12 : 10
@@ -1356,13 +1356,13 @@
                     datasets: [{
                         label: 'Baixo Uso de IA',
                         data: [2.5, 0.5, 1, 3],
-                        backgroundColor: '#F59E0B',
+                        backgroundColor: '#93c5fd',
                         borderWidth: 0,
                         borderRadius: [8, 0, 0, 0]
                     }, {
                         label: 'Alto Uso de IA',
                         data: [0, 7, 4.5, 6],
-                        backgroundColor: '#34D399',
+                        backgroundColor: '#3b82f6',
                         borderWidth: 0,
                         borderRadius: {
                             topLeft: 8,
@@ -1380,7 +1380,7 @@
                         title: {
                             display: true,
                             text: 'Tempo Economizado por Semana',
-                            color: '#E8ECF3',
+                            color: '#1e293b',
                             font: {
                                 size: window.innerWidth > 640 ? 14 : 12,
                                 weight: 600
@@ -1395,7 +1395,7 @@
                             labels: {
                                 usePointStyle: true,
                                 padding: window.innerWidth > 640 ? 15 : 10,
-                                color: '#9CA3AF',
+                                color: '#475569',
                                 font: {
                                     size: window.innerWidth > 640 ? 12 : 10
                                 }
@@ -1416,7 +1416,7 @@
                                 display: false
                             },
                             ticks: {
-                                color: '#9CA3AF',
+                                color: '#475569',
                                 font: {
                                     size: window.innerWidth > 640 ? 12 : 10
                                 }
@@ -1429,17 +1429,17 @@
                             title: {
                                 display: true,
                                 text: 'Horas',
-                                color: '#9CA3AF',
+                                color: '#475569',
                                 font: {
                                     size: window.innerWidth > 640 ? 12 : 10
                                 }
                             },
                             grid: {
-                                color: '#374151',
+                                color: '#e2e8f0',
                                 drawBorder: false
                             },
                             ticks: {
-                                color: '#9CA3AF',
+                                color: '#475569',
                                 stepSize: 3,
                                 font: {
                                     size: window.innerWidth > 640 ? 12 : 10
