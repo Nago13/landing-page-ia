@@ -622,6 +622,21 @@ body {
     flex-direction: column;
 }
 
+.demo-rec-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: var(--spacing-md);
+    gap: var(--spacing-md);
+}
+
+.demo-rec-header-left {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    flex: 1;
+}
+
 .demo-rec-logo {
     width: 40px;
     height: 40px;
@@ -630,7 +645,6 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: var(--spacing-md);
     flex-shrink: 0;
     padding: var(--spacing-xs);
 }
@@ -646,17 +660,11 @@ body {
     height: 24px;
 }
 
-.demo-rec-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: var(--spacing-sm);
-}
-
 .demo-rec-title {
     font-size: 1.125rem;
     font-weight: 700;
     color: var(--color-text-primary);
+    margin: 0;
 }
 
 .demo-rec-check {
