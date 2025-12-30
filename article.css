@@ -99,8 +99,9 @@
 }
 
 .article-title {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
     font-size: clamp(2rem, 5vw, 3rem);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.2;
     max-width: 900px;
     margin-bottom: var(--spacing-xl);
@@ -163,6 +164,7 @@
 }
 
 .article-body h2 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
     font-size: 1.75rem;
     font-weight: 700;
     margin-top: var(--spacing-3xl);
@@ -171,6 +173,7 @@
 }
 
 .article-body h3 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
     font-size: 1.35rem;
     font-weight: 700;
     margin-top: var(--spacing-2xl);
@@ -179,6 +182,7 @@
 }
 
 .article-body h4 {
+    font-family: 'Playfair Display', Georgia, 'Times New Roman', serif;
     font-size: 1.1rem;
     font-weight: 700;
     margin-top: var(--spacing-xl);

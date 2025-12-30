@@ -27,6 +27,7 @@
     
     /* Typography */
     --font-primary: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-serif: 'Playfair Display', Georgia, 'Times New Roman', serif;
     --font-mono: 'JetBrains Mono', monospace;
     
     /* Spacing */
@@ -195,6 +196,11 @@ body {
     gap: var(--spacing-sm);
     font-size: 1.25rem;
     font-weight: 700;
+    color: var(--color-accent-primary);
+}
+
+.logo-text {
+    color: var(--color-accent-primary);
 }
 
 .logo-icon {
@@ -217,12 +223,12 @@ body {
 .nav-links a {
     font-size: 0.9rem;
     font-weight: 500;
-    color: var(--color-text-secondary);
+    color: var(--color-accent-primary);
     transition: color var(--transition-fast);
 }
 
 .nav-links a:hover {
-    color: var(--color-text-primary);
+    color: var(--color-accent-secondary);
 }
 
 /* ========================================
@@ -352,8 +358,9 @@ body {
 }
 
 .hero-title {
+    font-family: var(--font-serif);
     font-size: clamp(2.5rem, 6vw, 4rem);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.1;
     margin-bottom: var(--spacing-lg);
     animation: fadeInUp 0.8s ease 0.1s backwards;
@@ -522,8 +529,9 @@ body {
 }
 
 .section-title {
+    font-family: var(--font-serif);
     font-size: clamp(2rem, 4vw, 2.75rem);
-    font-weight: 800;
+    font-weight: 700;
     line-height: 1.2;
     margin-bottom: var(--spacing-md);
 }
@@ -625,6 +633,7 @@ body {
 }
 
 .insight-title {
+    font-family: var(--font-serif);
     font-size: clamp(2rem, 4vw, 2.5rem);
     font-weight: 700;
     line-height: 1.2;
@@ -1210,6 +1219,7 @@ body {
 }
 
 .question-title {
+    font-family: var(--font-serif);
     font-size: 1.2rem;
     font-weight: 700;
     margin-bottom: var(--spacing-sm);
@@ -2187,6 +2197,7 @@ body {
 }
 
 .stack-title {
+    font-family: var(--font-serif);
     font-size: 1.4rem;
     font-weight: 700;
     color: var(--color-text-primary);
@@ -2776,6 +2787,7 @@ body {
 }
 
 .blog-title {
+    font-family: var(--font-serif);
     font-size: 1.15rem;
     font-weight: 700;
     line-height: 1.4;
@@ -2839,8 +2851,9 @@ body {
 }
 
 .cta-content h2 {
+    font-family: var(--font-serif);
     font-size: clamp(1.75rem, 4vw, 2.5rem);
-    font-weight: 800;
+    font-weight: 700;
     margin-bottom: var(--spacing-md);
 }
 
