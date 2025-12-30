@@ -661,6 +661,7 @@ body {
 }
 
 .demo-rec-title {
+    font-family: var(--font-serif);
     font-size: 1.125rem;
     font-weight: 700;
     color: var(--color-text-primary);
@@ -668,8 +669,23 @@ body {
 }
 
 .demo-rec-check {
-    color: #10b981;
+    width: 20px;
+    height: 20px;
+    background: #10b981;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     flex-shrink: 0;
+    padding: 0;
+}
+
+.demo-rec-check svg {
+    width: 12px;
+    height: 12px;
+    stroke: white;
+    stroke-width: 3;
+    color: white;
 }
 
 .demo-rec-desc {
