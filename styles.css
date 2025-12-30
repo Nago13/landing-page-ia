@@ -527,6 +527,7 @@ body {
     align-items: center;
     gap: var(--spacing-sm);
     flex-shrink: 0;
+    margin-left: auto;
 }
 
 .demo-report-logo .logo-icon {
@@ -544,9 +545,8 @@ body {
 }
 
 .demo-report-title-group {
-    flex: 1;
+    flex: 0 1 auto;
     min-width: 0;
-    padding-right: 80px;
 }
 
 .demo-report-title {
@@ -563,9 +563,6 @@ body {
 }
 
 .demo-report-badge {
-    position: absolute;
-    top: 0;
-    right: 0;
     background: #10b981;
     color: white;
     padding: var(--spacing-xs) var(--spacing-sm);
@@ -574,6 +571,7 @@ body {
     font-weight: 600;
     white-space: nowrap;
     flex-shrink: 0;
+    align-self: flex-start;
 }
 
 .demo-report-profile {
