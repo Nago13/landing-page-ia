@@ -545,6 +545,8 @@ body {
 
 .demo-report-title-group {
     flex: 1;
+    min-width: 0;
+    padding-right: 80px;
 }
 
 .demo-report-title {
@@ -570,6 +572,8 @@ body {
     border-radius: var(--radius-full);
     font-size: 0.75rem;
     font-weight: 600;
+    white-space: nowrap;
+    flex-shrink: 0;
 }
 
 .demo-report-profile {
