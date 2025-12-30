@@ -63,7 +63,7 @@
                             <path d="M5 12h14M12 5l7 7-7 7"/>
                         </svg>
                     </a>
-                    <a href="#insights" class="btn btn-secondary">Ver comparativos</a>
+                    <a href="#insights" class="btn btn-secondary">Ver recursos</a>
                 </div>
                 <div class="hero-stats">
                     <div class="stat">
@@ -135,8 +135,10 @@
                     
                     <div class="demo-metrics">
                         <div class="demo-metric-card">
-                            <svg class="demo-metric-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                <path d="M12 5v14M5 12h14"/>
+                            <svg class="demo-metric-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <polyline points="3 17 7 13 11 9 15 5 21 11"/>
+                                <line x1="21" y1="11" x2="21" y2="19"/>
+                                <line x1="3" y1="19" x2="21" y2="19"/>
                             </svg>
                             <span class="demo-metric-value">+40%</span>
                             <span class="demo-metric-label">ROI Estimado</span>
@@ -160,6 +162,38 @@
                     
                     <div class="demo-report-footer">
                         <span class="demo-footer-text">ARGUMENTOS PARA SEU CHEFE</span>
+                        <ul class="demo-arguments-list">
+                            <li>
+                                <div class="demo-argument-check">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M20 6L9 17l-5-5"/>
+                                    </svg>
+                                </div>
+                                <span>Empresas similares reportam 35% de aumento em produtividade</span>
+                            </li>
+                            <li>
+                                <div class="demo-argument-check">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M20 6L9 17l-5-5"/>
+                                    </svg>
+                                </div>
+                                <span>Conformidade com LGPD e políticas de segurança enterprise</span>
+                            </li>
+                            <li>
+                                <div class="demo-argument-check">
+                                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+                                        <path d="M20 6L9 17l-5-5"/>
+                                    </svg>
+                                </div>
+                                <span>Payback em menos de 3 meses considerando horas economizadas</span>
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="demo-report-generate">
+                        <button class="btn-generate-report" onclick="scrollToElement('.diagnostic-section')">
+                            Gerar meu relatório →
+                        </button>
                     </div>
                 </div>
             </div>
