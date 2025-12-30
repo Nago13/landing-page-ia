@@ -1234,12 +1234,20 @@ document.addEventListener('DOMContentLoaded', () => {
         
         if (currentScroll > 100) {
             navbar.style.background = 'rgba(10, 13, 20, 0.95)';
+            navbar.classList.add('navbar-dark');
         } else {
-            navbar.style.background = 'rgba(10, 13, 20, 0.8)';
+            navbar.style.background = 'rgba(255, 255, 255, 0.9)';
+            navbar.classList.remove('navbar-dark');
         }
         
         lastScroll = currentScroll;
     });
+    
+    // Verificar estado inicial da navbar
+    const navbar = document.querySelector('.navbar');
+    if (window.pageYOffset > 100) {
+        navbar.classList.add('navbar-dark');
+    }
     
     // Intersection Observer for animations
     const observerOptions = {

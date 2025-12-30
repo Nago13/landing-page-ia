@@ -73,6 +73,10 @@ html {
 body {
     font-family: var(--font-primary);
     background-color: var(--color-bg-primary);
+    background-image: 
+        linear-gradient(rgba(59, 130, 246, 0.08) 2px, transparent 2px),
+        linear-gradient(90deg, rgba(59, 130, 246, 0.08) 2px, transparent 2px);
+    background-size: 20px 20px;
     color: var(--color-text-primary);
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
@@ -229,6 +233,26 @@ body {
 
 .nav-links a:hover {
     color: var(--color-accent-secondary);
+}
+
+/* Navbar com fundo escuro - texto branco */
+.navbar-dark .logo-text {
+    color: #ffffff;
+}
+
+.navbar-dark .logo-icon {
+    background: linear-gradient(90deg, #ffffff 0%, #ffffff 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.navbar-dark .nav-links a {
+    color: #ffffff;
+}
+
+.navbar-dark .nav-links a:hover {
+    color: rgba(255, 255, 255, 0.8);
 }
 
 /* ========================================
