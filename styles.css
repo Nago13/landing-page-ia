@@ -3316,6 +3316,15 @@ body {
         padding: var(--spacing-lg);
     }
     
+    /* Governança: dashboard antes do texto no mobile */
+    .insight-section:has(.governance-dashboard) .governance-dashboard {
+        order: 1;
+    }
+    
+    .insight-section:has(.governance-dashboard) .insight-content {
+        order: 2;
+    }
+    
     .insight-chart canvas {
         max-height: 300px;
         max-width: 100%;
@@ -3673,6 +3682,15 @@ body {
         overflow: hidden;
     }
     
+    /* Governança: dashboard antes do texto no mobile */
+    .insight-section:has(.governance-dashboard) .governance-dashboard {
+        order: 1;
+    }
+    
+    .insight-section:has(.governance-dashboard) .insight-content {
+        order: 2;
+    }
+    
     .insight-chart canvas {
         max-height: 250px !important;
         max-width: 100% !important;
@@ -3840,6 +3858,15 @@ body {
         order: 2;
         width: 100%;
         overflow: hidden;
+    }
+    
+    /* Governança: dashboard antes do texto no mobile */
+    .insight-section:has(.governance-dashboard) .governance-dashboard {
+        order: 1;
+    }
+    
+    .insight-section:has(.governance-dashboard) .insight-content {
+        order: 2;
     }
     
     .insight-chart canvas {
