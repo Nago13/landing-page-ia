@@ -523,17 +523,24 @@ body {
 }
 
 .demo-report-logo {
-    width: 48px;
-    height: 48px;
-    background: var(--gradient-primary);
-    border-radius: var(--radius-md);
     display: flex;
     align-items: center;
-    justify-content: center;
-    color: white;
-    font-weight: 700;
-    font-size: 1.25rem;
+    gap: var(--spacing-sm);
     flex-shrink: 0;
+}
+
+.demo-report-logo .logo-icon {
+    font-size: 1.5rem;
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.demo-report-logo .logo-text {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--color-accent-primary);
 }
 
 .demo-report-title-group {
