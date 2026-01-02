@@ -224,7 +224,6 @@ const formData = {
     necessidadeExplicacao: 50,
     frequencia: 50,
     tempoOcorrencia: 25,
-    complexidade: 25,
     custoErro: 25,
     roiEstimado: 25,
     tasks: []
@@ -464,10 +463,6 @@ function saveStepData(step) {
         if (tempoOcorrenciaInput) {
             formData.tempoOcorrencia = parseInt(tempoOcorrenciaInput.value) || 0;
         }
-        const complexidadeInput = document.getElementById('complexidade');
-        if (complexidadeInput) {
-            formData.complexidade = parseInt(complexidadeInput.value) || 0;
-        }
         const custoErroInput = document.getElementById('custoErro');
         if (custoErroInput) {
             formData.custoErro = parseInt(custoErroInput.value) || 0;
@@ -486,12 +481,11 @@ function saveStepData(step) {
                 // Get sliders for this task
                 const taskContainer = select.closest('.profile-filters');
                 const sliders = taskContainer.querySelectorAll('input[type="range"]');
-                const taskData = {
+                const                     taskData = {
                     task: taskValue,
                     taskText: select.options[select.selectedIndex]?.text,
                     frequencia: null,
                     tempoOcorrencia: null,
-                    complexidade: null,
                     custoErro: null,
                     roiEstimado: null,
                     dataSensitivity: null,
@@ -505,8 +499,6 @@ function saveStepData(step) {
                         taskData.frequencia = parseInt(slider.value) || 0;
                     } else if (sliderId.includes('tempoOcorrencia')) {
                         taskData.tempoOcorrencia = parseInt(slider.value) || 0;
-                    } else if (sliderId.includes('complexidade')) {
-                        taskData.complexidade = parseInt(slider.value) || 0;
                     } else if (sliderId.includes('custoErro')) {
                         taskData.custoErro = parseInt(slider.value) || 0;
                     } else if (sliderId.includes('roiEstimado')) {
@@ -663,7 +655,6 @@ function submitUnlock() {
                 taskText: select.options[select.selectedIndex]?.text,
                 frequencia: null,
                 tempoOcorrencia: null,
-                complexidade: null,
                 custoErro: null,
                 roiEstimado: null,
                 dataSensitivity: null,
@@ -678,8 +669,6 @@ function submitUnlock() {
                     taskData.frequencia = parseInt(slider.value) || 0;
                 } else if (sliderId.includes('tempoOcorrencia')) {
                     taskData.tempoOcorrencia = parseInt(slider.value) || 0;
-                } else if (sliderId.includes('complexidade')) {
-                    taskData.complexidade = parseInt(slider.value) || 0;
                 } else if (sliderId.includes('custoErro')) {
                     taskData.custoErro = parseInt(slider.value) || 0;
                 } else if (sliderId.includes('roiEstimado')) {
@@ -855,7 +844,6 @@ function resetForm() {
     formData.necessidadeExplicacao = 50;
     formData.frequencia = 50;
     formData.tempoOcorrencia = 25;
-    formData.complexidade = 25;
     formData.custoErro = 25;
     formData.roiEstimado = 25;
     formData.tasks = [];
@@ -926,11 +914,6 @@ function resetForm() {
     if (tempoOcorrenciaInput) {
         tempoOcorrenciaInput.value = 25;
         updateSliderFill('tempoOcorrencia', 25);
-    }
-    const complexidadeInput = document.getElementById('complexidade');
-    if (complexidadeInput) {
-        complexidadeInput.value = 25;
-        updateSliderFill('complexidade', 25);
     }
     const custoErroInput = document.getElementById('custoErro');
     if (custoErroInput) {
@@ -1052,20 +1035,6 @@ const sliderLevels = {
         '1-3 horas',
         '3+ horas'
     ],
-    complexidade: [
-        'Baixa (rotina)',
-        'Baixa-média',
-        'Média',
-        'Alta-média',
-        'Alta (especialista)'
-    ],
-    impacto: [
-        'Negligível',
-        'Menor',
-        'Moderado',
-        'Alto',
-        'Crítico'
-    ],
     automationOpenness: [
         'Mínima (brainstorm)',
         '30% autônomo',
@@ -1129,7 +1098,7 @@ function updateSliderFill(sliderId, value) {
 
 // Initialize sliders in a given container
 function initializeSlidersInContainer(container) {
-    const sliderNames = ['frequencia', 'timePerInstance', 'tempoOcorrencia', 'complexidade', 'impacto', 'custoErro', 'roiEstimado', 'automationOpenness', 'dataSensitivity'];
+    const sliderNames = ['frequencia', 'timePerInstance', 'tempoOcorrencia', 'custoErro', 'roiEstimado', 'automationOpenness', 'dataSensitivity'];
     sliderNames.forEach(sliderName => {
         // Find slider by name or id that contains the slider name
         const slider = container.querySelector(`input[type="range"][name*="${sliderName}"], input[type="range"][id*="${sliderName}"]`);
@@ -1485,8 +1454,7 @@ function addTask() {
             
             // Map fill element IDs for all sliders
             if (oldId.includes('frequencia') || oldId.includes('timePerInstance') || 
-                oldId.includes('tempoOcorrencia') || oldId.includes('complexidade') || 
-                oldId.includes('impacto') || oldId.includes('custoErro') || 
+                oldId.includes('tempoOcorrencia') || oldId.includes('custoErro') || 
                 oldId.includes('roiEstimado') || oldId.includes('automationOpenness') || 
                 oldId.includes('dataSensitivity')) {
                 const oldFillId = oldId + 'Fill';
