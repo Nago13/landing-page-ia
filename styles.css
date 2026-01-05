@@ -1919,6 +1919,12 @@ body {
     gap: calc(var(--spacing-xl) * 0.8);
 }
 
+.tasks-add-button-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    margin-top: calc(var(--spacing-xl) * 0.8);
+}
+
 .task-template {
     display: none;
 }

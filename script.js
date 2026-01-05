@@ -1384,6 +1384,7 @@ function updateTasksUI() {
     const tasksContainer = document.getElementById('tasksContainer');
     const tasksHeader = document.getElementById('tasksHeader');
     const tasksEmptyState = document.getElementById('tasksEmptyState');
+    const tasksAddButtonWrapper = document.getElementById('tasksAddButtonWrapper');
     
     if (!tasksContainer) return;
     
@@ -1396,9 +1397,13 @@ function updateTasksUI() {
     if (hasTasks) {
         // Hide empty state when there are tasks
         if (tasksEmptyState) tasksEmptyState.style.display = 'none';
+        // Show add button when there are tasks (after first task is added)
+        if (tasksAddButtonWrapper) tasksAddButtonWrapper.style.display = 'flex';
     } else {
         // Show empty state with centered button when no tasks
         if (tasksEmptyState) tasksEmptyState.style.display = 'flex';
+        // Hide add button when no tasks
+        if (tasksAddButtonWrapper) tasksAddButtonWrapper.style.display = 'none';
     }
 }
 
