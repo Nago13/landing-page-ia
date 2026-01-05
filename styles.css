@@ -530,7 +530,7 @@ body {
 .demo-report-card {
     background: var(--color-bg-card);
     border-radius: var(--radius-lg);
-    padding: var(--spacing-xl);
+    padding: var(--spacing-lg);
     box-shadow: var(--shadow-lg);
     border: 1px solid var(--color-border);
     max-width: 420px;
@@ -542,7 +542,7 @@ body {
     display: flex;
     align-items: flex-start;
     gap: var(--spacing-md);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
     position: relative;
 }
 
@@ -555,7 +555,7 @@ body {
 }
 
 .demo-report-logo .logo-icon {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     background: var(--gradient-primary);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -563,7 +563,7 @@ body {
 }
 
 .demo-report-logo .logo-text {
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 700;
     color: var(--color-accent-primary);
 }
@@ -574,7 +574,7 @@ body {
 }
 
 .demo-report-title {
-    font-size: 1.25rem;
+    font-size: 1rem;
     font-weight: 700;
     color: var(--color-text-primary);
     margin-bottom: var(--spacing-xs);
@@ -591,7 +591,7 @@ body {
     color: white;
     padding: var(--spacing-xs) var(--spacing-sm);
     border-radius: var(--radius-full);
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     font-weight: 600;
     white-space: nowrap;
     flex-shrink: 0;
@@ -602,8 +602,8 @@ body {
     display: flex;
     flex-direction: column;
     gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-xl);
-    padding-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
+    padding-bottom: var(--spacing-lg);
     border-bottom: 1px solid var(--color-border);
 }
 
@@ -622,7 +622,7 @@ body {
 }
 
 .demo-profile-value {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     font-weight: 600;
     color: var(--color-text-primary);
 }
@@ -637,7 +637,7 @@ body {
 .demo-recommendation-card {
     background: var(--color-bg-tertiary);
     border-radius: var(--radius-md);
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
     margin-bottom: var(--spacing-xl);
     border: 1px solid var(--color-border);
     display: flex;
@@ -660,8 +660,8 @@ body {
 }
 
 .demo-rec-logo {
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     background: var(--color-bg-card);
     border-radius: var(--radius-md);
     display: flex;
@@ -678,21 +678,21 @@ body {
 }
 
 .demo-rec-logo svg {
-    width: 24px;
-    height: 24px;
+    width: 20px;
+    height: 20px;
 }
 
 .demo-rec-title {
     font-family: var(--font-serif);
-    font-size: 1.125rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: var(--color-text-primary);
     margin: 0;
 }
 
 .demo-rec-check {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     background: #10b981;
     border-radius: 50%;
     display: flex;
@@ -703,15 +703,15 @@ body {
 }
 
 .demo-rec-check svg {
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     stroke: white;
     stroke-width: 3;
     color: white;
 }
 
 .demo-rec-desc {
-    font-size: 0.875rem;
+    font-size: 0.8rem;
     color: var(--color-text-secondary);
     line-height: 1.5;
     margin-bottom: var(--spacing-md);
@@ -724,7 +724,7 @@ body {
 }
 
 .demo-price-amount {
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 700;
     color: var(--color-accent-primary);
 }
@@ -738,13 +738,13 @@ body {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: var(--spacing-sm);
-    margin-bottom: var(--spacing-xl);
+    margin-bottom: var(--spacing-lg);
 }
 
 .demo-metric-card {
     background: var(--color-bg-tertiary);
     border-radius: var(--radius-md);
-    padding: var(--spacing-md);
+    padding: var(--spacing-sm);
     text-align: center;
     border: 1px solid var(--color-border);
     display: flex;
@@ -753,8 +753,8 @@ body {
 }
 
 .demo-metric-icon {
-    width: 20px;
-    height: 20px;
+    width: 16px;
+    height: 16px;
     margin: 0 auto var(--spacing-xs);
     display: block;
     flex-shrink: 0;
@@ -786,7 +786,7 @@ body {
 
 .demo-metric-value {
     display: block;
-    font-size: 1rem;
+    font-size: 0.875rem;
     font-weight: 600;
     margin-bottom: var(--spacing-xs);
     font-family: var(--font-primary);
