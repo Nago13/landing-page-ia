@@ -611,13 +611,80 @@ function showResults() {
     }, 4000);
 }
 
-function submitUnlock() {
-    const emailInput = document.getElementById('unlockEmail');
-    const email = emailInput.value.trim();
+// Function to validate corporate email
+function isValidCorporateEmail(email) {
+    // Lista de domínios de email pessoais comuns
+    const personalEmailDomains = [
+        'gmail.com',
+        'gmail.com.br',
+        'hotmail.com',
+        'hotmail.com.br',
+        'outlook.com',
+        'outlook.com.br',
+        'yahoo.com',
+        'yahoo.com.br',
+        'bol.com.br',
+        'uol.com.br',
+        'terra.com.br',
+        'live.com',
+        'live.com.br',
+        'icloud.com',
+        'me.com',
+        'mail.com',
+        'protonmail.com',
+        'proton.me',
+        'gmx.com',
+        'zoho.com',
+        'aol.com',
+        'msn.com',
+        'ymail.com',
+        'rocketmail.com'
+    ];
     
-    // Validate email
+    // Valida formato básico de email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!email || !emailRegex.test(email)) {
+        return false;
+    }
+    
+    // Extrai o domínio do email
+    const domain = email.split('@')[1].toLowerCase();
+    
+    // Verifica se o domínio está na lista de emails pessoais
+    return !personalEmailDomains.includes(domain);
+}
+
+function submitUnlock() {
+    const emailInput = document.getElementById('unlockEmail');
+    const emailError = document.getElementById('unlockEmailError');
+    const email = emailInput.value.trim();
+    
+    // Limpar erro anterior
+    if (emailError) {
+        emailError.style.display = 'none';
+        emailInput.classList.remove('unlock-input-error');
+    }
+    
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!email || !emailRegex.test(email)) {
+        if (emailError) {
+            emailError.textContent = 'Por favor, insira um email válido.';
+            emailError.style.display = 'block';
+            emailInput.classList.add('unlock-input-error');
+        }
+        shakeElement('.unlock-form');
+        emailInput.focus();
+        return;
+    }
+    
+    // Validate corporate email
+    if (!isValidCorporateEmail(email)) {
+        if (emailError) {
+            emailError.textContent = 'Este email é inválido. Só aceitamos emails corporativos.';
+            emailError.style.display = 'block';
+            emailInput.classList.add('unlock-input-error');
+        }
         shakeElement('.unlock-form');
         emailInput.focus();
         return;
@@ -1178,6 +1245,18 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+    
+    // Clear email error when user starts typing
+    const unlockEmailInput = document.getElementById('unlockEmail');
+    if (unlockEmailInput) {
+        unlockEmailInput.addEventListener('input', () => {
+            const emailError = document.getElementById('unlockEmailError');
+            if (emailError && emailError.style.display !== 'none') {
+                emailError.style.display = 'none';
+                unlockEmailInput.classList.remove('unlock-input-error');
+            }
+        });
+    }
     
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

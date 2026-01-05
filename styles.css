@@ -2861,8 +2861,23 @@ body {
     border-color: var(--color-accent-primary);
 }
 
+.unlock-input.unlock-input-error {
+    border-color: #ef4444;
+}
+
+.unlock-input.unlock-input-error:focus {
+    border-color: #ef4444;
+}
+
 .unlock-input::placeholder {
     color: var(--color-text-muted);
+}
+
+.unlock-email-error {
+    color: #ef4444;
+    font-size: 0.75rem;
+    margin-top: calc(var(--spacing-xs) * -0.5);
+    padding: 0 calc(var(--spacing-lg) * 0.8);
 }
 
 .unlock-btn {
