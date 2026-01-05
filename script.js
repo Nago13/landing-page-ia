@@ -1195,27 +1195,19 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
     
-    // Navbar scroll effect
-    let lastScroll = 0;
+    // Navbar scroll effect - mantém fundo branco sempre
     window.addEventListener('scroll', () => {
         const navbar = document.querySelector('.navbar');
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 100) {
-            navbar.style.background = 'rgba(10, 13, 20, 0.95)';
-            navbar.classList.add('navbar-dark');
-        } else {
-            navbar.style.background = 'rgba(255, 255, 255, 0.9)';
-            navbar.classList.remove('navbar-dark');
-        }
-        
-        lastScroll = currentScroll;
+        // Sempre mantém o fundo branco, independente do scroll
+        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.classList.remove('navbar-dark');
     });
     
-    // Verificar estado inicial da navbar
+    // Garantir que a navbar comece com fundo branco
     const navbar = document.querySelector('.navbar');
-    if (window.pageYOffset > 100) {
-        navbar.classList.add('navbar-dark');
+    if (navbar) {
+        navbar.style.background = 'rgba(255, 255, 255, 0.95)';
+        navbar.classList.remove('navbar-dark');
     }
     
     // Intersection Observer for animations
