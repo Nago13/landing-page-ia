@@ -519,6 +519,19 @@ body {
 }
 
 /* Hero Demo Report */
+.hero-demo-report-wrapper {
+    position: relative;
+    z-index: 1;
+}
+
+.hero-demo-report-label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--spacing-md);
+    text-align: right;
+}
+
 .hero-demo-report {
     position: relative;
     z-index: 1;
@@ -3540,6 +3553,10 @@ body {
     
     .hero-cta {
         justify-content: center;
+    }
+    
+    .hero-demo-report-label {
+        text-align: center;
     }
     
     .hero-demo-report {
