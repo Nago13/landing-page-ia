@@ -529,7 +529,7 @@ body {
     font-weight: 600;
     color: var(--color-text-secondary);
     margin-bottom: var(--spacing-md);
-    text-align: right;
+    text-align: left;
 }
 
 .hero-demo-report {
