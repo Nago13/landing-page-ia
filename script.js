@@ -852,11 +852,9 @@ function submitUnlock() {
             // Caso especial: se o n8n retornar success e slug, redireciona para relatório
             window.location.href = `/relatorio/${data.slug}.html`;
         } else if (data.success) {
-            // Se tiver success, mostra mensagem de sucesso
+            // Se tiver success, mostra modal de sucesso
             console.log('Webhook executado com sucesso');
-            alert('Relatório gerado com sucesso! Verifique o n8n para ver os dados recebidos.');
-            unlockBtn.innerHTML = originalText;
-            unlockBtn.disabled = false;
+            showSuccessModal();
         } else if (data.error) {
             // Se tiver erro explícito, lança erro
             throw new Error(data.error);
@@ -864,9 +862,7 @@ function submitUnlock() {
             // Qualquer outra resposta HTTP 200 é considerada sucesso
             // (workflowId, executionId, message, ou qualquer outra coisa)
             console.log('Webhook do n8n executado com sucesso:', data);
-            alert('Resposta enviada, nossa mensagem chegará no seu email em instantes!');
-            unlockBtn.innerHTML = originalText;
-            unlockBtn.disabled = false;
+            showSuccessModal();
         }
     })
     .catch(error => {
@@ -890,6 +886,37 @@ function submitUnlock() {
         unlockBtn.innerHTML = originalText;
         unlockBtn.disabled = false;
     });
+}
+
+// Função para mostrar o modal de sucesso
+function showSuccessModal() {
+    const unlockModal = document.getElementById('unlockModal');
+    const successModal = document.getElementById('successUnlockModal');
+    const unlockBtn = document.querySelector('.unlock-btn');
+    
+    // Esconder o modal de desbloqueio
+    if (unlockModal) {
+        unlockModal.style.display = 'none';
+    }
+    
+    // Mostrar o modal de sucesso
+    if (successModal) {
+        successModal.style.display = 'block';
+    }
+    
+    // Restaurar o botão
+    if (unlockBtn) {
+        unlockBtn.innerHTML = 'Desbloquear';
+        unlockBtn.disabled = false;
+    }
+}
+
+// Função para fechar o modal de sucesso
+function closeSuccessModal() {
+    const successModal = document.getElementById('successUnlockModal');
+    if (successModal) {
+        successModal.style.display = 'none';
+    }
 }
 
 // Legacy function - mantida para compatibilidade
