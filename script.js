@@ -792,7 +792,7 @@ function submitUnlock() {
     // Show loading state
     const unlockBtn = document.querySelector('.unlock-btn');
     const originalText = unlockBtn.innerHTML;
-    unlockBtn.innerHTML = 'Gerando relatório...';
+    unlockBtn.innerHTML = 'Enviando respostas...';
     unlockBtn.disabled = true;
     
     // URL do webhook do n8n
