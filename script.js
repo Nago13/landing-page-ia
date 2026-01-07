@@ -1490,7 +1490,6 @@ function updateTasksUI() {
     const tasksContainer = document.getElementById('tasksContainer');
     const tasksHeader = document.getElementById('tasksHeader');
     const tasksEmptyState = document.getElementById('tasksEmptyState');
-    const tasksAddButtonWrapper = document.getElementById('tasksAddButtonWrapper');
     
     if (!tasksContainer) return;
     
@@ -1503,13 +1502,9 @@ function updateTasksUI() {
     if (hasTasks) {
         // Hide empty state when there are tasks
         if (tasksEmptyState) tasksEmptyState.style.display = 'none';
-        // Show add button when there are tasks (after first task is added)
-        if (tasksAddButtonWrapper) tasksAddButtonWrapper.style.display = 'flex';
     } else {
         // Show empty state with centered button when no tasks
         if (tasksEmptyState) tasksEmptyState.style.display = 'flex';
-        // Hide add button when no tasks
-        if (tasksAddButtonWrapper) tasksAddButtonWrapper.style.display = 'none';
     }
 }
 
@@ -1520,6 +1515,12 @@ function addTask() {
     if (!tasksContainer || !template) {
         console.error('Tasks container or template not found');
         return;
+    }
+    
+    // Check if a task already exists - only allow one task
+    const existingTasks = tasksContainer.querySelectorAll('.profile-filters:not(.task-template)');
+    if (existingTasks.length > 0) {
+        return; // Don't allow adding more than one task
     }
     
     // Get current selected area
