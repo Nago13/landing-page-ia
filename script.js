@@ -220,29 +220,15 @@ const formData = {
     cargo: null,
     senioridadeTop: 50,
     familiaridadeIA: 50,
-    preferenciaEstrutura: 50,
-    necessidadeExplicacao: 50,
-    frequencia: 50,
-    tempoOcorrencia: 25,
-    custoErro: 25,
-    roiEstimado: 25,
+    setupComplexityTolerance: 50,
+    riskTolerance: 50,
     tasks: []
 };
 
-// Function to toggle AI used field visibility
+// Function to toggle AI used field visibility (legacy - não mais usado)
 function toggleAIUsedField(radioGroup) {
-    const taskContainer = radioGroup.closest('.profile-filters');
-    const aiUsedField = taskContainer.querySelector('.ai-used-field');
-    const iaUsadaInput = taskContainer.querySelector('input[name*="iaUsada"]');
-    
-    if (radioGroup.querySelector('input[value="sim"]:checked')) {
-        aiUsedField.style.display = 'block';
-    } else {
-        aiUsedField.style.display = 'none';
-        if (iaUsadaInput) {
-            iaUsadaInput.value = '';
-        }
-    }
+    // Função mantida para compatibilidade, mas não é mais usada
+    // Os campos de IA agora são gerenciados por toggleAIToolsSelection
 }
 
 // Function to toggle AI tools selection visibility
@@ -445,31 +431,13 @@ function saveStepData(step) {
         if (familiaridadeIAInput) {
             formData.familiaridadeIA = parseInt(familiaridadeIAInput.value) || 0;
         }
-        const preferenciaEstruturaInput = document.getElementById('preferenciaEstrutura');
-        if (preferenciaEstruturaInput) {
-            formData.preferenciaEstrutura = parseInt(preferenciaEstruturaInput.value) || 0;
+        const setupComplexityToleranceInput = document.getElementById('setupComplexityTolerance');
+        if (setupComplexityToleranceInput) {
+            formData.setupComplexityTolerance = parseInt(setupComplexityToleranceInput.value) || 0;
         }
-        const necessidadeExplicacaoInput = document.getElementById('necessidadeExplicacao');
-        if (necessidadeExplicacaoInput) {
-            formData.necessidadeExplicacao = parseInt(necessidadeExplicacaoInput.value) || 0;
-        }
-        
-        // Coletar sliders inferiores do template (mantido para compatibilidade)
-        const frequenciaInput = document.getElementById('frequencia');
-        if (frequenciaInput) {
-            formData.frequencia = parseInt(frequenciaInput.value) || 0;
-        }
-        const tempoOcorrenciaInput = document.getElementById('tempoOcorrencia');
-        if (tempoOcorrenciaInput) {
-            formData.tempoOcorrencia = parseInt(tempoOcorrenciaInput.value) || 0;
-        }
-        const custoErroInput = document.getElementById('custoErro');
-        if (custoErroInput) {
-            formData.custoErro = parseInt(custoErroInput.value) || 0;
-        }
-        const roiEstimadoInput = document.getElementById('roiEstimado');
-        if (roiEstimadoInput) {
-            formData.roiEstimado = parseInt(roiEstimadoInput.value) || 0;
+        const riskToleranceInput = document.getElementById('riskTolerance');
+        if (riskToleranceInput) {
+            formData.riskTolerance = parseInt(riskToleranceInput.value) || 0;
         }
         
         // Save all task data from dynamically added tasks
@@ -481,28 +449,21 @@ function saveStepData(step) {
                 // Get sliders for this task
                 const taskContainer = select.closest('.profile-filters');
                 const sliders = taskContainer.querySelectorAll('input[type="range"]');
-                const                     taskData = {
-                    task: taskValue,
-                    taskText: select.options[select.selectedIndex]?.text,
-                    frequencia: null,
-                    tempoOcorrencia: null,
-                    custoErro: null,
-                    roiEstimado: null,
-                    dataSensitivity: null,
-                    usaIA: null,
-                    iaUsada: null
-                };
+                const taskData = {};
                 
+                // Campos básicos sempre presentes
+                taskData.task = taskValue;
+                taskData.taskText = select.options[select.selectedIndex]?.text;
+                
+                // Coletar valores dos sliders da tarefa (0-100) - apenas se existirem
                 sliders.forEach(slider => {
                     const sliderId = slider.id;
                     if (sliderId.includes('frequencia')) {
                         taskData.frequencia = parseInt(slider.value) || 0;
-                    } else if (sliderId.includes('tempoOcorrencia')) {
+                    } else if (sliderId.includes('timePerInstance')) {
                         taskData.tempoOcorrencia = parseInt(slider.value) || 0;
-                    } else if (sliderId.includes('custoErro')) {
-                        taskData.custoErro = parseInt(slider.value) || 0;
-                    } else if (sliderId.includes('roiEstimado')) {
-                        taskData.roiEstimado = parseInt(slider.value) || 0;
+                    } else if (sliderId.includes('automationOpenness')) {
+                        taskData.automatizacao = parseInt(slider.value) || 0;
                     } else if (sliderId.includes('dataSensitivity')) {
                         taskData.dataSensitivity = parseInt(slider.value) || 0;
                     }
@@ -514,9 +475,22 @@ function saveStepData(step) {
                     taskData.usaIA = usaIARadio.value;
                 }
                 
-                const iaUsadaInput = taskContainer.querySelector('input[name*="iaUsada"]');
-                if (iaUsadaInput && iaUsadaInput.value.trim()) {
-                    taskData.iaUsada = iaUsadaInput.value.trim();
+                // Coletar nome da IA usada (checkboxes ou campo "Outro")
+                const aiToolsCheckboxes = taskContainer.querySelectorAll('input[name*="aiTools"]:checked');
+                const selectedAITools = Array.from(aiToolsCheckboxes).map(cb => cb.value);
+                
+                // Coletar campo "Outro" se preenchido
+                const aiOtherInput = taskContainer.querySelector('input[name*="aiOther"]');
+                const aiOtherValue = aiOtherInput && aiOtherInput.value.trim() ? aiOtherInput.value.trim() : null;
+                
+                // Determinar qual IA foi usada (prioridade: campo "Outro", depois checkboxes)
+                if (aiOtherValue) {
+                    taskData.iaUsada = aiOtherValue;
+                } else if (selectedAITools.length > 0) {
+                    // Se múltiplas IAs foram selecionadas, usar a primeira ou concatenar
+                    taskData.iaUsada = selectedAITools.length === 1 ? selectedAITools[0] : selectedAITools.join(', ');
+                } else {
+                    taskData.iaUsada = null;
                 }
                 
                 formData.tasks.push(taskData);
@@ -690,8 +664,22 @@ function submitUnlock() {
         return;
     }
     
+    // Show loading state - definir botão antes de qualquer validação
+    const unlockBtn = document.querySelector('.unlock-btn');
+    const originalText = unlockBtn ? unlockBtn.innerHTML : 'Desbloquear';
+    
     // Garantir que todos os dados estão atualizados antes de enviar
     saveStepData(1);
+    
+    // Validar que área foi selecionada
+    if (!formData.area) {
+        alert('Por favor, selecione uma área de atuação.');
+        if (unlockBtn) {
+            unlockBtn.innerHTML = originalText;
+            unlockBtn.disabled = false;
+        }
+        return;
+    }
     
     // Prepare form data
     const stack = stackRecommendations[formData.area] || stackRecommendations.outros;
@@ -704,8 +692,13 @@ function submitUnlock() {
     // Coletar novamente os sliders superiores para garantir que estão atualizados
     const senioridadeTopInput = document.getElementById('senioridadeTop');
     const familiaridadeIAInput = document.getElementById('familiaridadeIA');
-    const preferenciaEstruturaInput = document.getElementById('preferenciaEstrutura');
-    const necessidadeExplicacaoInput = document.getElementById('necessidadeExplicacao');
+    const setupComplexityToleranceInput = document.getElementById('setupComplexityTolerance');
+    const riskToleranceInput = document.getElementById('riskTolerance');
+    
+    // Validar que os inputs existem
+    if (!senioridadeTopInput || !familiaridadeIAInput || !setupComplexityToleranceInput || !riskToleranceInput) {
+        console.error('Alguns sliders não foram encontrados no DOM');
+    }
     
     // Coletar todos os dados das tarefas com informações completas
     const taskSelects = document.querySelectorAll('.tasks-container .cargo-select');
@@ -717,29 +710,21 @@ function submitUnlock() {
             const taskContainer = select.closest('.profile-filters');
             const sliders = taskContainer.querySelectorAll('input[type="range"]');
             
-            const taskData = {
-                task: taskValue,
-                taskText: select.options[select.selectedIndex]?.text,
-                frequencia: null,
-                tempoOcorrencia: null,
-                custoErro: null,
-                roiEstimado: null,
-                dataSensitivity: null,
-                usaIA: null,
-                iaUsada: null
-            };
+            const taskData = {};
             
-            // Coletar valores dos sliders da tarefa (0-100)
+            // Campos básicos sempre presentes
+            taskData.task = taskValue;
+            taskData.taskText = select.options[select.selectedIndex]?.text;
+            
+            // Coletar valores dos sliders da tarefa (0-100) - apenas se existirem
             sliders.forEach(slider => {
                 const sliderId = slider.id;
                 if (sliderId.includes('frequencia')) {
                     taskData.frequencia = parseInt(slider.value) || 0;
-                } else if (sliderId.includes('tempoOcorrencia')) {
+                } else if (sliderId.includes('timePerInstance')) {
                     taskData.tempoOcorrencia = parseInt(slider.value) || 0;
-                } else if (sliderId.includes('custoErro')) {
-                    taskData.custoErro = parseInt(slider.value) || 0;
-                } else if (sliderId.includes('roiEstimado')) {
-                    taskData.roiEstimado = parseInt(slider.value) || 0;
+                } else if (sliderId.includes('automationOpenness')) {
+                    taskData.automatizacao = parseInt(slider.value) || 0;
                 } else if (sliderId.includes('dataSensitivity')) {
                     taskData.dataSensitivity = parseInt(slider.value) || 0;
                 }
@@ -751,10 +736,22 @@ function submitUnlock() {
                 taskData.usaIA = usaIARadio.value;
             }
             
-            // Coletar qual IA é usada (se aplicável)
-            const iaUsadaInput = taskContainer.querySelector('input[name*="iaUsada"]');
-            if (iaUsadaInput && iaUsadaInput.value.trim()) {
-                taskData.iaUsada = iaUsadaInput.value.trim();
+            // Coletar nome da IA usada (checkboxes ou campo "Outro")
+            const aiToolsCheckboxes = taskContainer.querySelectorAll('input[name*="aiTools"]:checked');
+            const selectedAITools = Array.from(aiToolsCheckboxes).map(cb => cb.value);
+            
+            // Coletar campo "Outro" se preenchido
+            const aiOtherInput = taskContainer.querySelector('input[name*="aiOther"]');
+            const aiOtherValue = aiOtherInput && aiOtherInput.value.trim() ? aiOtherInput.value.trim() : null;
+            
+            // Determinar qual IA foi usada (prioridade: campo "Outro", depois checkboxes)
+            if (aiOtherValue) {
+                taskData.iaUsada = aiOtherValue;
+            } else if (selectedAITools.length > 0) {
+                // Se múltiplas IAs foram selecionadas, usar a primeira ou concatenar
+                taskData.iaUsada = selectedAITools.length === 1 ? selectedAITools[0] : selectedAITools.join(', ');
+            } else {
+                taskData.iaUsada = null;
             }
             
             tasksComplete.push(taskData);
@@ -762,6 +759,15 @@ function submitUnlock() {
     });
     
     // Preparar objeto completo com todos os dados
+    // Garantir que todos os valores numéricos sejam válidos
+    const senioridadeValue = senioridadeTopInput ? parseInt(senioridadeTopInput.value) || 0 : formData.senioridadeTop || 0;
+    const familiaridadeIAValue = familiaridadeIAInput ? parseInt(familiaridadeIAInput.value) || 0 : formData.familiaridadeIA || 0;
+    const aberturaAprendizadoValue = setupComplexityToleranceInput ? parseInt(setupComplexityToleranceInput.value) || 0 : formData.setupComplexityTolerance || 0;
+    const maturidadeIAsValue = riskToleranceInput ? parseInt(riskToleranceInput.value) || 0 : formData.riskTolerance || 0;
+    
+    // Preparar lista de tarefas como string para compatibilidade com N8N
+    const tarefasText = tasksComplete.map(t => t.taskText).filter(Boolean).join(', ') || 'Não informado';
+    
     const fullData = {
         // Dados básicos
         email: email,
@@ -771,11 +777,11 @@ function submitUnlock() {
         cargo: formData.cargo || null,
         slug: generateSlugFromEmail(email),
         
-        // Sliders superiores (níveis gerais do usuário - valores de 0 a 100)
-        senioridadeTop: senioridadeTopInput ? parseInt(senioridadeTopInput.value) || 0 : formData.senioridadeTop,
-        familiaridadeIA: familiaridadeIAInput ? parseInt(familiaridadeIAInput.value) || 0 : formData.familiaridadeIA,
-        preferenciaEstrutura: preferenciaEstruturaInput ? parseInt(preferenciaEstruturaInput.value) || 0 : formData.preferenciaEstrutura,
-        necessidadeExplicacao: necessidadeExplicacaoInput ? parseInt(necessidadeExplicacaoInput.value) || 0 : formData.necessidadeExplicacao,
+        // Campos principais (padronizados para n8n)
+        senioridade: senioridadeValue,
+        familiaridadeIA: familiaridadeIAValue,
+        aberturaAprendizado: aberturaAprendizadoValue,
+        maturidadeIAs: maturidadeIAsValue,
         
         // Tarefas com todos os dados completos (sliders de 0 a 100 + respostas de IA)
         tasks: tasksComplete,
@@ -789,18 +795,79 @@ function submitUnlock() {
         }))
     };
     
-    // Show loading state
-    const unlockBtn = document.querySelector('.unlock-btn');
-    const originalText = unlockBtn.innerHTML;
-    unlockBtn.innerHTML = 'Enviando respostas...';
-    unlockBtn.disabled = true;
+    // Validar dados essenciais antes de enviar
+    if (!fullData.email || !fullData.area || !fullData.slug) {
+        alert('Erro: Dados essenciais faltando. Por favor, preencha todos os campos obrigatórios.');
+        if (unlockBtn) {
+            unlockBtn.innerHTML = originalText;
+            unlockBtn.disabled = false;
+        }
+        return;
+    }
+    
+    if (!fullData.tasks || fullData.tasks.length === 0) {
+        alert('Erro: Nenhuma tarefa foi adicionada. Por favor, adicione pelo menos uma tarefa.');
+        if (unlockBtn) {
+            unlockBtn.innerHTML = originalText;
+            unlockBtn.disabled = false;
+        }
+        return;
+    }
+    
+    // Função para remover valores null/undefined recursivamente
+    // Mantém arrays vazios e strings vazias, mas remove null/undefined
+    function cleanData(obj) {
+        if (obj === null || obj === undefined) {
+            return undefined; // Retorna undefined para ser removido depois
+        }
+        if (Array.isArray(obj)) {
+            const cleaned = obj.map(cleanData).filter(item => item !== undefined);
+            return cleaned; // Mantém array mesmo se vazio
+        }
+        if (typeof obj === 'object') {
+            const cleaned = {};
+            for (const key in obj) {
+                if (obj.hasOwnProperty(key)) {
+                    const value = cleanData(obj[key]);
+                    // Mantém o campo se não for undefined
+                    // Remove apenas se for explicitamente undefined
+                    if (value !== undefined) {
+                        cleaned[key] = value;
+                    }
+                }
+            }
+            return cleaned;
+        }
+        // Mantém strings vazias, números 0, false, etc.
+        return obj;
+    }
+    
+    // Limpar dados antes de enviar (remover null/undefined)
+    const cleanedData = cleanData(fullData);
+    
+    // Atualizar estado do botão para loading (já definido anteriormente)
+    if (unlockBtn) {
+        unlockBtn.innerHTML = 'Enviando respostas...';
+        unlockBtn.disabled = true;
+    }
     
     // URL do webhook do n8n
     const N8N_WEBHOOK_URL = 'https://ianafirma.app.n8n.cloud/webhook/dabfbfe6-2e55-4ca2-9c3e-9a0053d92084';
     
     // Log dos dados antes de enviar (para debug)
-    console.log('Enviando dados para webhook:', fullData);
+    console.log('Enviando dados para webhook:', cleanedData);
     console.log('URL do webhook:', N8N_WEBHOOK_URL);
+    
+    // Validar que cleanedData é válido
+    try {
+        JSON.stringify(cleanedData);
+    } catch (e) {
+        console.error('Erro ao serializar dados:', e);
+        alert('Erro ao preparar dados. Por favor, tente novamente.');
+        unlockBtn.innerHTML = originalText;
+        unlockBtn.disabled = false;
+        return;
+    }
     
     // Send to n8n webhook
     fetch(N8N_WEBHOOK_URL, {
@@ -808,7 +875,7 @@ function submitUnlock() {
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(fullData)
+        body: JSON.stringify(cleanedData)
     })
     .then(async response => {
         console.log('Resposta recebida:', response.status, response.statusText);
@@ -870,21 +937,36 @@ function submitUnlock() {
         console.error('Tipo do erro:', error.name);
         console.error('Mensagem do erro:', error.message);
         console.error('Stack do erro:', error.stack);
-        console.error('Dados que tentaram ser enviados:', JSON.stringify(fullData, null, 2));
         
-        // Mensagem de erro mais detalhada
+        // Tentar obter fullData do escopo se disponível
+        try {
+            console.error('Dados que tentaram ser enviados:', JSON.stringify(fullData, null, 2));
+        } catch (e) {
+            console.error('Não foi possível serializar dados:', e);
+        }
+        
+        // Mensagem de erro mais detalhada e amigável
         let errorMessage = 'Erro ao gerar relatório. ';
+        
         if (error.message.includes('Failed to fetch') || error.message.includes('NetworkError')) {
-            errorMessage += 'Erro de conexão. Verifique sua internet e se o webhook do n8n está acessível.';
+            errorMessage += 'Erro de conexão. Verifique sua internet e tente novamente.';
         } else if (error.message.includes('CORS')) {
-            errorMessage += 'Erro de CORS. Verifique as configurações do n8n.';
+            errorMessage += 'Erro de configuração. Por favor, entre em contato com o suporte.';
+        } else if (error.message.includes('Dados essenciais faltando') || error.message.includes('Nenhuma tarefa')) {
+            errorMessage = error.message + ' Por favor, preencha todos os campos obrigatórios.';
+        } else if (error.message.includes('500')) {
+            errorMessage += 'Erro no servidor. Por favor, tente novamente em alguns instantes. Se o problema persistir, entre em contato com o suporte.';
         } else {
             errorMessage += error.message || 'Por favor, tente novamente.';
         }
         
         alert(errorMessage);
-        unlockBtn.innerHTML = originalText;
-        unlockBtn.disabled = false;
+        
+        // Restaurar botão
+        if (unlockBtn) {
+            unlockBtn.innerHTML = originalText;
+            unlockBtn.disabled = false;
+        }
     });
 }
 
@@ -934,12 +1016,8 @@ function resetForm() {
     formData.cargo = null;
     formData.senioridadeTop = 50;
     formData.familiaridadeIA = 50;
-    formData.preferenciaEstrutura = 50;
-    formData.necessidadeExplicacao = 50;
-    formData.frequencia = 50;
-    formData.tempoOcorrencia = 25;
-    formData.custoErro = 25;
-    formData.roiEstimado = 25;
+    formData.setupComplexityTolerance = 50;
+    formData.riskTolerance = 50;
     formData.tasks = [];
     
     // Reset task counter
@@ -962,13 +1040,6 @@ function resetForm() {
     // Reset form inputs
     document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
     
-    // Reset and hide AI used fields
-    document.querySelectorAll('.ai-used-field').forEach(field => {
-        field.style.display = 'none';
-    });
-    document.querySelectorAll('input[name*="iaUsada"]').forEach(input => {
-        input.value = '';
-    });
     
     // Reset cargo select in template
     const cargoSelect = document.getElementById('cargo');
@@ -987,38 +1058,17 @@ function resetForm() {
         familiaridadeIAInput.value = 50;
         updateSliderFill('familiaridadeIA', 50);
     }
-    const preferenciaEstruturaInput = document.getElementById('preferenciaEstrutura');
-    if (preferenciaEstruturaInput) {
-        preferenciaEstruturaInput.value = 50;
-        updateSliderFill('preferenciaEstrutura', 50);
+    const setupComplexityToleranceInput = document.getElementById('setupComplexityTolerance');
+    if (setupComplexityToleranceInput) {
+        setupComplexityToleranceInput.value = 50;
+        updateSliderFill('setupComplexityTolerance', 50);
     }
-    const necessidadeExplicacaoInput = document.getElementById('necessidadeExplicacao');
-    if (necessidadeExplicacaoInput) {
-        necessidadeExplicacaoInput.value = 50;
-        updateSliderFill('necessidadeExplicacao', 50);
+    const riskToleranceInput = document.getElementById('riskTolerance');
+    if (riskToleranceInput) {
+        riskToleranceInput.value = 50;
+        updateSliderFill('riskTolerance', 50);
     }
     
-    // Reset sliders inferiores no template (se existirem)
-    const frequenciaInput = document.getElementById('frequencia');
-    if (frequenciaInput) {
-        frequenciaInput.value = 50;
-        updateSliderFill('frequencia', 50);
-    }
-    const tempoOcorrenciaInput = document.getElementById('tempoOcorrencia');
-    if (tempoOcorrenciaInput) {
-        tempoOcorrenciaInput.value = 25;
-        updateSliderFill('tempoOcorrencia', 25);
-    }
-    const custoErroInput = document.getElementById('custoErro');
-    if (custoErroInput) {
-        custoErroInput.value = 25;
-        updateSliderFill('custoErro', 25);
-    }
-    const roiEstimadoInput = document.getElementById('roiEstimado');
-    if (roiEstimadoInput) {
-        roiEstimadoInput.value = 25;
-        updateSliderFill('roiEstimado', 25);
-    }
     
     // Hide loading overlay if visible
     const loadingOverlay = document.getElementById('loadingOverlay');
@@ -1192,7 +1242,7 @@ function updateSliderFill(sliderId, value) {
 
 // Initialize sliders in a given container
 function initializeSlidersInContainer(container) {
-    const sliderNames = ['frequencia', 'timePerInstance', 'tempoOcorrencia', 'custoErro', 'roiEstimado', 'automationOpenness', 'dataSensitivity'];
+    const sliderNames = ['frequencia', 'timePerInstance', 'automationOpenness', 'dataSensitivity'];
     sliderNames.forEach(sliderName => {
         // Find slider by name or id that contains the slider name
         const slider = container.querySelector(`input[type="range"][name*="${sliderName}"], input[type="range"][id*="${sliderName}"]`);
@@ -1558,9 +1608,7 @@ function addTask() {
             
             // Map fill element IDs for all sliders
             if (oldId.includes('frequencia') || oldId.includes('timePerInstance') || 
-                oldId.includes('tempoOcorrencia') || oldId.includes('custoErro') || 
-                oldId.includes('roiEstimado') || oldId.includes('automationOpenness') || 
-                oldId.includes('dataSensitivity')) {
+                oldId.includes('automationOpenness') || oldId.includes('dataSensitivity')) {
                 const oldFillId = oldId + 'Fill';
                 const newFillId = newId + 'Fill';
                 fillIdMap[oldFillId] = newFillId;
