@@ -425,19 +425,19 @@ function saveStepData(step) {
         // Coletar os 4 sliders superiores (níveis gerais do usuário)
         const senioridadeTopInput = document.getElementById('senioridadeTop');
         if (senioridadeTopInput) {
-            formData.senioridadeTop = parseInt(senioridadeTopInput.value) || 3;
+            formData.senioridadeTop = Math.round(Math.max(1, Math.min(5, parseFloat(senioridadeTopInput.value) || 3)));
         }
         const familiaridadeIAInput = document.getElementById('familiaridadeIA');
         if (familiaridadeIAInput) {
-            formData.familiaridadeIA = parseInt(familiaridadeIAInput.value) || 3;
+            formData.familiaridadeIA = Math.round(Math.max(1, Math.min(5, parseFloat(familiaridadeIAInput.value) || 3)));
         }
         const setupComplexityToleranceInput = document.getElementById('setupComplexityTolerance');
         if (setupComplexityToleranceInput) {
-            formData.setupComplexityTolerance = parseInt(setupComplexityToleranceInput.value) || 3;
+            formData.setupComplexityTolerance = Math.round(Math.max(1, Math.min(5, parseFloat(setupComplexityToleranceInput.value) || 3)));
         }
         const riskToleranceInput = document.getElementById('riskTolerance');
         if (riskToleranceInput) {
-            formData.riskTolerance = parseInt(riskToleranceInput.value) || 3;
+            formData.riskTolerance = Math.round(Math.max(1, Math.min(5, parseFloat(riskToleranceInput.value) || 3)));
         }
         
         // Save all task data from dynamically added tasks
@@ -458,14 +458,15 @@ function saveStepData(step) {
                 // Coletar valores dos sliders da tarefa (1-5) - apenas se existirem
                 sliders.forEach(slider => {
                     const sliderId = slider.id;
+                    const roundedValue = Math.round(Math.max(1, Math.min(5, parseFloat(slider.value) || 3)));
                     if (sliderId.includes('frequencia')) {
-                        taskData.frequencia = parseInt(slider.value) || 3;
+                        taskData.frequencia = roundedValue;
                     } else if (sliderId.includes('timePerInstance')) {
-                        taskData.tempoOcorrencia = parseInt(slider.value) || 3;
+                        taskData.tempoOcorrencia = roundedValue;
                     } else if (sliderId.includes('automationOpenness')) {
-                        taskData.automatizacao = parseInt(slider.value) || 3;
+                        taskData.automatizacao = roundedValue;
                     } else if (sliderId.includes('dataSensitivity')) {
-                        taskData.dataSensitivity = parseInt(slider.value) || 3;
+                        taskData.dataSensitivity = roundedValue;
                     }
                 });
                 
@@ -719,14 +720,15 @@ function submitUnlock() {
             // Coletar valores dos sliders da tarefa (1-5) - apenas se existirem
             sliders.forEach(slider => {
                 const sliderId = slider.id;
+                const roundedValue = Math.round(Math.max(1, Math.min(5, parseFloat(slider.value) || 3)));
                 if (sliderId.includes('frequencia')) {
-                    taskData.frequencia = parseInt(slider.value) || 3;
+                    taskData.frequencia = roundedValue;
                 } else if (sliderId.includes('timePerInstance')) {
-                    taskData.tempoOcorrencia = parseInt(slider.value) || 3;
+                    taskData.tempoOcorrencia = roundedValue;
                 } else if (sliderId.includes('automationOpenness')) {
-                    taskData.automatizacao = parseInt(slider.value) || 3;
+                    taskData.automatizacao = roundedValue;
                 } else if (sliderId.includes('dataSensitivity')) {
-                    taskData.dataSensitivity = parseInt(slider.value) || 3;
+                    taskData.dataSensitivity = roundedValue;
                 }
             });
             
@@ -759,11 +761,11 @@ function submitUnlock() {
     });
     
     // Preparar objeto completo com todos os dados
-    // Garantir que todos os valores numéricos sejam válidos
-    const senioridadeValue = senioridadeTopInput ? parseInt(senioridadeTopInput.value) || 3 : formData.senioridadeTop || 3;
-    const familiaridadeIAValue = familiaridadeIAInput ? parseInt(familiaridadeIAInput.value) || 3 : formData.familiaridadeIA || 3;
-    const aberturaAprendizadoValue = setupComplexityToleranceInput ? parseInt(setupComplexityToleranceInput.value) || 3 : formData.setupComplexityTolerance || 3;
-    const maturidadeIAsValue = riskToleranceInput ? parseInt(riskToleranceInput.value) || 3 : formData.riskTolerance || 3;
+    // Garantir que todos os valores numéricos sejam válidos (1-5, sempre inteiros)
+    const senioridadeValue = senioridadeTopInput ? Math.round(Math.max(1, Math.min(5, parseFloat(senioridadeTopInput.value) || 3))) : formData.senioridadeTop || 3;
+    const familiaridadeIAValue = familiaridadeIAInput ? Math.round(Math.max(1, Math.min(5, parseFloat(familiaridadeIAInput.value) || 3))) : formData.familiaridadeIA || 3;
+    const aberturaAprendizadoValue = setupComplexityToleranceInput ? Math.round(Math.max(1, Math.min(5, parseFloat(setupComplexityToleranceInput.value) || 3))) : formData.setupComplexityTolerance || 3;
+    const maturidadeIAsValue = riskToleranceInput ? Math.round(Math.max(1, Math.min(5, parseFloat(riskToleranceInput.value) || 3))) : formData.riskTolerance || 3;
     
     // Preparar lista de tarefas como string para compatibilidade com N8N
     const tarefasText = tasksComplete.map(t => t.taskText).filter(Boolean).join(', ') || 'Não informado';
@@ -1195,16 +1197,17 @@ const sliderLevels = {
     ]
 };
 
-// Get level text based on slider value (1-5)
+// Get level text based on slider value (1-5, can be decimal during drag)
 function getSliderLevel(sliderId, value) {
     // Extract base slider name (remove _task suffix if present)
     const baseSliderId = sliderId.split('_task')[0];
     const levels = sliderLevels[baseSliderId];
     if (!levels) return '';
     
-    // Map value 1-5 directly to index 0-4
+    // Map value 1-5 (or decimals between) directly to index 0-4
+    // Round to nearest integer: Value 1-1.5 = index 0, 1.5-2.5 = index 1, etc.
     // Value 1 = index 0, value 2 = index 1, ..., value 5 = index 4
-    let index = Math.floor(value) - 1;
+    let index = Math.round(value) - 1;
     if (index < 0) index = 0;
     if (index >= levels.length) index = levels.length - 1;
     
@@ -1223,6 +1226,22 @@ function updateSliderLevel(sliderId, value) {
             levelElement.textContent = levelText;
         }
     }
+}
+
+// Snap slider value to nearest integer (1, 2, 3, 4, or 5)
+function snapSliderToNearestValue(slider) {
+    const currentValue = parseFloat(slider.value);
+    // Round to nearest integer and clamp to 1-5 range
+    const snappedValue = Math.round(Math.max(1, Math.min(5, currentValue)));
+    
+    // Only update if value actually changed to avoid unnecessary updates
+    if (Math.abs(currentValue - snappedValue) > 0.01) {
+        slider.value = snappedValue;
+        // Trigger change event to ensure form data is updated
+        slider.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    
+    return snappedValue;
 }
 
 // Update slider fill visual
@@ -1257,10 +1276,32 @@ function initializeSlidersInContainer(container) {
                 const value = parseInt(slider.value) || 3;
                 updateSliderFill(sliderId, value);
                 
-                // Add input listener
+                // Update visual during drag (input event fires continuously)
+                // During drag, slider can have decimal values for smooth movement
                 slider.addEventListener('input', function(e) {
-                    const val = parseInt(this.value);
+                    const val = parseFloat(this.value);
                     updateSliderFill(this.id, val);
+                });
+                
+                // Snap to nearest value when user releases mouse
+                slider.addEventListener('mouseup', function(e) {
+                    const snappedValue = snapSliderToNearestValue(this);
+                    updateSliderFill(this.id, snappedValue);
+                });
+                
+                // Snap to nearest value when user releases touch (mobile)
+                slider.addEventListener('touchend', function(e) {
+                    const snappedValue = snapSliderToNearestValue(this);
+                    updateSliderFill(this.id, snappedValue);
+                });
+                
+                // Also snap on change event as fallback
+                slider.addEventListener('change', function(e) {
+                    const snappedValue = Math.round(Math.max(1, Math.min(5, parseFloat(this.value))));
+                    if (Math.abs(parseFloat(this.value) - snappedValue) > 0.01) {
+                        this.value = snappedValue;
+                        updateSliderFill(this.id, snappedValue);
+                    }
                 });
             }
         }
@@ -1294,10 +1335,32 @@ document.addEventListener('DOMContentLoaded', () => {
             const value = parseInt(slider.value) || 3;
             updateSliderFill(sliderId, value);
             
-            // Update fill on input
+            // Update visual during drag (input event fires continuously)
+            // During drag, slider can have decimal values for smooth movement
             slider.addEventListener('input', (e) => {
-                const value = parseInt(e.target.value);
+                const value = parseFloat(e.target.value);
                 updateSliderFill(sliderId, value);
+            });
+            
+            // Snap to nearest value when user releases mouse
+            slider.addEventListener('mouseup', (e) => {
+                const snappedValue = snapSliderToNearestValue(e.target);
+                updateSliderFill(sliderId, snappedValue);
+            });
+            
+            // Snap to nearest value when user releases touch (mobile)
+            slider.addEventListener('touchend', (e) => {
+                const snappedValue = snapSliderToNearestValue(e.target);
+                updateSliderFill(sliderId, snappedValue);
+            });
+            
+            // Also snap on change event as fallback
+            slider.addEventListener('change', (e) => {
+                const snappedValue = Math.round(Math.max(1, Math.min(5, parseFloat(e.target.value))));
+                if (Math.abs(parseFloat(e.target.value) - snappedValue) > 0.01) {
+                    e.target.value = snappedValue;
+                    updateSliderFill(sliderId, snappedValue);
+                }
             });
         }
     });
