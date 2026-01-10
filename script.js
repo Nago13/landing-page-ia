@@ -218,10 +218,10 @@ const totalSteps = 2;
 const formData = {
     area: null,
     cargo: null,
-    senioridadeTop: 50,
-    familiaridadeIA: 50,
-    setupComplexityTolerance: 50,
-    riskTolerance: 50,
+    senioridadeTop: 3,
+    familiaridadeIA: 3,
+    setupComplexityTolerance: 3,
+    riskTolerance: 3,
     tasks: []
 };
 
@@ -425,19 +425,19 @@ function saveStepData(step) {
         // Coletar os 4 sliders superiores (níveis gerais do usuário)
         const senioridadeTopInput = document.getElementById('senioridadeTop');
         if (senioridadeTopInput) {
-            formData.senioridadeTop = parseInt(senioridadeTopInput.value) || 0;
+            formData.senioridadeTop = parseInt(senioridadeTopInput.value) || 3;
         }
         const familiaridadeIAInput = document.getElementById('familiaridadeIA');
         if (familiaridadeIAInput) {
-            formData.familiaridadeIA = parseInt(familiaridadeIAInput.value) || 0;
+            formData.familiaridadeIA = parseInt(familiaridadeIAInput.value) || 3;
         }
         const setupComplexityToleranceInput = document.getElementById('setupComplexityTolerance');
         if (setupComplexityToleranceInput) {
-            formData.setupComplexityTolerance = parseInt(setupComplexityToleranceInput.value) || 0;
+            formData.setupComplexityTolerance = parseInt(setupComplexityToleranceInput.value) || 3;
         }
         const riskToleranceInput = document.getElementById('riskTolerance');
         if (riskToleranceInput) {
-            formData.riskTolerance = parseInt(riskToleranceInput.value) || 0;
+            formData.riskTolerance = parseInt(riskToleranceInput.value) || 3;
         }
         
         // Save all task data from dynamically added tasks
@@ -455,17 +455,17 @@ function saveStepData(step) {
                 taskData.task = taskValue;
                 taskData.taskText = select.options[select.selectedIndex]?.text;
                 
-                // Coletar valores dos sliders da tarefa (0-100) - apenas se existirem
+                // Coletar valores dos sliders da tarefa (1-5) - apenas se existirem
                 sliders.forEach(slider => {
                     const sliderId = slider.id;
                     if (sliderId.includes('frequencia')) {
-                        taskData.frequencia = parseInt(slider.value) || 0;
+                        taskData.frequencia = parseInt(slider.value) || 3;
                     } else if (sliderId.includes('timePerInstance')) {
-                        taskData.tempoOcorrencia = parseInt(slider.value) || 0;
+                        taskData.tempoOcorrencia = parseInt(slider.value) || 3;
                     } else if (sliderId.includes('automationOpenness')) {
-                        taskData.automatizacao = parseInt(slider.value) || 0;
+                        taskData.automatizacao = parseInt(slider.value) || 3;
                     } else if (sliderId.includes('dataSensitivity')) {
-                        taskData.dataSensitivity = parseInt(slider.value) || 0;
+                        taskData.dataSensitivity = parseInt(slider.value) || 3;
                     }
                 });
                 
@@ -716,17 +716,17 @@ function submitUnlock() {
             taskData.task = taskValue;
             taskData.taskText = select.options[select.selectedIndex]?.text;
             
-            // Coletar valores dos sliders da tarefa (0-100) - apenas se existirem
+            // Coletar valores dos sliders da tarefa (1-5) - apenas se existirem
             sliders.forEach(slider => {
                 const sliderId = slider.id;
                 if (sliderId.includes('frequencia')) {
-                    taskData.frequencia = parseInt(slider.value) || 0;
+                    taskData.frequencia = parseInt(slider.value) || 3;
                 } else if (sliderId.includes('timePerInstance')) {
-                    taskData.tempoOcorrencia = parseInt(slider.value) || 0;
+                    taskData.tempoOcorrencia = parseInt(slider.value) || 3;
                 } else if (sliderId.includes('automationOpenness')) {
-                    taskData.automatizacao = parseInt(slider.value) || 0;
+                    taskData.automatizacao = parseInt(slider.value) || 3;
                 } else if (sliderId.includes('dataSensitivity')) {
-                    taskData.dataSensitivity = parseInt(slider.value) || 0;
+                    taskData.dataSensitivity = parseInt(slider.value) || 3;
                 }
             });
             
@@ -760,10 +760,10 @@ function submitUnlock() {
     
     // Preparar objeto completo com todos os dados
     // Garantir que todos os valores numéricos sejam válidos
-    const senioridadeValue = senioridadeTopInput ? parseInt(senioridadeTopInput.value) || 0 : formData.senioridadeTop || 0;
-    const familiaridadeIAValue = familiaridadeIAInput ? parseInt(familiaridadeIAInput.value) || 0 : formData.familiaridadeIA || 0;
-    const aberturaAprendizadoValue = setupComplexityToleranceInput ? parseInt(setupComplexityToleranceInput.value) || 0 : formData.setupComplexityTolerance || 0;
-    const maturidadeIAsValue = riskToleranceInput ? parseInt(riskToleranceInput.value) || 0 : formData.riskTolerance || 0;
+    const senioridadeValue = senioridadeTopInput ? parseInt(senioridadeTopInput.value) || 3 : formData.senioridadeTop || 3;
+    const familiaridadeIAValue = familiaridadeIAInput ? parseInt(familiaridadeIAInput.value) || 3 : formData.familiaridadeIA || 3;
+    const aberturaAprendizadoValue = setupComplexityToleranceInput ? parseInt(setupComplexityToleranceInput.value) || 3 : formData.setupComplexityTolerance || 3;
+    const maturidadeIAsValue = riskToleranceInput ? parseInt(riskToleranceInput.value) || 3 : formData.riskTolerance || 3;
     
     // Preparar lista de tarefas como string para compatibilidade com N8N
     const tarefasText = tasksComplete.map(t => t.taskText).filter(Boolean).join(', ') || 'Não informado';
@@ -783,7 +783,7 @@ function submitUnlock() {
         aberturaAprendizado: aberturaAprendizadoValue,
         maturidadeIAs: maturidadeIAsValue,
         
-        // Tarefas com todos os dados completos (sliders de 0 a 100 + respostas de IA)
+        // Tarefas com todos os dados completos (sliders de 1 a 5 + respostas de IA)
         tasks: tasksComplete,
         
         // Stack recomendado (apenas dados serializáveis)
@@ -1014,10 +1014,10 @@ function resetForm() {
     // Reset form data
     formData.area = null;
     formData.cargo = null;
-    formData.senioridadeTop = 50;
-    formData.familiaridadeIA = 50;
-    formData.setupComplexityTolerance = 50;
-    formData.riskTolerance = 50;
+    formData.senioridadeTop = 3;
+    formData.familiaridadeIA = 3;
+    formData.setupComplexityTolerance = 3;
+    formData.riskTolerance = 3;
     formData.tasks = [];
     
     // Reset task counter
@@ -1050,23 +1050,23 @@ function resetForm() {
     // Reset novos sliders superiores
     const senioridadeTopInput = document.getElementById('senioridadeTop');
     if (senioridadeTopInput) {
-        senioridadeTopInput.value = 50;
-        updateSliderFill('senioridadeTop', 50);
+        senioridadeTopInput.value = 3;
+        updateSliderFill('senioridadeTop', 3);
     }
     const familiaridadeIAInput = document.getElementById('familiaridadeIA');
     if (familiaridadeIAInput) {
-        familiaridadeIAInput.value = 50;
-        updateSliderFill('familiaridadeIA', 50);
+        familiaridadeIAInput.value = 3;
+        updateSliderFill('familiaridadeIA', 3);
     }
     const setupComplexityToleranceInput = document.getElementById('setupComplexityTolerance');
     if (setupComplexityToleranceInput) {
-        setupComplexityToleranceInput.value = 50;
-        updateSliderFill('setupComplexityTolerance', 50);
+        setupComplexityToleranceInput.value = 3;
+        updateSliderFill('setupComplexityTolerance', 3);
     }
     const riskToleranceInput = document.getElementById('riskTolerance');
     if (riskToleranceInput) {
-        riskToleranceInput.value = 50;
-        updateSliderFill('riskTolerance', 50);
+        riskToleranceInput.value = 3;
+        updateSliderFill('riskTolerance', 3);
     }
     
     
@@ -1195,16 +1195,17 @@ const sliderLevels = {
     ]
 };
 
-// Get level text based on slider value (0-100)
+// Get level text based on slider value (1-5)
 function getSliderLevel(sliderId, value) {
     // Extract base slider name (remove _task suffix if present)
     const baseSliderId = sliderId.split('_task')[0];
     const levels = sliderLevels[baseSliderId];
     if (!levels) return '';
     
-    // Map value 0-100 to index 0-4
-    // 0-20 = 0, 20-40 = 1, 40-60 = 2, 60-80 = 3, 80-100 = 4
-    let index = Math.floor(value / 20);
+    // Map value 1-5 directly to index 0-4
+    // Value 1 = index 0, value 2 = index 1, ..., value 5 = index 4
+    let index = Math.floor(value) - 1;
+    if (index < 0) index = 0;
     if (index >= levels.length) index = levels.length - 1;
     
     return levels[index];
@@ -1233,7 +1234,10 @@ function updateSliderFill(sliderId, value) {
     }
     const fillElement = document.getElementById(fillId);
     if (fillElement) {
-        fillElement.style.width = value + '%';
+        // Convert value 1-5 to percentage 0-100
+        // Value 1 = 0%, value 2 = 25%, value 3 = 50%, value 4 = 75%, value 5 = 100%
+        const percentage = ((value - 1) / 4) * 100;
+        fillElement.style.width = percentage + '%';
     }
     
     // Also update level display
@@ -1250,7 +1254,7 @@ function initializeSlidersInContainer(container) {
             const sliderId = slider.id;
             if (sliderId) {
                 // Set initial fill
-                const value = parseInt(slider.value) || 0;
+                const value = parseInt(slider.value) || 3;
                 updateSliderFill(sliderId, value);
                 
                 // Add input listener
@@ -1287,7 +1291,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const sliderId = slider.id;
         if (sliderId) {
             // Set initial fill
-            const value = parseInt(slider.value) || 0;
+            const value = parseInt(slider.value) || 3;
             updateSliderFill(sliderId, value);
             
             // Update fill on input
