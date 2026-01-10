@@ -770,6 +770,20 @@ function submitUnlock() {
     // Preparar lista de tarefas como string para compatibilidade com N8N
     const tarefasText = tasksComplete.map(t => t.taskText).filter(Boolean).join(', ') || 'Não informado';
     
+    // Transformar array de tarefas em campos planos com sufixos numéricos
+    const taskFields = {};
+    tasksComplete.forEach((task, index) => {
+        const taskNum = index + 1;
+        taskFields[`task_${taskNum}`] = task.task || null;
+        taskFields[`taskText_${taskNum}`] = task.taskText || null;
+        taskFields[`frequencia_${taskNum}`] = task.frequencia || null;
+        taskFields[`tempoOcorrencia_${taskNum}`] = task.tempoOcorrencia || null;
+        taskFields[`automatizacao_${taskNum}`] = task.automatizacao || null;
+        taskFields[`dataSensitivity_${taskNum}`] = task.dataSensitivity || null;
+        taskFields[`usaIA_${taskNum}`] = task.usaIA || null;
+        taskFields[`iaUsada_${taskNum}`] = task.iaUsada || null;
+    });
+    
     const fullData = {
         // Dados básicos
         email: email,
@@ -785,8 +799,8 @@ function submitUnlock() {
         aberturaAprendizado: aberturaAprendizadoValue,
         maturidadeIAs: maturidadeIAsValue,
         
-        // Tarefas com todos os dados completos (sliders de 1 a 5 + respostas de IA)
-        tasks: tasksComplete,
+        // Tarefas como campos planos com sufixos numéricos (compatível com N8N)
+        ...taskFields,
         
         // Stack recomendado (apenas dados serializáveis)
         stack: stack.slice(0, 4).map(app => ({
@@ -807,7 +821,7 @@ function submitUnlock() {
         return;
     }
     
-    if (!fullData.tasks || fullData.tasks.length === 0) {
+    if (tasksComplete.length === 0) {
         alert('Erro: Nenhuma tarefa foi adicionada. Por favor, adicione pelo menos uma tarefa.');
         if (unlockBtn) {
             unlockBtn.innerHTML = originalText;
