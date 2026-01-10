@@ -1619,6 +1619,8 @@ function updateTasksUI() {
     if (hasTasks) {
         // Hide empty state when there are tasks
         if (tasksEmptyState) tasksEmptyState.style.display = 'none';
+        // Update add task button visibility
+        updateAddTaskButtonsVisibility();
     } else {
         // Show empty state with centered button when no tasks
         if (tasksEmptyState) tasksEmptyState.style.display = 'flex';
@@ -1634,10 +1636,11 @@ function addTask() {
         return;
     }
     
-    // Check if a task already exists - only allow one task
+    // Check if we've reached the limit of 3 tasks
     const existingTasks = tasksContainer.querySelectorAll('.profile-filters:not(.task-template)');
-    if (existingTasks.length > 0) {
-        return; // Don't allow adding more than one task
+    if (existingTasks.length >= 3) {
+        alert('Você pode adicionar no máximo 3 tarefas por relatório.');
+        return;
     }
     
     // Get current selected area
@@ -1728,6 +1731,7 @@ function addTask() {
     deleteBtn.onclick = function() {
         newTask.remove();
         updateTasksUI();
+        updateAddTaskButtonsVisibility();
     };
     
     // Add delete button to the profile-filters container (top right corner)
@@ -1761,6 +1765,31 @@ function addTask() {
     // Update UI to show header instead of empty state
     updateTasksUI();
     
+    // Update add task button visibility for all tasks
+    updateAddTaskButtonsVisibility();
+    
     // Scroll to the new task
     newTask.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// Function to update add task button visibility based on task count
+function updateAddTaskButtonsVisibility() {
+    const tasksContainer = document.getElementById('tasksContainer');
+    if (!tasksContainer) return;
+    
+    const existingTasks = tasksContainer.querySelectorAll('.profile-filters:not(.task-template)');
+    const taskCount = existingTasks.length;
+    const maxTasks = 3;
+    
+    // Show/hide add task buttons in all existing tasks
+    existingTasks.forEach(task => {
+        const addButtonWrapper = task.querySelector('.add-task-button-wrapper');
+        if (addButtonWrapper) {
+            if (taskCount < maxTasks) {
+                addButtonWrapper.style.display = 'block';
+            } else {
+                addButtonWrapper.style.display = 'none';
+            }
+        }
+    });
 }
